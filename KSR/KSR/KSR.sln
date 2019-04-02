@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSR", "KSR\KSR.csproj", "{A8A70D2C-0BF1-480D-88DB-4CAF51923747}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSR", "KSR\KSR.csproj", "{BF600714-8923-48DB-B467-F7FD7C2FC7B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A8A70D2C-0BF1-480D-88DB-4CAF51923747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8A70D2C-0BF1-480D-88DB-4CAF51923747}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8A70D2C-0BF1-480D-88DB-4CAF51923747}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8A70D2C-0BF1-480D-88DB-4CAF51923747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF600714-8923-48DB-B467-F7FD7C2FC7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF600714-8923-48DB-B467-F7FD7C2FC7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF600714-8923-48DB-B467-F7FD7C2FC7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF600714-8923-48DB-B467-F7FD7C2FC7B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {695D4652-604E-4AF3-962E-6AB491016EAB}
+		SolutionGuid = {47BD1B3E-9FAF-4AE7-AAC5-A56C5D177FB0}
 	EndGlobalSection
 EndGlobal
