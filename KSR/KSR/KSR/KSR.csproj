@@ -48,6 +48,10 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="Metrics\Chebyshev.cs" />
+    <Compile Include="Metrics\Euclidean.cs" />
+    <Compile Include="Metrics\IMetric.cs" />
+    <Compile Include="Metrics\Manhattan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
