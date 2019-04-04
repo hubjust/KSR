@@ -16,11 +16,20 @@ namespace KSR
         public static IMetric CurrentMetric { get; set; }
 
         public double CountFrequency(Article article, string word)
-        {          
-            return article.Words.Count(s => s.Equals(word, StringComparison.CurrentCultureIgnoreCase));
+        {
+            int counter = 0;
+
+            foreach(var w in article.Words)
+            {
+                if (w.Equals(word, StringComparison.CurrentCultureIgnoreCase))
+                    counter++;
+            }
+
+            return counter;
+            //  return article.Words.Count(s => s.Equals(word, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public List<(Article Article, double Distance)> GetDistance(Article article) //Tuple trzeba zainstalować z NuGet
+        public List<(Article Article, double Distance)> CountDistance(Article article) //Tuple trzeba zainstalować z NuGet
         {
             var articleIndex = Articles.IndexOf(article);
             var distances = new double[Articles.Count];
