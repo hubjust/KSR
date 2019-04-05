@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KSR
+namespace Logic
 {
     public class Article
     {

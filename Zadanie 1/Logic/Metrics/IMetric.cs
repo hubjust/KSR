@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KSR.Metrics
+namespace Logic.Metrics
 {
     public interface IMetric
     {

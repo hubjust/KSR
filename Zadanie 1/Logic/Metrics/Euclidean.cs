@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KSR.Metrics
+namespace Logic.Metrics
 {
-    public class Chebyshev : IMetric
+    public class Euclidean : IMetric
     {
         public double CountDistance(List<double> x, List<double> y)
         {
@@ -11,11 +11,10 @@ namespace KSR.Metrics
 
             for (int i = 0; i < x.Count; i++)
             {
-                if(distance < Math.Abs(x[i] - y[i]))
-                    distance = Math.Abs(x[i] - y[i]);
+                distance += Math.Pow(x[i] - y[i], 2);
             }
 
-            return distance;
+            return Math.Sqrt(distance);
         }
     }
 }

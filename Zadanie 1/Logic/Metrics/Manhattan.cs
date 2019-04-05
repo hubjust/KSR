@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KSR.Metrics
+namespace Logic.Metrics
 {
     public class Manhattan : IMetric
     {
