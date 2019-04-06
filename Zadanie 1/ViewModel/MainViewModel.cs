@@ -14,12 +14,29 @@ namespace ViewModel
         public ICommand LoadArticlesCommand { get; set; }
         public ICommand GenerateMatrixCommand { get; set; }
 
-        private IMetric metric;
-
         private List<Article> articles;
 
         public int LoadedArticlesCounter { get; set; }
         public int AnalyzedArticlesCounter { get; set; }
+        public int CorrectlyMatchedArticles { get; set; }
+
+        #region Sliders
+
+        public int TrainingSetSlider { get; set; }
+        public int TrainingSetSliderValue
+        {
+            get => TrainingSetSlider;
+            set => TrainingSetSlider = value;
+        }
+
+        public int KNNSlider { get; set; }
+        public int KNNSliderValue
+        {
+            get => KNNSlider;
+            set => KNNSlider = value;
+        }
+
+        #endregion
 
         private readonly List<string> places = new List<string>
         {
@@ -33,7 +50,11 @@ namespace ViewModel
 
         public MainViewModel()
         {
+            TrainingSetSliderValue = 10;
+            KNNSliderValue = 1;
+
             LoadArticlesCommand = new RelayCommand(LoadArticles);
+            GenerateMatrixCommand = new RelayCommand(GenerateMatrix);
         }
 
         private async void LoadArticles()
@@ -50,6 +71,12 @@ namespace ViewModel
 
             LoadedArticlesCounter = articles.Count();
             OnPropertyChanged(nameof(LoadedArticlesCounter));
+        }
+
+        private async void GenerateMatrix()
+        {
+            await Task.Run(() => { CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue; });
+            OnPropertyChanged(nameof(CorrectlyMatchedArticles));
         }
     }
 }
