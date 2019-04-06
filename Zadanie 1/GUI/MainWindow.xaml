@@ -65,9 +65,12 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <RadioButton Grid.Column="0" Foreground="White" Style="{DynamicResource RadioButtonStyle}" VerticalAlignment="Center" Content="Euklidesowa" IsChecked="True" />
-                    <RadioButton Grid.Column="1" Foreground="White" Style="{DynamicResource RadioButtonStyle}" VerticalAlignment="Center" Content="Uliczna"/>
-                    <RadioButton Grid.Column="2" Foreground="White" Style="{DynamicResource RadioButtonStyle}" VerticalAlignment="Center" Content="Czebyszewa" />
+                    <RadioButton Grid.Column="0" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"  
+                                 IsChecked="{Binding Path=MetricRadioButtonEuclidean, Mode=TwoWay}" Content="Euklidesowa"/>
+                    <RadioButton Grid.Column="1" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"
+                                 IsChecked="{Binding Path=MetricRadioButtonChebyshew, Mode=TwoWay}" Content="Uliczna"/>
+                    <RadioButton Grid.Column="2" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"  
+                                 IsChecked="{Binding Path=MetricRadioButtonManhattan, Mode=TwoWay}" Content="Czebyszewa"/>
                 </Grid>
             </GroupBox>
 
@@ -79,8 +82,10 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <RadioButton Grid.Column="0" Foreground="White" Style="{DynamicResource RadioButtonStyle}" VerticalAlignment="Center" Content="TF" IsChecked="True" />
-                    <RadioButton Grid.Column="1" Foreground="White" Style="{DynamicResource RadioButtonStyle}" VerticalAlignment="Center" Content="IDF"/>
+                    <RadioButton Grid.Column="0" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"  
+                                 IsChecked="{Binding Path=MeasurementRadioButtonTF, Mode=TwoWay}" Content="TF"/>
+                    <RadioButton Grid.Column="1" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"
+                                 IsChecked="{Binding Path=MeasurementRadioButtonIDF, Mode=TwoWay}" Content="IDF"/>
                 </Grid>
             </GroupBox>
 

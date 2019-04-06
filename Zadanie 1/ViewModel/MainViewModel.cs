@@ -22,6 +22,16 @@ namespace ViewModel
         public int AnalyzedArticlesCounter { get; set; }
         public int CorrectlyMatchedArticles { get; set; }
 
+        #region RadioButtons
+
+        public bool MetricRadioButtonEuclidean { get; set; }
+        public bool MetricRadioButtonChebyshew { get; set; }
+        public bool MetricRadioButtonManhattan { get; set; }
+        public bool MeasurementRadioButtonTF { get; set; }
+        public bool MeasurementRadioButtonIDF { get; set; }
+
+        #endregion
+
         #region Sliders
 
         public int TrainingSetSlider { get; set; }
@@ -54,6 +64,8 @@ namespace ViewModel
 
         public MainViewModel()
         {
+            MetricRadioButtonEuclidean = true;
+            MeasurementRadioButtonTF = true;
             TrainingSetSliderValue = 10;
             KNNSliderValue = 1;
 
@@ -75,8 +87,6 @@ namespace ViewModel
 
             LoadedArticlesCounter = articles.Count();
             OnPropertyChanged(nameof(LoadedArticlesCounter));
-
-
         }
 
         private async void GenerateMatrix()
