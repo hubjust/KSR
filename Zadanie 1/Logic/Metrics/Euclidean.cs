@@ -6,7 +6,7 @@ namespace Logic.Metrics
 {
     public class Euclidean
     {
-        public static double Calculate(List<List<Article>> AllArticles, int k)
+        public static double Calculate(List<List<Article>> AllArticles, int k) //lista z danymi treningowymi i testowymi
         {
             List<Article> TrainingVectors = new List<Article>();
             List<Article> TestVectors = new List<Article>();
@@ -64,7 +64,7 @@ namespace Logic.Metrics
                 TrainingVectors.ElementAt(i).Distance = Math.Sqrt(powResult); //tu zapisujemy informacje o odległości euklidesowej
                 powResult = 0;
             }
-            result.TrainingVector = TrainingVectors;
+            result.TrainingVectors = TrainingVectors;
 
             return KnnAlgorithm.Calculate(result, k);
         }
