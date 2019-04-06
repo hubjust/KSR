@@ -40,7 +40,7 @@ namespace ViewModel
             await Task.Run(() => { articles = new FileReader().ObtainVectorSpaceModels().ToList(); });
 
             LoadedArticlesCounter = articles.Count();
-            
+            OnPropertyChanged(nameof(LoadedArticlesCounter));
         }
     }
 }

@@ -51,7 +51,7 @@
             <Label Grid.Row="2" Margin="20 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Artykuły z poprawnymi etykietami:"/>
 
             <TextBox Grid.Row="1" Grid.Column="1" Margin="0 10 10 0" Background="#274452" Foreground="White"
-                     VerticalAlignment="Center" Height="21px" IsReadOnly="True" SourceUpdated="" Text="{Binding LoadedArticlesCounter}" />
+                     VerticalAlignment="Center" Height="21px" IsReadOnly="True" Text="{Binding LoadedArticlesCounter}" />
             <TextBox Grid.Row="2" Grid.Column="1" Margin="0 0 10 0" Background="#274452" Foreground="White"
                      VerticalAlignment="Center" Height="21px" IsReadOnly = "True" Text="{Binding AnalyzedArticlesCounter}"/>
 
