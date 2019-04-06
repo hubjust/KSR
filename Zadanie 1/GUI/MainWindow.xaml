@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Komputerowe Systemy Rozpoznawania - Zadanie 1" Height="450" Width="800">
+    <Grid Background="#313131">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.6*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.ColumnSpan="2" VerticalAlignment="Top" Background="#282828" Height="25" >
+            <MenuItem Header="Plik" Margin="5 0 0 0" Height="25" Foreground="White">
+                <MenuItem Header="Zamknij" Foreground="Black" />
+                <MenuItem Header="Zamknij" Foreground="Black" />
+            </MenuItem>
+            <MenuItem Header="Analiza" Margin="5 0 0 0" Height="25" Foreground="White">
+                <MenuItem Header="Zamknij" Foreground="Black" />
+                <MenuItem Header="Zamknij" Foreground="Black" />
+            </MenuItem>
+        </Menu>
+
+        <!--<TabControl Grid.Row="1" Grid.ColumnSpan="2" Background="#313131" Margin="20 10 20 20" ItemContainerStyle="{DynamicResource TabItemStyle}" >
+            <TabItem Header="Analiza">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Margin="0 0 0 0" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40" Width="200" FontSize="14px" 
+                            Command="{Binding GenerateCommand}" Style="{DynamicResource ButtonStyle}" Content="Analizuj dokumenty" />
+
+                    <Button Margin="0 0 0 0" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Height="40" Width="200" FontSize="14px" 
+                            Command="{Binding GenerateCommand}" Style="{DynamicResource ButtonStyle}" Content="Stwórz macierz" />
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Klasyfikacja">
+                <Grid>
+
+
+
+                </Grid>
+            </TabItem>
+        </TabControl>-->
+
     </Grid>
 </Window>
