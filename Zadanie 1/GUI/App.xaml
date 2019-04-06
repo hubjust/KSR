@@ -6,10 +6,7 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Themes/MetroDark/MetroDark.MSControls.Core.Implicit.xaml" />
-                <ResourceDictionary Source="Themes/MetroDark/MetroDark.MSControls.Toolkit.Implicit.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+
 
             <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
                 <Setter Property="Template">
@@ -21,7 +18,7 @@
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
                                     <Setter Property="TextElement.Foreground" TargetName="ContentSite" Value="White"/>
-                                    <Setter TargetName="Border" Property="Background" Value="#00aade"/>
+                                    <Setter TargetName="Border" Property="Background" Value="#274452"/>
                                 </Trigger>
                                 <Trigger Property="IsSelected" Value="False">
                                     <Setter Property="TextElement.Foreground" TargetName="ContentSite" Value="White"/>
@@ -32,7 +29,33 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
+            <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderThickness="0.6" BorderBrush="Gainsboro" Background="{TemplateBinding Background}">
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <!--<Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#34414F" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>-->
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#274452" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="False">
+                                    <Setter Property="Background" Value="#282828" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

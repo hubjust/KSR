@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
+
 using HtmlAgilityPack;
 
 namespace Logic
@@ -10,9 +12,11 @@ namespace Logic
     {
         public IEnumerable<Article> ObtainVectorSpaceModels()
         {
+            Debug.WriteLine("Loading articles...");
+
             for (int i = 0; i < 7; i++)
             {
-                var rawXml = File.ReadAllText($"../../Data/reut2-{i.ToString().PadLeft(3, '0')}.sgm");
+                var rawXml = File.ReadAllText($"../../../Articles/Files/reut2-{i.ToString().PadLeft(3, '0')}.sgm");
                 var doc = new HtmlDocument();
                 doc.LoadHtml(rawXml);
                 var regex = new Regex("[^a-zA-Z]");
@@ -38,6 +42,8 @@ namespace Logic
                     }
                 }
             }
+
+            Debug.WriteLine("Articles loaded.");
         }
     }
 }
