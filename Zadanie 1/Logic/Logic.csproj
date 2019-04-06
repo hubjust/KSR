@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Annytab.Stemmer, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Annytab.Stemmer.1.2.3\lib\netstandard2.0\Annytab.Stemmer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +47,8 @@
     <Compile Include="Article.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="Stemmering\EnglishStemmer.cs" />
+    <Compile Include="Stemmering\IStemmer.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Metrics\Chebyshev.cs" />
     <Compile Include="Metrics\Euclidean.cs" />
@@ -51,6 +56,10 @@
     <Compile Include="Metrics\Manhattan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stemmering\Stemmer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
