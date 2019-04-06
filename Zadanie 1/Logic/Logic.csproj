@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Article.cs" />
+    <Compile Include="FeatureExtractions.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="KnnAlgorithm.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Metrics\Chebyshev.cs" />
     <Compile Include="Metrics\Euclidean.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Stemmering\EnglishStemmer.cs" />
     <Compile Include="Stemmering\IStemmer.cs" />
     <Compile Include="Stemmering\Stemmer.cs" />
+    <Compile Include="TestVectorAndTrainingVectors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
