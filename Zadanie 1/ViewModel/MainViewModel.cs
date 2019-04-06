@@ -117,10 +117,8 @@ namespace ViewModel
                 MessageBox.Show("Done");
             }
 
-            await Task.Run(() => { CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue; });
-            OnPropertyChanged(nameof(CorrectlyMatchedArticles));
-
-            
+            CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
+            OnPropertyChanged(nameof(CorrectlyMatchedArticles)); 
         }
 
         private void Quit()

@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 
+using Annytab.Stemmer;
 using HtmlAgilityPack;
+using StopWord;
 
 namespace Logic
 {
     public static class FileReader
     {
+        private static Stemmer englishStemmer = new EnglishStemmer();
+
         public static IEnumerable<Article> GetArticlesFromFile(string[] filePath)
         {
             Debug.WriteLine("Loading articles...");
@@ -53,20 +57,47 @@ namespace Logic
 
         public static List<string> ConvertRawTextToList(this string rawText)
         {
-            rawText = Regex.Replace(rawText, @"\s+", " ");
+            List<string> textList;
 
-            // odstęp
-            rawText = rawText.Replace("/", " ");
-
-            // pozbycie się znaku
+            // Pozbycie się znaków & cyfr
+            rawText = rawText.Replace("&#3;", "");
+            rawText = rawText.Replace("&lt;", ""); // <
             rawText = rawText.Replace(".", "");
             rawText = rawText.Replace(",", "");
-            rawText = rawText.Replace("&lt;", ""); // <
-            rawText = rawText.Replace(">;", "");
-            rawText = rawText.Replace("+;", "");
-            rawText = rawText.Replace(" &#3;", "");
+            rawText = rawText.Replace("<", "");
+            rawText = rawText.Replace(">", "");
+            rawText = rawText.Replace("(", "");
+            rawText = rawText.Replace(")", "");
+            rawText = rawText.Replace("+:", "");
+            rawText = rawText.Replace("+", "");
+            rawText = rawText.Replace("\"", "");
+            rawText = rawText.Replace("\\", "");
 
-            return rawText.Split(' ', '\n', '\t').ToList();
+            // Zamiana na białe znaki
+            rawText = rawText.Replace("/", " ");
+            rawText = rawText.Replace(" - ", " ");
+            rawText = rawText.Replace(" -- ", " ");
+            rawText = Regex.Replace(rawText, "[0-9]{1,}", "");
+
+            // Pozbycie się zbędnych białych znaków
+            rawText = Regex.Replace(rawText, @"\s+", " ");
+
+            // Stop Lista
+            // Żródło: https://github.com/hklemp/dotnet-stop-words
+            rawText = rawText.RemoveStopWords("en");
+            rawText = rawText.Replace("Reuter", "");
+            rawText = rawText.Replace("REUTER", "");
+
+            // Podzielenie tekstu
+            rawText = rawText.TrimEnd();
+            textList = rawText.Split(' ', '\n', '\t').ToList();
+
+            // Stemming 
+            // Źródło: http://snowball.tartarus.org/algorithms/english/stemmer.html
+            for (int i = 0; i < textList.Count(); i++)
+                textList[i] = englishStemmer.GetSteamWord(textList[i]);
+
+            return textList;
         }
     }
 }
