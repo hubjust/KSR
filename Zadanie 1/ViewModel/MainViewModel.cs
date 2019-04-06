@@ -8,6 +8,7 @@ using System;
 using Logic;
 using Logic.Metrics;
 using System;
+using System.Diagnostics;
 
 namespace ViewModel
 {
@@ -103,24 +104,20 @@ namespace ViewModel
             OnPropertyChanged(nameof(TagList));
         }
 
-
-
         private void GenerateMatrix()
         {
             Article.GetExtract(MeasurementRadioButtonTF, articles);
             allArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
 
             if (MetricRadioButtonEuclidean)
-            {             
-                double percent = Euclidean.Calculate(allArticles, KNNSliderValue);
+            {
+                double percent =  Euclidean.Calculate(allArticles, KNNSliderValue);
                 CorrectlyMatchedArticles = Convert.ToInt32((Math.Round(percent, 2) * 100));
                 MessageBox.Show("Done");
             }
 
-            await Task.Run(() => { CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue; });
-            OnPropertyChanged(nameof(CorrectlyMatchedArticles));
-
-            
+           // await Task.Run(() => { CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue; });
+            OnPropertyChanged(nameof(CorrectlyMatchedArticles));            
         }
 
         private void Quit()

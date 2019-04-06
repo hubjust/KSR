@@ -18,12 +18,17 @@ namespace Logic
 
         public static void GetExtract(Boolean isTermFrequency, List<Article> articles)
         {
-            if (isTermFrequency)         
-                FeatureExtractions.TermFrequency(articles.Last());
-            
+            if (isTermFrequency)
+            {
+                foreach(Article a in articles)
+                    FeatureExtractions.TermFrequency(a);
+            }
 
-            else           
-                FeatureExtractions.InverseDocumentFrequency(articles);           
+            else
+            {
+                FeatureExtractions.InverseDocumentFrequency(articles);
+            }
+
         }
     }
 }

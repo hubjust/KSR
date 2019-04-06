@@ -5,7 +5,7 @@ using System.Linq;
 namespace Logic.Metrics
 {
     public class Manhattan
-    {
+    {       
         public static double Calculate(List<List<Article>> AllArticles, int k) //lista z danymi treningowymi i testowymi
         {
             List<Article> TrainingVectors = new List<Article>();

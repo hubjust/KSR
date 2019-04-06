@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Logic.Metrics
 {
@@ -18,11 +20,15 @@ namespace Logic.Metrics
                 TrainingVectors.Add(AllArticles.ElementAt(0).ElementAt(i));
             }
 
+            Debug.WriteLine("AllArticles.ElementAt(0).Count  " + AllArticles.ElementAt(0).Count);
+            Debug.WriteLine("TrainingVectors.Count  " + TrainingVectors.Count);
             //tworzy dane testowe
             for (int i = 0; i < AllArticles.ElementAt(1).Count; i++)
             {
                 TestVectors.Add(AllArticles.ElementAt(1).ElementAt(i));
             }
+
+            Debug.WriteLine("TestVectors.Count  " + TrainingVectors.Count);
 
             for (int i = 0; i < TestVectors.Count; i++)
             {
