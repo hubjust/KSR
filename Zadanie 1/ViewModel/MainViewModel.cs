@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 using Logic;
 using Logic.Metrics;
+using System;
 
 namespace ViewModel
 {
@@ -92,6 +93,16 @@ namespace ViewModel
 
         private async void GenerateMatrix()
         {
+            Article.GetExtract(MeasurementRadioButtonTF, articles);
+            allArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
+
+            if (MetricRadioButtonEuclidean)
+            {             
+                double percent = Euclidean.Calculate(allArticles, KNNSliderValue);
+                CorrectlyMatchedArticles = Convert.ToInt32((Math.Round(percent, 2) * 100));
+                MessageBox.Show("Done");
+            }
+
             await Task.Run(() => { CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue; });
             OnPropertyChanged(nameof(CorrectlyMatchedArticles));
 

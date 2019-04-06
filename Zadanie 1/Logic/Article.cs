@@ -16,27 +16,14 @@ namespace Logic
         public Dictionary<string, double> VectorFeatures;
         public double Distance { get; set; }
 
-        public static void GetExtract(Boolean isTermFrequency, Article last)
+        public static void GetExtract(Boolean isTermFrequency, List<Article> articles)
         {
-            if (isTermFrequency)
-            {
-                FeatureExtractions.TermFrequency(last);
-            }
+            if (isTermFrequency)         
+                FeatureExtractions.TermFrequency(articles.Last());
+            
 
-            else
-            {
-
-            }
-        }
-
-        public static void TermFrequency(List<Article> result)
-        {
-            FeatureExtractions.TermFrequency(result.Last());
-        }
-
-        public static void InverseDocumentFrequency(List<Article> articles, List<Article> result)
-        {
-            FeatureExtractions.InverseDocumentFrequency(articles, result);
+            else           
+                FeatureExtractions.InverseDocumentFrequency(articles);           
         }
     }
 }
