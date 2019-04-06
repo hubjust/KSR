@@ -15,6 +15,7 @@ namespace ViewModel
         public ICommand GenerateMatrixCommand { get; set; }
 
         private List<Article> articles;
+        private List<List<Article>> allArticles;
 
         #region Fields 
 
@@ -70,7 +71,7 @@ namespace ViewModel
             KNNSliderValue = 1;
 
             LoadArticlesCommand = new RelayCommand(LoadArticles);
-            GenerateMatrixCommand = new RelayCommand(GenerateMatrix);
+            GenerateMatrixCommand = new RelayCommand(GenerateMatrix);            
         }
 
         private void LoadArticles()
@@ -93,6 +94,8 @@ namespace ViewModel
         {
             await Task.Run(() => { CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue; });
             OnPropertyChanged(nameof(CorrectlyMatchedArticles));
+
+            
         }
     }
 }
