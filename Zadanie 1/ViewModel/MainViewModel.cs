@@ -102,6 +102,8 @@ namespace ViewModel
             OnPropertyChanged(nameof(TagList));
         }
 
+
+
         private void GenerateMatrix()
         {
             CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
