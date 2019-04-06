@@ -3,6 +3,7 @@ using System.Windows.Input;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
 
 using Logic;
 using Logic.Metrics;
@@ -12,6 +13,7 @@ namespace ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        public ICommand QuitCommand { get; set; }
         public ICommand LoadArticlesCommand { get; set; }
         public ICommand GenerateMatrixCommand { get; set; }
 
@@ -21,8 +23,6 @@ namespace ViewModel
         #region Fields 
 
         public int LoadedArticlesCounter { get; set; }
-        public int AnalyzedArticlesCounter { get; set; }
-        public int CorrectlyMatchedArticles { get; set; }
 
         #region RadioButtons
 
@@ -52,6 +52,13 @@ namespace ViewModel
 
         #endregion
 
+        public List<string> TagList { get; set; }
+        public string SelectedTag { get; set; }
+
+
+        public int AnalyzedArticlesCounter { get; set; }
+        public int CorrectlyMatchedArticles { get; set; }
+
         #endregion
 
         private readonly List<string> places = new List<string>
@@ -72,7 +79,8 @@ namespace ViewModel
             KNNSliderValue = 1;
 
             LoadArticlesCommand = new RelayCommand(LoadArticles);
-            GenerateMatrixCommand = new RelayCommand(GenerateMatrix);            
+            GenerateMatrixCommand = new RelayCommand(GenerateMatrix);
+            QuitCommand = new RelayCommand(Quit);
         }
 
         private void LoadArticles()
@@ -88,10 +96,16 @@ namespace ViewModel
             articles = FileReader.GetArticlesFromFile(path).ToList();
 
             LoadedArticlesCounter = articles.Count();
+
+            TagList = articles.SelectMany(article => article.Tags).Select(pair => pair.Key).Distinct().ToList();
+
             OnPropertyChanged(nameof(LoadedArticlesCounter));
+            OnPropertyChanged(nameof(TagList));
         }
 
-        private async void GenerateMatrix()
+
+
+        private void GenerateMatrix()
         {
             Article.GetExtract(MeasurementRadioButtonTF, articles);
             allArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
@@ -107,6 +121,14 @@ namespace ViewModel
             OnPropertyChanged(nameof(CorrectlyMatchedArticles));
 
             
+        }
+
+        private void Quit()
+        {
+            // nie działa "lepsze" rozwiązanie :c
+            // Application.Current.Shutdown();
+
+            Environment.Exit(0);
         }
     }
 }

@@ -37,14 +37,10 @@ namespace Logic
                         Article article = new Article();
 
                         string rawText = articleNode.Descendants("BODY").FirstOrDefault().InnerText;
-                        rawText = rawText.Replace("&lt;", "<");
-                        rawText = rawText.Replace("\r\n", " ");
-                        rawText = rawText.Replace("     ", " ");
-                        rawText = rawText.Replace(" &#3;", "");
 
                         article.Title = articleNode.Descendants("TITLE").First().InnerText;
                         article.Tags = tags;
-                        article.Text = rawText.Split(' ', '\n', '\t').ToList();
+                        article.Text = rawText.ConvertRawTextToList();
 
                         articles.Add(article);
                     }
@@ -53,6 +49,24 @@ namespace Logic
 
             Debug.WriteLine("Articles loaded: " + articles.Count());
             return articles;
+        }
+
+        public static List<string> ConvertRawTextToList(this string rawText)
+        {
+            rawText = Regex.Replace(rawText, @"\s+", " ");
+
+            // odstęp
+            rawText = rawText.Replace("/", " ");
+
+            // pozbycie się znaku
+            rawText = rawText.Replace(".", "");
+            rawText = rawText.Replace(",", "");
+            rawText = rawText.Replace("&lt;", ""); // <
+            rawText = rawText.Replace(">;", "");
+            rawText = rawText.Replace("+;", "");
+            rawText = rawText.Replace(" &#3;", "");
+
+            return rawText.Split(' ', '\n', '\t').ToList();
         }
     }
 }
