@@ -16,6 +16,8 @@ namespace ViewModel
 
         private List<Article> articles;
 
+        #region Fields 
+
         public int LoadedArticlesCounter { get; set; }
         public int AnalyzedArticlesCounter { get; set; }
         public int CorrectlyMatchedArticles { get; set; }
@@ -38,6 +40,8 @@ namespace ViewModel
 
         #endregion
 
+        #endregion
+
         private readonly List<string> places = new List<string>
         {
             "west-germany",
@@ -57,7 +61,7 @@ namespace ViewModel
             GenerateMatrixCommand = new RelayCommand(GenerateMatrix);
         }
 
-        private async void LoadArticles()
+        private void LoadArticles()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -67,10 +71,12 @@ namespace ViewModel
             openFileDialog.ShowDialog();
             string[] path = openFileDialog.FileNames;
 
-            await Task.Run(() => { articles = FileReader.GetArticlesFromFile(path).ToList(); });
+            articles = FileReader.GetArticlesFromFile(path).ToList();
 
             LoadedArticlesCounter = articles.Count();
             OnPropertyChanged(nameof(LoadedArticlesCounter));
+
+
         }
 
         private async void GenerateMatrix()
