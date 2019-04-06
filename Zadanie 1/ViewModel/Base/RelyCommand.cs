@@ -23,6 +23,7 @@ namespace ViewModel
 
         public event EventHandler CanExecuteChanged;
     }
+
     public class RelayCommand<T> : ICommand
     {
         private Action<T> mAction;

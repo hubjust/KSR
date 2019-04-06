@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System;
 
@@ -116,8 +115,8 @@ namespace ViewModel
                 MessageBox.Show("Done");
             }
 
-           // await Task.Run(() => { CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue; });
-            OnPropertyChanged(nameof(CorrectlyMatchedArticles));            
+            CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
+            OnPropertyChanged(nameof(CorrectlyMatchedArticles)); 
         }
 
         private void Quit()
