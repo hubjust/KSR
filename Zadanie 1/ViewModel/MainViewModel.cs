@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using Logic;
 using Logic.Metrics;
@@ -37,7 +38,15 @@ namespace ViewModel
 
         private async void LoadArticles()
         {
-            await Task.Run(() => { articles = new FileReader().ObtainVectorSpaceModels().ToList(); });
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Sgm File(*.sgm)| *.sgm",
+                Multiselect = true
+            };
+            openFileDialog.ShowDialog();
+            string[] path = openFileDialog.FileNames;
+
+            await Task.Run(() => { articles = FileReader.GetArticlesFromFile(path).ToList(); });
 
             LoadedArticlesCounter = articles.Count();
             OnPropertyChanged(nameof(LoadedArticlesCounter));

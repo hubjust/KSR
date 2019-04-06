@@ -6,13 +6,10 @@ namespace Logic
 {
     public class Article
     {
-        public string Title { get; set; }
-        public Dictionary<string, List<string>> Tags { get; set; }
-        public List<string> Words { get; set; }
+        public string Title { get; set; } = "";
+        public List<string> Text { get; set; }
+        public List<string> Places { get; set; }
 
-        private double CountFrequency(Article article, string word)
-        {
-            return article.Words.Count(s => s.Equals(word, StringComparison.CurrentCultureIgnoreCase));
-        }
+
     }
 }

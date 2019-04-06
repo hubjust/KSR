@@ -19,7 +19,7 @@ namespace Logic
         {
             int counter = 0;
 
-            foreach(var w in article.Words)
+            foreach(var w in article.Text)
             {
                 if (w.Equals(word, StringComparison.CurrentCultureIgnoreCase))
                     counter++;

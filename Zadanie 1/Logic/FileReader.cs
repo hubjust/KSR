@@ -8,42 +8,44 @@ using HtmlAgilityPack;
 
 namespace Logic
 {
-    public class FileReader
+    public static class FileReader
     {
-        public IEnumerable<Article> ObtainVectorSpaceModels()
+        public static IEnumerable<Article> GetArticlesFromFile(string[] filePath)
         {
             Debug.WriteLine("Loading articles...");
 
-            for (int i = 0; i < 7; i++)
+            List<Article> articles = new List<Article>();
+
+            for (int i = 0; i < filePath.Length; i++)
             {
-                var rawXml = File.ReadAllText($"../../../Articles/Files/reut2-{i.ToString().PadLeft(3, '0')}.sgm");
-                var doc = new HtmlDocument();
-                doc.LoadHtml(rawXml);
-                var regex = new Regex("[^a-zA-Z]");
+                var rawXML = File.ReadAllText(filePath[i]);
+                var htmlDocument = new HtmlDocument();
+                htmlDocument.LoadHtml(rawXML);
 
-                foreach (var article in doc.DocumentNode.Descendants("REUTERS"))
-                {
-                    var body = article.Descendants("BODY").FirstOrDefault();
-                    var tags = new Dictionary<string, List<string>>();
-                    foreach (var tagNode in article.ChildNodes.Where(node => node.ChildNodes.Any(htmlNode => htmlNode.Name == "d")))
+                foreach (var articleNode in htmlDocument.DocumentNode.Descendants("REUTERS"))
+                {                    
+                    if (articleNode.Descendants("BODY").FirstOrDefault() != null)
                     {
-                        tags[tagNode.Name] = tagNode.Descendants("D").Select(node => node.InnerText).ToList();
-                    }
+                        Article article = new Article();
 
-                    if (body != null && tags.Count > 0)
-                    {
-                        yield return new Article
-                        {
-                            Words = regex.Replace(body.InnerText, " ").ToLower().Split(' ').Where(s => s.Length > 2)
-                                .ToList(),
-                            Tags = tags,
-                            Title = article.Descendants("TITLE").First().InnerText
-                        };
+                        article.Title = articleNode.Descendants("TITLE").First().InnerText;
+                        article.Places = articleNode.Descendants("PLACES").Select(placeNode => placeNode.Descendants("D").Select(node => node.InnerHtml)).First().ToList();
+
+                        string rawText = articleNode.Descendants("BODY").FirstOrDefault().InnerText;
+                        rawText = rawText.Replace("&lt;", "<");
+                        rawText = rawText.Replace("\r\n", " ");
+                        rawText = rawText.Replace("     ", " ");
+                        rawText = rawText.Replace(" &#3;", "");
+
+                        article.Text = rawText.Split(' ', '\n', '\t').ToList();
+
+                        articles.Add(article);
                     }
                 }
             }
 
-            Debug.WriteLine("Articles loaded.");
+            Debug.WriteLine("Articles loaded: " + articles.Count());
+            return articles;
         }
     }
 }
