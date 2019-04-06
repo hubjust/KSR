@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.11.2.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.2\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="Annytab.Stemmer, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Annytab.Stemmer.1.2.3\lib\netstandard2.0\Annytab.Stemmer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="Stemmering\EnglishStemmer.cs" />
+    <Compile Include="Stemmering\IStemmer.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Metrics\Chebyshev.cs" />
     <Compile Include="Metrics\Euclidean.cs" />
@@ -56,6 +60,10 @@
     <Compile Include="Metrics\Manhattan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stemmering\Stemmer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
