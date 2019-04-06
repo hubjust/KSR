@@ -17,6 +17,7 @@ namespace ViewModel
         public ICommand GenerateMatrixCommand { get; set; }
 
         private List<Article> articles;
+        private List<List<Article>> allArticles;
 
         #region Fields 
 
@@ -105,6 +106,8 @@ namespace ViewModel
         {
             CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
             OnPropertyChanged(nameof(CorrectlyMatchedArticles));
+
+            
         }
 
         private void Quit()

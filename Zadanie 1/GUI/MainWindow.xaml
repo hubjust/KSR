@@ -68,9 +68,9 @@
                     <RadioButton Grid.Column="0" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"  
                                  IsChecked="{Binding Path=MetricRadioButtonEuclidean, Mode=TwoWay}" Content="Euklidesowa"/>
                     <RadioButton Grid.Column="1" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"
-                                 IsChecked="{Binding Path=MetricRadioButtonChebyshew, Mode=TwoWay}" Content="Uliczna"/>
+                                 IsChecked="{Binding Path=MetricRadioButtonManhattan, Mode=TwoWay}" Content="Uliczna"/>
                     <RadioButton Grid.Column="2" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"  
-                                 IsChecked="{Binding Path=MetricRadioButtonManhattan, Mode=TwoWay}" Content="Czebyszewa"/>
+                                 IsChecked="{Binding Path=MetricRadioButtonChebyshew, Mode=TwoWay}" Content="Czebyszewa"/>
                 </Grid>
             </GroupBox>
 
