@@ -23,13 +23,18 @@ namespace Logic
                 htmlDocument.LoadHtml(rawXML);
 
                 foreach (var articleNode in htmlDocument.DocumentNode.Descendants("REUTERS"))
-                {                    
-                    if (articleNode.Descendants("BODY").FirstOrDefault() != null)
+                {
+                    var body = articleNode.Descendants("BODY").FirstOrDefault();
+                    var tags = new Dictionary<string, List<string>>();
+
+                    foreach (var tagNode in articleNode.ChildNodes.Where(node => node.ChildNodes.Any(htmlNode => htmlNode.Name == "d")))
+                    {
+                        tags[tagNode.Name] = tagNode.Descendants("D").Select(node => node.InnerText).ToList();
+                    }
+
+                    if (body != null && tags.Count > 0)
                     {
                         Article article = new Article();
-
-                        article.Title = articleNode.Descendants("TITLE").First().InnerText;
-                        article.Places = articleNode.Descendants("PLACES").Select(placeNode => placeNode.Descendants("D").Select(node => node.InnerHtml)).First().ToList();
 
                         string rawText = articleNode.Descendants("BODY").FirstOrDefault().InnerText;
                         rawText = rawText.Replace("&lt;", "<");
@@ -37,6 +42,8 @@ namespace Logic
                         rawText = rawText.Replace("     ", " ");
                         rawText = rawText.Replace(" &#3;", "");
 
+                        article.Title = articleNode.Descendants("TITLE").First().InnerText;
+                        article.Tags = tags;
                         article.Text = rawText.Split(' ', '\n', '\t').ToList();
 
                         articles.Add(article);
