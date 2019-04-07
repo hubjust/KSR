@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class TrainingSets
+    public static class TrainingSets
     {
-        public static List<List<Article>> SetTrainingAndTestSet(int PercentOfTrainingPatterns, List<Article> AllArticles)
+        public static Tuple<List<Article>, List<Article>> SetTrainingAndTestSet(int PercentOfTrainingPatterns, List<Article> AllArticles)
         {
             double percent = (double)PercentOfTrainingPatterns / 100;
             int howManyTrainingPatterns = (int)(percent * AllArticles.Count);
@@ -17,13 +17,8 @@ namespace Logic
 
             List<Article> TrainingPatterns = AllArticles.Take(howManyTrainingPatterns).ToList();
             List<Article> TestPatterns = AllArticles.Skip(howManyTrainingPatterns).Take(howManyTestPatterns).ToList();
-            List<List<Article>> TrainingAndTestArticles = new List<List<Article>>
-            {
-                TrainingPatterns,
-                TestPatterns
-            };
 
-            return TrainingAndTestArticles;
+            return Tuple.Create(TrainingPatterns, TestPatterns);
         }
 
         public static void Sort(List<Article> AllArticles)

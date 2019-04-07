@@ -1,30 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Logic.Metrics
 {
     public class Euclidean
     {
-        public static double Calculate(List<List<Article>> AllArticles, int k) //lista z danymi treningowymi i testowymi
+        public static double Calculate(List<Article> TrainingVectors, List<Article> TestVectors, int k)
         {
-            List<Article> TrainingVectors = new List<Article>();
-            List<Article> TestVectors = new List<Article>();
             double IsWordFounded = 0;
-            
-            //tworzy dane treningowe
-            for (int i = 0; i < AllArticles.ElementAt(0).Count; i++)
-            {
-                TrainingVectors.Add(AllArticles.ElementAt(0).ElementAt(i));
-            }
-
-            //tworzy dane testowe
-            for (int i = 0; i < AllArticles.ElementAt(1).Count; i++)
-            {
-                TestVectors.Add(AllArticles.ElementAt(1).ElementAt(i));
-            }
 
             for (int i = 0; i < TestVectors.Count; i++)
             {

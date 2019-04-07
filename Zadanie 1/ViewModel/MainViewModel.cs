@@ -6,8 +6,6 @@ using System;
 
 using Logic;
 using Logic.Metrics;
-using System;
-using System.Diagnostics;
 
 namespace ViewModel
 {
@@ -18,7 +16,7 @@ namespace ViewModel
         public ICommand GenerateMatrixCommand { get; set; }
 
         private List<Article> articles;
-        private List<List<Article>> allArticles;
+        private Tuple<List<Article>, List<Article>> allArticles;
 
         #region Fields 
 
@@ -105,34 +103,24 @@ namespace ViewModel
 
         private void GenerateMatrix()
         {
+            double percent;
+
             Article.GetExtract(MeasurementRadioButtonTF, articles);
             allArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
 
             if (MetricRadioButtonEuclidean)
-            {
-                double percent =  Euclidean.Calculate(allArticles, KNNSliderValue);
-                Debug.WriteLine("$$$$  " + percent);
+                percent = Euclidean.Calculate(allArticles, KNNSliderValue);
 
-                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));              
-            }
+            else if (MetricRadioButtonManhattan)
+                percent = Manhattan.Calculate(allArticles, KNNSliderValue);
 
-            if (MetricRadioButtonManhattan)
-            {
-                double percent = Manhattan.Calculate(allArticles, KNNSliderValue);
-                Debug.WriteLine("$$$$  " + percent);
+            else if (MetricRadioButtonChebyshew)
+                percent = Chebyshev.Calculate(allArticles, KNNSliderValue);
 
-                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
-            }
+            else
+                percent = 0;
 
-            if (MetricRadioButtonChebyshew)
-            {
-                double percent = Chebyshev.Calculate(allArticles, KNNSliderValue);
-                Debug.WriteLine("$$$$  " + percent);
-
-                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
-            }
-
-            // CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
+            CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
             OnPropertyChanged(nameof(CorrectlyMatchedArticles));
             MessageBox.Show("Done");
         }

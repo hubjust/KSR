@@ -5,24 +5,10 @@ using System.Linq;
 namespace Logic.Metrics
 {
     public class Manhattan
-    {       
-        public static double Calculate(List<List<Article>> AllArticles, int k) //lista z danymi treningowymi i testowymi
+    {
+        public static double Calculate(List<Article> TrainingVectors, List<Article> TestVectors, int k)
         {
-            List<Article> TrainingVectors = new List<Article>();
-            List<Article> TestVectors = new List<Article>();
             double IsWordFounded = 0;
-
-            //tworzy dane treningowe
-            for (int i = 0; i < AllArticles.ElementAt(0).Count; i++)
-            {
-                TrainingVectors.Add(AllArticles.ElementAt(0).ElementAt(i));
-            }
-
-            //tworzy dane testowe
-            for (int i = 0; i < AllArticles.ElementAt(1).Count; i++)
-            {
-                TestVectors.Add(AllArticles.ElementAt(1).ElementAt(i));
-            }
 
             for (int i = 0; i < TestVectors.Count; i++)
             {
@@ -33,7 +19,6 @@ namespace Logic.Metrics
             }
             return IsWordFounded / TestVectors.Count;
         }
-
 
         public static bool CalculateEuclideanMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
         {
