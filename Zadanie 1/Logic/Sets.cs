@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public static class TrainingSets
+    public static class Sets
     {
         public static Tuple<List<Article>, List<Article>> SetTrainingAndTestSet(int PercentOfTrainingPatterns, List<Article> AllArticles)
         {
