@@ -24,23 +24,52 @@
 	
 	
 	\section{Cel}
-	{\color{blue} 
-		W tej sekcji należy zamieścić zwięzły (maksymalnie dwa, trzy zdania) opis
-		problemu, który był rozwiązywany (uwzględnić należy zarówno część badawczą jak
-		i implementacyjną).}
+	Celem zadania było stworzenie aplikacji do klasyfikacji tekstów metodą k-NN, korzystając z różnych sposób ekstrakcji wektorów cech oraz istniejących miar podobieństwa porównać kategorie do tych przypisanych przez aplikację.
 	
 	\section{Wprowadzenie}
-	{\color{blue}
-		We wprowadzeniu należy zaprezentować całą teorię potrzebną do realizacji
-		zadania (przy czym należy tu ograniczyć się wyłącznie do tego, co było
-		wykorzystane) tak aby osoba, która nigdy wcześniej nie zetknęła się z tą
-		tematyką, potrafiła zrozumieć dalszy opis. Część ta powinna wprowadzać
-		wszystkie wykorzystywane wzory, oznaczenia itp., do których należy się
-		odwoływać w dalszej części niniejszgo sprawozdania. Zamieszczony tu własny
-		opis teorii (a nie skopiowany!) należy poprzeć odwołaniami bibliograficznymi
-		do literatury zamieszczonej na końcu. }
+
 	
+	term frequency:
+	$$
+	tf_{i,j}
+	= \frac{n_{i,j}}{\sum_{k}n{k,j}}
+	$$
+	
+	inverse document frequency:
+	$$
+	idf_{i}
+	= \log\frac{|D|}{|\{d : t_{i} \in d\}|}
+	$$
+
+	Miara prawdopodobieństwa jest odległością 
+	metryka euklidesowa:
+	$$
+	d_{e}(x,y)= \sqrt{ (y_{1} - x_{1})^2 + \cdots + (y_{n} - x_{n})^2 }
+	$$
+	
+	metryka uliczna:
+	$$
+	d_{m}(x,y)= \sum_{k=1}^{n} | x_{k} - y_{k} |
+	$$
+	
+	metryka czebyszewa:
+	$$
+	d_{ch}(x,y)= \max_{i} |x_{i} - y_{i}|
+	$$
+
+	{\color{blue}
+	We wprowadzeniu należy zaprezentować całą teorię potrzebną do realizacji
+	zadania (przy czym należy tu ograniczyć się wyłącznie do tego, co było
+	wykorzystane) tak aby osoba, która nigdy wcześniej nie zetknęła się z tą
+	tematyką, potrafiła zrozumieć dalszy opis. Część ta powinna wprowadzać
+	wszystkie wykorzystywane wzory, oznaczenia itp., do których należy się
+	odwoływać w dalszej części niniejszgo sprawozdania. Zamieszczony tu własny
+	opis teorii (a nie skopiowany!) należy poprzeć odwołaniami bibliograficznymi
+	do literatury zamieszczonej na końcu. }
+
 	\section{Opis implementacji}
+	Program został stworzony w języku C\#. Graficzny interfejs użytkownika został stworzony przy  wykorzystaniu Windows Presentation Foundation. Logika aplikacji została odseparowana od GUI, w zgodzie ze wzorcem projektowym Model-view-viewmodel (MVVM), poprzez implementacje trzech projektów (Logic, ViewModel i GUI).
+	
 	{\color{blue}
 		Należy tu zamieścić krótki i zwięzły opis zaprojektowanych klas oraz powiązań
 		między nimi. Powinien się tu również znaleźć diagram UML  (diagram klas)
