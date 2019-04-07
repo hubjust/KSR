@@ -36,18 +36,18 @@ namespace Logic
         // log(liczba dokumentów w korpusie / liczba dokumentów zawierających przynajmniej jedno wystąpienie danego słowa)
         public static void InverseDocumentFrequency(List<Article> articles)
         {
-            List<Article> result = articles.ToList();
+            List<Article> helperList = articles.ToList();
             articles.Clear();
 
             double howManyDocumentsContainkeyword = 0;
 
-            for (int i = 0; i < result.Count; i++)
+            for (int i = 0; i < helperList.Count; i++)
             {
-                if (result.ElementAt(i).Places.Count != 1)
+                if (helperList.ElementAt(i).Places.Count != 1)
                 {
                     continue;
                 }
-                articles.Add(new Article { Places = result.ElementAt(i).Places, Text = result.ElementAt(i).Text });
+                articles.Add(new Article { Places = helperList.ElementAt(i).Places, Text = helperList.ElementAt(i).Text });
                 FeatureExtractions.TermFrequency(articles.Last());
             }
 
