@@ -13,22 +13,18 @@ namespace Logic.Metrics
             List<Article> TrainingVectors = new List<Article>();
             List<Article> TestVectors = new List<Article>();
             double IsWordFounded = 0;
-
+            
             //tworzy dane treningowe
             for (int i = 0; i < AllArticles.ElementAt(0).Count; i++)
             {
                 TrainingVectors.Add(AllArticles.ElementAt(0).ElementAt(i));
             }
 
-            Debug.WriteLine("AllArticles.ElementAt(0).Count  " + AllArticles.ElementAt(0).Count);
-            Debug.WriteLine("TrainingVectors.Count  " + TrainingVectors.Count);
             //tworzy dane testowe
             for (int i = 0; i < AllArticles.ElementAt(1).Count; i++)
             {
                 TestVectors.Add(AllArticles.ElementAt(1).ElementAt(i));
             }
-
-            Debug.WriteLine("TestVectors.Count  " + TrainingVectors.Count);
 
             for (int i = 0; i < TestVectors.Count; i++)
             {
@@ -39,7 +35,6 @@ namespace Logic.Metrics
             }
             return IsWordFounded / TestVectors.Count;
         }
-
 
         public static bool CalculateEuclideanMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
         {
@@ -65,6 +60,7 @@ namespace Logic.Metrics
                     x = word.Value;
                     powResult += Math.Pow(x - y, 2); 
                 }
+                
 
                 result.TestVector = testSet;
                 TrainingVectors.ElementAt(i).Distance = Math.Sqrt(powResult); //tu zapisujemy informacje o odległości euklidesowej

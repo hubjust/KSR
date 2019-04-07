@@ -57,7 +57,7 @@ namespace ViewModel
 
 
         public int AnalyzedArticlesCounter { get; set; }
-        public int CorrectlyMatchedArticles { get; set; }
+        public double CorrectlyMatchedArticles { get; set; }
 
         #endregion
 
@@ -111,12 +111,15 @@ namespace ViewModel
             if (MetricRadioButtonEuclidean)
             {
                 double percent =  Euclidean.Calculate(allArticles, KNNSliderValue);
-                CorrectlyMatchedArticles = Convert.ToInt32((Math.Round(percent, 2) * 100));
-                MessageBox.Show("Done");
+                Debug.WriteLine("$$$$  " + percent);
+
+                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
+                
             }
 
-            CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
-            OnPropertyChanged(nameof(CorrectlyMatchedArticles)); 
+           // CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
+            OnPropertyChanged(nameof(CorrectlyMatchedArticles));
+            MessageBox.Show("Done");
         }
 
         private void Quit()

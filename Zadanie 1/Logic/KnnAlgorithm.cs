@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace Logic
 {
     public class KnnAlgorithm
-    {
+    {       
+
         public static bool Calculate(TestVectorAndTrainingVectors testAndTrainingVectors, int k)
         {
             return ChooseKNeighbours(testAndTrainingVectors, k);
@@ -32,19 +33,21 @@ namespace Logic
             {
                 for (int j = 0; j < neighbours.Count; j++)
                 {
-                    if (neighbours.ElementAt(i).Places.First() == neighbours.ElementAt(j).Places.First())
+                    if (neighbours.ElementAt(i).Places.FirstOrDefault() == neighbours.ElementAt(j).Places.FirstOrDefault())
                     {
                         howManyTimesOccur++;
                     }
                 }
 
-                if (howManyPlaces.ContainsKey(neighbours.ElementAt(i).Places.First())) //zeruje licznik żeby nie powtarzać juz raz dodanych państsw 
+                if (neighbours.ElementAt(i).Places.FirstOrDefault() != null && howManyPlaces.ContainsKey(neighbours.ElementAt(i).Places.FirstOrDefault())) //zeruje licznik żeby nie powtarzać juz raz dodanych państsw 
                 {
                     howManyTimesOccur = 0;
                     continue;
                 }
 
-                howManyPlaces.Add(neighbours.ElementAt(i).Places.First(), howManyTimesOccur);
+                if(neighbours.ElementAt(i).Places.FirstOrDefault() != null)
+                    howManyPlaces.Add(neighbours.ElementAt(i).Places.FirstOrDefault(), howManyTimesOccur);
+
                 howManyTimesOccur = 0;
             }
 
@@ -54,7 +57,7 @@ namespace Logic
             List<KeyValuePair<string, int>> result = howManyPlaces.ToList();
             var FoundPlace = result.First().Key;
 
-            if (testArticle.Places.First().Equals(FoundPlace))
+            if (testArticle.Places.FirstOrDefault() != null && testArticle.Places.FirstOrDefault().Equals(FoundPlace))
             {
                 return true;
             }
