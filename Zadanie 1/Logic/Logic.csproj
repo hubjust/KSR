@@ -69,6 +69,7 @@
     <Compile Include="CategoryCompatibilityChecker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LogicDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
