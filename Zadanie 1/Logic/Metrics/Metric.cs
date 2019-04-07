@@ -7,15 +7,15 @@ namespace Logic.Metrics
     {
         public double Calculate(List<Article> TrainingVectors, List<Article> TestVectors, int k)
         {
-            double IsWordFounded = 0;
+            double WordsFound = 0;
 
             for (int i = 0; i < TestVectors.Count; i++)
             {
                 if (CalculateMetricForOneTestSet(TestVectors.ElementAt(i), TrainingVectors, k))
-                    IsWordFounded++;
+                    WordsFound++;
             }
 
-            return IsWordFounded / TestVectors.Count;
+            return WordsFound / TestVectors.Count;
         }
 
         private bool CalculateMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)

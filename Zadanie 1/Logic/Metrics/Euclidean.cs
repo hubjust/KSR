@@ -27,8 +27,7 @@ namespace Logic.Metrics
 
                     x = word.Value;
                     powResult += Math.Pow(x - y, 2); 
-                }
-                
+                }               
                 TrainingVectors.ElementAt(i).Distance = Math.Sqrt(powResult); //tu zapisujemy informacje o odległości euklidesowej
                 powResult = 0;
             }

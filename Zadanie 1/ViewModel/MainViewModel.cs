@@ -109,7 +109,7 @@ namespace ViewModel
         private void AnalyzeArticles()
         {
             Article.GetExtract(MeasurementRadioButtonTF, articles);
-            separatedArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
+            separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
 
             try
             {
