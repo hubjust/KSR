@@ -12,6 +12,7 @@ namespace Logic.Metrics
             double y = 0;
             double absResult = 0;
 
+
             for (int i = 0; i < TrainingVectors.Count; i++) //wykonujemy petle dla kazdego wzorca treningowego
             {
                 foreach (var word in testArticle.VectorFeatures) //sprawdzamy dla kazdego slowa z wektora testowego czy istnieje takie slowo w wektorze treningowym
