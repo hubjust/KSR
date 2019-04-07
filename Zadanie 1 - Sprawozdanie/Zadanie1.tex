@@ -74,24 +74,6 @@ $$
 \section{Opis implementacji}
 Program został stworzony w języku C\#. Graficzny interfejs użytkownika został stworzony przy  wykorzystaniu Windows Presentation Foundation. Logika aplikacji została odseparowana od GUI, w zgodzie ze wzorcem projektowym Model-view-viewmodel (MVVM), poprzez implementacje trzech projektów (Logic, ViewModel i GUI).
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{{Rysunki/DiagramLogic.png}}
-	\caption{Diagram UML wygenerowany dla projektu Logic}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{{Rysunki/DiagramGUI.png}}
-	\caption{Diagram UML wygenerowany dla projektu GUI}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{{Rysunki/DiagramMainViewModel.png}}
-	\caption{Diagram UML wygenerowany dla projektu MainViewModel}
-\end{figure}
-
 \subsection{Logic}
 Klasy Chebyshev, Euclidean oraz Manhattan odpowiadają za prawidłowe obliczenia odległości tekstów. Dziedziczą one z klasy abstrakcyjnej Metric. \newline
 
@@ -107,13 +89,31 @@ Klasa Sets odpowiedzialna jest za odpowiedni dobór danych testowych oraz trenin
 
 Klasa CategoryCompatibilityChecker ma za zadanie sprawdzić, czy dany artykuł zawiera jeden tag z danej kategorii, oraz czy ten tag zawiera się w tagach branych pod uwagę.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/DiagramLogic.png}}
+	\caption{Diagram UML wygenerowany dla projektu Logic}
+\end{figure}
+
 \subsection{ViewModel}
 Projekt ViewModel ma za zadanie odseparować logikę programu od interfejsu graficznego. \newline
 
-Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego poczynania wywołując wybrane akcje z logiki programu oraz odpowiada za odświeżanie widoków w interfejsie graficznym.  
+Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego poczynania wywołując wybrane akcje z logiki programu oraz odpowiada za odświeżanie widoków w interfejsie graficznym.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{{Rysunki/DiagramGUI.png}}
+	\caption{Diagram UML wygenerowany dla projektu GUI}
+\end{figure}
 
 \subsection{GUI}
 Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w obsłudze graficzny interfejs użytkownika. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{{Rysunki/DiagramMainViewModel.png}}
+	\caption{Diagram UML wygenerowany dla projektu MainViewModel}
+\end{figure}
 
 \section{Materiały i metody}
 
