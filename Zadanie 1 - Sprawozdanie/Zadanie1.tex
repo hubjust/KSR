@@ -64,7 +64,32 @@
 	
 	\newline TUTAJ JAKIS DIAGRAM UML \newline
 	
-	
+	\subsection{Logic}
+		Klasy Chebyshev, Euclidean oraz Manhattan odpowiadają za prawidłowe obliczenia odległości tekstów. Dziedziczą one z klasy abstrakcyjnej Metric. \newline
+		
+		Klasa Article odwzorowuje artykuły wczytane do programu. Przechowuje informacje o dokumencie takie jak: tytuł, tekst, tagi, przypisane tagi, wektor cech, odległość. \newline
+		
+		Klasa FeatureExtraction implementuje dwie metody ekstrakcji cech - term frequency oraz inverse document frequency. \newline
+		
+		Klasa FileReader odpowiada za poprawne wczytywanie plików do programu - wyselekcjoowanie wybranych przez nas informacji (tytuł, ciało dokumentu, przypisaną etykietkę) i na ich podstawie stworzenie obiektu klasy Article. Z wczytanego tekstu usuwane są słowa, które występują w podanej przez nas stop liście. Ten zabieg ma za zadanie wykluczyć terminy, które nie wnoszą kluczowych, dla nas, informacji. Następnie, ciało dokumentu zostaje poddane stemizacji, czyli usunięciu ze słowa końcówki fleksyjnej pozostawiając tylko rdzeń wyrazu. \newline
+		
+		Klasa KnnAlgorithm odpowiada za implementację algorytmu k-najbliższych sąsiadów. W tym miejscu wyliczane są wystąpienia słów w podanych dokumentach. \newline
+		
+		Klasa Sets odpowiedzialna jest za odpowiedni dobór danych testowych oraz treningowych. \newline
+		
+		Klasa TagCompatibilityChecker zawiera listę etukiet, które zostały podane w treści zadania (west-germany, usa, france, uk, canada, japan).
+		
+		
+	\subsection{GUI}
+		Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w obsłudze graficzny interfejs użytkownika. 
+		
+	\subsection{ViewModel}
+		Projekt ViewModel ma za zadanie odseparować logikę programu od interfejsu graficznego. \newline
+		
+		Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego poczynania wywołując wybrane akcje z logiki programu oraz odpowiada za odświeżanie widoków w interfejsie graficznym.  
+		
+		
+		
 	{\color{blue}
 		Należy tu zamieścić krótki i zwięzły opis zaprojektowanych klas oraz powiązań
 		między nimi. Powinien się tu również znaleźć diagram UML  (diagram klas)
