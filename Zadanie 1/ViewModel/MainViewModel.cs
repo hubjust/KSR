@@ -113,11 +113,26 @@ namespace ViewModel
                 double percent =  Euclidean.Calculate(allArticles, KNNSliderValue);
                 Debug.WriteLine("$$$$  " + percent);
 
-                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
-                
+                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));              
             }
 
-           // CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
+            if (MetricRadioButtonManhattan)
+            {
+                double percent = Manhattan.Calculate(allArticles, KNNSliderValue);
+                Debug.WriteLine("$$$$  " + percent);
+
+                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
+            }
+
+            if (MetricRadioButtonChebyshew)
+            {
+                double percent = Chebyshev.Calculate(allArticles, KNNSliderValue);
+                Debug.WriteLine("$$$$  " + percent);
+
+                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
+            }
+
+            // CorrectlyMatchedArticles = TrainingSetSliderValue + KNNSliderValue;
             OnPropertyChanged(nameof(CorrectlyMatchedArticles));
             MessageBox.Show("Done");
         }
