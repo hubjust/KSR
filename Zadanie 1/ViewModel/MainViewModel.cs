@@ -16,7 +16,7 @@ namespace ViewModel
         public ICommand AnalyzeArticlesCommand { get; set; }
 
         private List<Article> articles;
-        public List<Article> CompatibleArticles { get; set; }
+        private List<Article> compatibleArticles;
         private Tuple<List<Article>, List<Article>> separatedArticles;
         private Metric metric;
 
@@ -57,6 +57,7 @@ namespace ViewModel
 
         public int AnalyzedArticlesCounter { get; set; }
         public double CorrectlyMatchedArticles { get; set; }
+        private List<Article> AnalyzedArticles { get; set; }
 
         #endregion
 
@@ -98,9 +99,9 @@ namespace ViewModel
 
         private void AnalyzeArticles()
         {
-            CompatibleArticles = TagCompatibilityChecker.CheckTags(articles, SelectedTag);
-            Article.GetExtract(MeasurementRadioButtonTF, CompatibleArticles);
-            separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, CompatibleArticles);
+            compatibleArticles = TagCompatibilityChecker.CheckTags(articles, SelectedTag);
+            Article.GetExtract(MeasurementRadioButtonTF, compatibleArticles);
+            separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, compatibleArticles);
 
             try
             {
@@ -115,8 +116,9 @@ namespace ViewModel
 
                 CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue, SelectedTag);
                 CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 2) * 100));
+                AnalyzedArticles = separatedArticles.Item1;
 
-                OnPropertyChanged(nameof(CompatibleArticles));
+                OnPropertyChanged(nameof(AnalyzedArticles));
                 OnPropertyChanged(nameof(CorrectlyMatchedArticles));
                 MessageBox.Show("Done");
             }

@@ -42,6 +42,7 @@ namespace Logic
                         string rawText = articleNode.Descendants("BODY").FirstOrDefault().InnerText;
 
                         article.Title = articleNode.Descendants("TITLE").First().InnerText;
+                        article.Title = article.Title.Replace("&lt;", "<");
                         article.Tags = tags;
                         article.Text = rawText.ConvertRawTextToList();
 

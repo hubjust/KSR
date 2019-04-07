@@ -124,7 +124,7 @@
 
         <TabControl Grid.Column="1" Background="#454545" Margin="20 35 20 20" ItemContainerStyle="{DynamicResource TabItemStyle}" >
             <TabItem Header="Klasyfikacja">
-                <ListBox FontSize="12px" Background="#232323" Foreground="White"  ItemsSource="{Binding CompatibleArticles}"/>
+                <ListBox FontSize="12px" Background="#232323" Foreground="White"  ItemsSource="{Binding AnalyzedArticles}"/>
             </TabItem>
         </TabControl>
 
