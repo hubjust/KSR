@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class KnnAlgorithm
+    public static class KnnAlgorithm
     {       
-
-        public static bool Calculate(TestVectorAndTrainingVectors testAndTrainingVectors, int k)
-        {
-            return ChooseKNeighbours(testAndTrainingVectors, k);
-        }
-
-        public static bool ChooseKNeighbours(TestVectorAndTrainingVectors TestAndTrainingPair, int k)
+        // ChooseKNeighbours
+        public static bool Calculate(TestVectorAndTrainingVectors TestAndTrainingPair, int k)
         {
             TestAndTrainingPair.TrainingVectors = TestAndTrainingPair.TrainingVectors.OrderBy(h => h.Distance).ToList(); //sortuje
             var Kneighbours = TestAndTrainingPair.TrainingVectors.Take(k).ToList(); //bierze k sąsiadów

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Logic
 {
@@ -10,8 +9,6 @@ namespace Logic
         public List<string> Text { get; set; }
         public Dictionary<string, List<string>> Tags { get; set; }
         public List<string> Places { get; set; } //tylko na chwilę w celach testowych, proszę nie usuwać
-
-        // nie wiem co
 
         public Dictionary<string, double> VectorFeatures;
         public double Distance { get; set; }

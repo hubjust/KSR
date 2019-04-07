@@ -97,15 +97,17 @@ namespace ViewModel
             LoadedArticlesCounter = articles.Count();
 
             TagList = articles.SelectMany(article => article.Tags).Select(pair => pair.Key).Distinct().ToList();
+            SelectedTag = TagList[0];
 
             OnPropertyChanged(nameof(LoadedArticlesCounter));
             OnPropertyChanged(nameof(TagList));
+            OnPropertyChanged(nameof(SelectedTag));
+
+            MessageBox.Show("Wczytano artykuły");
         }
 
         private void AnalyzeArticles()
         {
-            double percent;
-
             Article.GetExtract(MeasurementRadioButtonTF, articles);
             separatedArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
 
@@ -120,14 +122,14 @@ namespace ViewModel
                 else if (MetricRadioButtonChebyshew)
                     metric = new Chebyshev();
 
-                percent = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue);
-                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
+                CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue);
+                CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 2) * 100));
                 OnPropertyChanged(nameof(CorrectlyMatchedArticles));
                 MessageBox.Show("Done");
             }
             catch(Exception)
             {
-                MessageBox.Show("Błąd: ");
+                MessageBox.Show("Błąd podczas analizowania artykułów");
             }
         }
 
