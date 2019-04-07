@@ -4,23 +4,9 @@ using System.Linq;
 
 namespace Logic.Metrics
 {
-    public class Chebyshev
+    public class Chebyshev : Metric
     {
-        public static double Calculate(List<Article> TrainingVectors, List<Article> TestVectors, int k) //lista z danymi treningowymi i testowymi
-        {
-            double IsWordFounded = 0;
-
-            for (int i = 0; i < TestVectors.Count; i++)
-            {
-                if (CalculateEuclideanMetricForOneTestSet(TestVectors.ElementAt(i), TrainingVectors, k))
-                {
-                    IsWordFounded++;
-                }
-            }
-            return IsWordFounded / TestVectors.Count;
-        }
-
-        public static bool CalculateEuclideanMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
+        private bool CalculateMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
         {
             TestVectorAndTrainingVectors result = new TestVectorAndTrainingVectors();
 

@@ -4,23 +4,9 @@ using System.Linq;
 
 namespace Logic.Metrics
 {
-    public class Euclidean
+    public class Euclidean : Metric
     {
-        public static double Calculate(List<Article> TrainingVectors, List<Article> TestVectors, int k)
-        {
-            double IsWordFounded = 0;
-
-            for (int i = 0; i < TestVectors.Count; i++)
-            {
-                if (CalculateEuclideanMetricForOneTestSet(TestVectors.ElementAt(i), TrainingVectors, k))
-                {
-                    IsWordFounded++;
-                }
-            }
-            return IsWordFounded / TestVectors.Count;
-        }
-
-        public static bool CalculateEuclideanMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
+        private bool CalculateMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
         {
             TestVectorAndTrainingVectors result = new TestVectorAndTrainingVectors();
 
@@ -45,7 +31,6 @@ namespace Logic.Metrics
                     powResult += Math.Pow(x - y, 2); 
                 }
                 
-
                 result.TestVector = testSet;
                 TrainingVectors.ElementAt(i).Distance = Math.Sqrt(powResult); //tu zapisujemy informacje o odległości euklidesowej
                 powResult = 0;

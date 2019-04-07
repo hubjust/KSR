@@ -4,23 +4,9 @@ using System.Linq;
 
 namespace Logic.Metrics
 {
-    public class Manhattan
+    public class Manhattan : Metric
     {
-        public static double Calculate(List<Article> TrainingVectors, List<Article> TestVectors, int k)
-        {
-            double IsWordFounded = 0;
-
-            for (int i = 0; i < TestVectors.Count; i++)
-            {
-                if (CalculateEuclideanMetricForOneTestSet(TestVectors.ElementAt(i), TrainingVectors, k))
-                {
-                    IsWordFounded++;
-                }
-            }
-            return IsWordFounded / TestVectors.Count;
-        }
-
-        public static bool CalculateEuclideanMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
+        private bool CalculateMetricForOneTestSet(Article testSet, List<Article> TrainingVectors, int k)
         {
             TestVectorAndTrainingVectors result = new TestVectorAndTrainingVectors();
 

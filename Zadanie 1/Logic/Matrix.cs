@@ -13,7 +13,7 @@ namespace Logic
         public Dictionary<string, List<double>> Weights = new Dictionary<string, List<double>>();
         private List<string> DistinctWords;
         private List<Article> Articles;
-        public static IMetric CurrentMetric { get; set; }
+        public static Metric CurrentMetric { get; set; }
 
         public double CountFrequency(Article article, string word)
         {
@@ -44,7 +44,7 @@ namespace Logic
                     secondVector.Add(Weights[distinctWord][articleIndex]);
                 }
 
-                distances[i] = CurrentMetric.CountDistance(firstVector, secondVector);
+                //distances[i] = CurrentMetric.CountDistance(firstVector, secondVector);
             }
 
             return distances.Zip(Articles, (d, a) => (a, d)).ToList();

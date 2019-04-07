@@ -13,10 +13,11 @@ namespace ViewModel
     {
         public ICommand QuitCommand { get; set; }
         public ICommand LoadArticlesCommand { get; set; }
-        public ICommand GenerateMatrixCommand { get; set; }
+        public ICommand AnalyzeArticlesCommand { get; set; }
 
         private List<Article> articles;
-        private Tuple<List<Article>, List<Article>> allArticles;
+        private Tuple<List<Article>, List<Article>> separatedArticles;
+        private Metric metric;
 
         #region Fields 
 
@@ -77,7 +78,7 @@ namespace ViewModel
             KNNSliderValue = 1;
 
             LoadArticlesCommand = new RelayCommand(LoadArticles);
-            GenerateMatrixCommand = new RelayCommand(GenerateMatrix);
+            AnalyzeArticlesCommand = new RelayCommand(AnalyzeArticles);
             QuitCommand = new RelayCommand(Quit);
         }
 
@@ -101,28 +102,33 @@ namespace ViewModel
             OnPropertyChanged(nameof(TagList));
         }
 
-        private void GenerateMatrix()
+        private void AnalyzeArticles()
         {
             double percent;
 
             Article.GetExtract(MeasurementRadioButtonTF, articles);
-            allArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
+            separatedArticles = TrainingSets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
 
-            if (MetricRadioButtonEuclidean)
-                percent = Euclidean.Calculate(allArticles, KNNSliderValue);
+            try
+            {
+                if (MetricRadioButtonEuclidean)
+                    metric = new Euclidean();
 
-            else if (MetricRadioButtonManhattan)
-                percent = Manhattan.Calculate(allArticles, KNNSliderValue);
+                else if (MetricRadioButtonManhattan)
+                    metric = new Manhattan();
 
-            else if (MetricRadioButtonChebyshew)
-                percent = Chebyshev.Calculate(allArticles, KNNSliderValue);
+                else if (MetricRadioButtonChebyshew)
+                    metric = new Chebyshev();
 
-            else
-                percent = 0;
-
-            CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
-            OnPropertyChanged(nameof(CorrectlyMatchedArticles));
-            MessageBox.Show("Done");
+                percent = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue);
+                CorrectlyMatchedArticles = ((Math.Round(percent, 2) * 100));
+                OnPropertyChanged(nameof(CorrectlyMatchedArticles));
+                MessageBox.Show("Done");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Błąd: ");
+            }
         }
 
         private void Quit()
