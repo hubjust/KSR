@@ -9,7 +9,7 @@
 \courseyear{2018/2019}
 
 \courseteacher{dr inż. Marcin Kacprowicz}
-\coursegroup{poniedziałek, 14.10}
+\coursegroup{poniedziałek, 14:10}
 
 \author{
 	\studentinfo{Justyna Hubert}{210200} \and
@@ -26,49 +26,44 @@
 	\section{Cel}
 	Celem zadania było stworzenie aplikacji do klasyfikacji tekstów metodą k-NN, korzystając z różnych sposób ekstrakcji wektorów cech oraz istniejących miar podobieństwa porównać kategorie do tych przypisanych przez aplikację.
 	
-	\section{Wprowadzenie}
-
+	\section{Wprowadzenie}	
 	
-	term frequency:
-	$$
-	tf_{i,j}
-	= \frac{n_{i,j}}{\sum_{k}n{k,j}}
-	$$
-	
-	inverse document frequency:
-	$$
-	idf_{i}
-	= \log\frac{|D|}{|\{d : t_{i} \in d\}|}
-	$$
-
-	Miara prawdopodobieństwa jest odległością 
-	metryka euklidesowa:
-	$$
-	d_{e}(x,y)= \sqrt{ (y_{1} - x_{1})^2 + \cdots + (y_{n} - x_{n})^2 }
-	$$
-	
-	metryka uliczna:
-	$$
-	d_{m}(x,y)= \sum_{k=1}^{n} | x_{k} - y_{k} |
-	$$
-	
-	metryka czebyszewa:
-	$$
-	d_{ch}(x,y)= \max_{i} |x_{i} - y_{i}|
-	$$
-
-	{\color{blue}
-	We wprowadzeniu należy zaprezentować całą teorię potrzebną do realizacji
-	zadania (przy czym należy tu ograniczyć się wyłącznie do tego, co było
-	wykorzystane) tak aby osoba, która nigdy wcześniej nie zetknęła się z tą
-	tematyką, potrafiła zrozumieć dalszy opis. Część ta powinna wprowadzać
-	wszystkie wykorzystywane wzory, oznaczenia itp., do których należy się
-	odwoływać w dalszej części niniejszgo sprawozdania. Zamieszczony tu własny
-	opis teorii (a nie skopiowany!) należy poprzeć odwołaniami bibliograficznymi
-	do literatury zamieszczonej na końcu. }
+		Zagadnieniem, jakim zajmowaliśmy się w ramach projektu jest klasyfikacja statystyczna, która jest rodzajem algorytmu statystycznego przydzielającego elementy do klas, bazując na cechach tych elementów. W ramach przeprowadzanego eksperymentu zaimplementowaliśmy klasyfikator k-najbliższych sąsiadów. \newline
+		Algorytm k najbliższych sąsiadów, nazywany także algorytmem k-nn, należy do grupy algorytmów leniwych, czyli takich, które nie tworzą wewnętrznej reprezentacji danych uczących, lecz szukają rozwiązania dopiero w momencie pojawienia się wzorca testującego. Przechowuje wszystkie wzorce uczące, względem których wyznacza odległość wzorca testowego [1]. Metoda k-nn wyznacza k sąsiadów, do których badany element ma najmniejszą odległość w danej metryce, a następnie wyznacza wynik w oparciu o najczęstszy element, wśród k najbliższych. W przypadku naszego projektu odległość definiujemy jako skalę podobieństwa tekstów. \newline
+		W ramach zadania zostały użyte 2 metody ekstrakcji cech: \newline
+			- Term frequency - metoda polegająca na zliczeniu częstości występowania danego słowa w dokumencie. Obliczana jest z poniższego wzoru:
+			$$
+			tf_{i,j}
+			= \frac{n_{i,j}}{\sum_{k}n{k,j}}
+			$$
+			
+			- Inverse document frequency - metoda polegająca na wyznaczeniu, czy dane słowo występuje powszechnie we wszystkich dokumentach. Jest to logarytmicznie skalowana odwrotna część dokumentów zawierających wybrane słowo (uzyskana poprzez podzielenie całkowitej liczby dokumentów przez liczbę dokumentów zawierających ten termin). Obliczana jest z poniższego wzoru: \newline
+			$$
+			idf_{i}
+			= \log\frac{|D|}{|\{d : t_{i} \in d\}|}
+			$$
+		
+		Do obliczenia odległości tekstów posłużyliśmy się 3 metrykami:
+		- metryka Euklidesowa - w celu obliczenia odległości $$ d_{e}(x,y) $$ między dwoma punktami $$ x, y $$ należy obliczyć pierwiastek kwadratowy z sumy drugich potęg różnic wartości współrzędnych o tych samych indeksach, zgodnie ze wzorem:
+			$$
+			d_{e}(x,y)= \sqrt{ (y_{1} - x_{1})^2 + \cdots + (y_{n} - x_{n})^2 }
+			$$
+			
+		- metryka uliczna (Manhattan, miejska) - w celu obliczenia odległości $$ d_{e}(x,y) $$ między dwoma punktami $$ x, y $$ należy obliczyć sumę wartości bezwględnych różnic współrzędnych punktów $$ x $$ oraz $$ y $$, zgodnie ze wzorem:
+			$$
+			d_{m}(x,y)= \sum_{k=1}^{n} | x_{k} - y_{k} |
+			$$
+			
+		- metryka Czebyszewa - w celu obliczenia odległości $$ d_{e}(x,y) $$ między dwoma punktami $$ x, y $$ należy obliczyć maksymalną wartość bezwględnych różnic współrzędnych punktów $$ x $$ oraz $$ y $$, zgodnie ze wzorem:
+			$$
+			d_{ch}(x,y)= \max_{i} |x_{i} - y_{i}|
+			$$
 
 	\section{Opis implementacji}
 	Program został stworzony w języku C\#. Graficzny interfejs użytkownika został stworzony przy  wykorzystaniu Windows Presentation Foundation. Logika aplikacji została odseparowana od GUI, w zgodzie ze wzorcem projektowym Model-view-viewmodel (MVVM), poprzez implementacje trzech projektów (Logic, ViewModel i GUI).
+	
+	\newline TUTAJ JAKIS DIAGRAM UML \newline
+	
 	
 	{\color{blue}
 		Należy tu zamieścić krótki i zwięzły opis zaprojektowanych klas oraz powiązań
@@ -121,5 +116,6 @@
 	\begin{thebibliography}{}
 		\bibitem{adam}
 		Methods for the linguistic summarization of data - aplications of fuzzy sets and their extensions, Adam Niewiadomski, Akademicka Oficyna Wydawnicza EXIT, Warszawa 2008
+		1. http://home.agh.edu.pl/~horzyk/lectures/miw/KNN.pdf
 	\end{thebibliography}
 \end{document}
