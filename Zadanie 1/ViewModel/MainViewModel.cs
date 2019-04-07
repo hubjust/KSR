@@ -115,7 +115,7 @@ namespace ViewModel
                     metric = new Chebyshev();
 
                 CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue, SelectedCategory);
-                CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 2) * 100));
+                CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 3) * 100));
                 AnalyzedArticles = separatedArticles.Item2;
 
                 OnPropertyChanged(nameof(AnalyzedArticles));
