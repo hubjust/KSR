@@ -24,20 +24,20 @@ namespace Logic
             {
                 for (int j = 0; j < neighbours.Count; j++)
                 {
-                    if (neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault() == neighbours.ElementAt(j).SelectedTagValues.FirstOrDefault())
+                    if (neighbours.ElementAt(i).SelectedTag.FirstOrDefault() == neighbours.ElementAt(j).SelectedTag.FirstOrDefault())
                     {
                         howManyTimesOccur++;
                     }
                 }
 
-                if (neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault() != null && howManyTags.ContainsKey(neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault())) //zeruje licznik żeby nie powtarzać juz raz dodanych państsw 
+                if (neighbours.ElementAt(i).SelectedTag.FirstOrDefault() != null && howManyTags.ContainsKey(neighbours.ElementAt(i).SelectedTag.FirstOrDefault())) //zeruje licznik żeby nie powtarzać juz raz dodanych państsw 
                 {
                     howManyTimesOccur = 0;
                     continue;
                 }
 
-                if(neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault() != null)
-                    howManyTags.Add(neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault(), howManyTimesOccur);
+                if(neighbours.ElementAt(i).SelectedTag.FirstOrDefault() != null)
+                    howManyTags.Add(neighbours.ElementAt(i).SelectedTag.FirstOrDefault(), howManyTimesOccur);
 
                 howManyTimesOccur = 0;
             }
@@ -48,7 +48,7 @@ namespace Logic
             List<KeyValuePair<string, int>> result = howManyTags.ToList();
             testArticle.AssignedTag = result.First().Key;
 
-            if (testArticle.SelectedTagValues.FirstOrDefault() != null && testArticle.SelectedTagValues.FirstOrDefault().Equals(testArticle.AssignedTag))
+            if (testArticle.SelectedTag.FirstOrDefault() != null && testArticle.SelectedTag.FirstOrDefault().Equals(testArticle.AssignedTag))
             {
                 return true;
             }

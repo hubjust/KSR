@@ -52,12 +52,12 @@ namespace ViewModel
 
         #endregion
 
-        public List<string> TagList { get; set; }
-        public string SelectedTag { get; set; }
+        public List<string> CategoryList { get; set; }
+        public string SelectedCategory { get; set; }
 
         public int AnalyzedArticlesCounter { get; set; }
         public double CorrectlyMatchedArticles { get; set; }
-        private List<Article> AnalyzedArticles { get; set; }
+        public List<Article> AnalyzedArticles { get; set; }
 
         #endregion
 
@@ -87,19 +87,19 @@ namespace ViewModel
 
             LoadedArticlesCounter = articles.Count();
 
-            TagList = articles.SelectMany(article => article.Tags).Select(pair => pair.Key).Distinct().ToList();
-            SelectedTag = TagList[0];
+            CategoryList = articles.SelectMany(article => article.Tags).Select(pair => pair.Key).Distinct().ToList();
+            SelectedCategory = CategoryList[0];
 
             OnPropertyChanged(nameof(LoadedArticlesCounter));
-            OnPropertyChanged(nameof(TagList));
-            OnPropertyChanged(nameof(SelectedTag));
+            OnPropertyChanged(nameof(CategoryList));
+            OnPropertyChanged(nameof(SelectedCategory));
 
             MessageBox.Show("Wczytano artykuły");
         }
 
         private void AnalyzeArticles()
         {
-            compatibleArticles = TagCompatibilityChecker.CheckTags(articles, SelectedTag);
+            compatibleArticles = CategoryCompatibilityChecker.CheckTags(articles, SelectedCategory);
             Article.GetExtract(MeasurementRadioButtonTF, compatibleArticles);
             separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, compatibleArticles);
 
@@ -114,9 +114,9 @@ namespace ViewModel
                 else if (MetricRadioButtonChebyshew)
                     metric = new Chebyshev();
 
-                CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue, SelectedTag);
+                CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue, SelectedCategory);
                 CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 2) * 100));
-                AnalyzedArticles = separatedArticles.Item1;
+                AnalyzedArticles = separatedArticles.Item2;
 
                 OnPropertyChanged(nameof(AnalyzedArticles));
                 OnPropertyChanged(nameof(CorrectlyMatchedArticles));

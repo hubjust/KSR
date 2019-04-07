@@ -49,14 +49,11 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="1" Margin="10 0 0 10" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Wczytane artykuły:" />
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="60 0 0 10" Background="#274452" Foreground="White"
+            <Label Grid.Row="1" Margin="10 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Wczytane artykuły:" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="60 0 0 0" Background="#274452" Foreground="White"
                      VerticalAlignment="Center" Height="21px" IsReadOnly="True" Text="{Binding LoadedArticlesCounter}" />
 
-            <Button Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10 25 0 0" Height="30" Width="250" FontSize="12px" 
-                            Style="{DynamicResource ButtonStyle}" Command="{Binding LoadArticlesCommand}" Content="Wczytaj artykuły" />
-
-            <GroupBox Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10 0 0 30" Foreground="White"
+            <GroupBox Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10 0 0 30" Foreground="White"
                       Style="{DynamicResource GroupBoxStyle}" Header=" Metryka " >
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -74,7 +71,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10 20 0 10" Foreground="White"
+            <GroupBox Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10 20 0 10" Foreground="White"
                       Style="{DynamicResource GroupBoxStyle}" Header=" Miary prawdopodobieństwa " >
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -89,37 +86,43 @@
                 </Grid>
             </GroupBox>
 
-            <Label Grid.Row="6" Margin="10 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Zestaw treningowy:" />
-            <Slider Grid.Row="6" Grid.Column="1"  Style="{DynamicResource SliderStyle}" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 52 0"
+            <Label Grid.Row="5" Margin="10 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Zestaw treningowy:" />
+            <Slider Grid.Row="5" Grid.Column="1"  Style="{DynamicResource SliderStyle}" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 52 0"
                             Minimum="10" Maximum="90" IsSnapToTickEnabled="True" TickFrequency="5" Name="TrainingSetSlider" Value="{Binding TrainingSetSliderValue}"/>
-            <TextBox Grid.Row="6" Grid.Column="1" Height="21px" Width="26px" HorizontalAlignment="Right" Background="#274452" Foreground="White" Margin="0 0 18 0"
+            <TextBox Grid.Row="5" Grid.Column="1" Height="21px" Width="26px" HorizontalAlignment="Right" Background="#274452" Foreground="White" Margin="0 0 18 0"
                              TextAlignment="Center" Text="{Binding ElementName=TrainingSetSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right"  FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="%" />
+            <Label Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right"  FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="%" />
 
-            <Label Grid.Row="7" Margin="10 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Ilość sąsiadów:" />
-            <Slider Grid.Row="7" Grid.Column="1"  Style="{DynamicResource SliderStyle}" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 52 0"
+            <Label Grid.Row="6" Margin="10 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Ilość sąsiadów:" />
+            <Slider Grid.Row="6" Grid.Column="1"  Style="{DynamicResource SliderStyle}" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 52 0"
                             Minimum="1" Maximum="20" IsSnapToTickEnabled="True" TickFrequency="1" Name="KNNSlider" Value="{Binding KNNSliderValue}"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Height="21px" Width="26px" HorizontalAlignment="Right" Background="#274452" Foreground="White" Margin="0 0 18 0"
+            <TextBox Grid.Row="6" Grid.Column="1" Height="21px" Width="26px" HorizontalAlignment="Right" Background="#274452" Foreground="White" Margin="0 0 18 0"
                              TextAlignment="Center" Text="{Binding ElementName=KNNSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <GroupBox Grid.Row="8" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="10 0 0 0" Foreground="White" Style="{DynamicResource GroupBoxStyle}" Header=" Etykiety " >
-                <ListBox FontSize="12px" Background="#232323" Foreground="White" ItemsSource="{Binding TagList}" SelectedItem="{Binding SelectedTag}" />
+            <GroupBox Grid.Row="7" Grid.RowSpan="5" Grid.ColumnSpan="2" Margin="10 0 0 15" Foreground="White" Style="{DynamicResource GroupBoxStyle}" Header=" Kategorie " >
+                <ListBox FontSize="12px" Background="#232323" Foreground="White" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding SelectedCategory}" />
             </GroupBox>
 
-            <Label Grid.Row="12" Margin="10 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Analizowane artykuły:"/>
+            <!--<GroupBox Grid.Row="7" Grid.RowSpan="5" Grid.Column="1" Margin="10 0 0 15" Foreground="White" Style="{DynamicResource GroupBoxStyle}" Header=" Etykiety " >
+                <ListBox FontSize="12px" Background="#232323" Foreground="White" ItemsSource="{Binding TagList}" SelectedItem="{Binding SelectedTag}" />
+            </GroupBox>-->
+
+            <!--<Label Grid.Row="12" Margin="10 0 0 0" FontSize="12px" Foreground="White" VerticalAlignment="Center" Content="Analizowane artykuły:"/>
             <TextBox Grid.Row="12" Grid.Column="1" Margin="60 0 0 0" Background="#274452" Foreground="White"
-                     VerticalAlignment="Center" Height="21px" IsReadOnly = "True" Text="{Binding AnalyzedArticlesCounter}"/>
+                     VerticalAlignment="Center" Height="21px" IsReadOnly = "True" Text="{Binding AnalyzedArticlesCounter}"/>-->
 
-            <Button Grid.Row="13" Grid.ColumnSpan="2" Margin="10 0 0 0" Height="30" Width="250" FontSize="12px" 
+
+            <Button Grid.Row="12" Grid.RowSpan="2" Margin="10 0 0 0" Height="40" Width="150" FontSize="12px" 
+                            Style="{DynamicResource ButtonStyle}" Command="{Binding LoadArticlesCommand}" Content="Wczytaj artykuły" />
+
+            <Button Grid.Row="12" Grid.RowSpan="2" Grid.Column="1" Margin="0 0 0 0" Height="40" Width="160" FontSize="12px" 
                             Style="{DynamicResource ButtonStyle}" Command="{Binding AnalyzeArticlesCommand}" Content="Analizuj artykuły" />
-
-
 
         </Grid>
 
-        <Label Grid.Column="1" Margin="0 30 80 0" FontSize="12px" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Poprawne dopasowania:" />
+        <Label Grid.Column="1" Margin="0 30 85 0" FontSize="12px" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Poprawne dopasowania:" />
         <TextBox Grid.Column="1" Margin="0 32 40 0" Background="#274452" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" 
-                     Height="21px" Width="34px" IsReadOnly="True" Text="{Binding CorrectlyMatchedArticles}" />
+                     Height="21px" Width="40px" IsReadOnly="True" Text="{Binding CorrectlyMatchedArticles}" />
         <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="12px" Foreground="White" Content="%" Margin="0 30 20 0" />
 
         <TabControl Grid.Column="1" Background="#454545" Margin="20 35 20 20" ItemContainerStyle="{DynamicResource TabItemStyle}" >

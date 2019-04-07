@@ -8,7 +8,7 @@ namespace Logic
         public string Title { get; set; }
         public List<string> Text { get; set; }
         public Dictionary<string, List<string>> Tags { get; set; }
-        public List<string> SelectedTagValues { get; set; }
+        public List<string> SelectedTag { get; set; }
         public string AssignedTag { get; set; }
 
         public Dictionary<string, double> VectorFeatures;
@@ -30,7 +30,7 @@ namespace Logic
         {
             string result = Title;
             result += "\t\t\t\nTag: ";
-            foreach(string s in SelectedTagValues)
+            foreach(string s in SelectedTag)
             {
                 result += s + " ";
             }
