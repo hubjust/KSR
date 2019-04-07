@@ -6,7 +6,7 @@ namespace Logic.Metrics
 {
     public class Manhattan : Metric
     {
-        private bool CalculateMetricForOneTestSet(Article testArticle, List<Article> TrainingVectors, int k)
+        public override bool CalculateMetricForOneTestSet(Article testArticle, List<Article> TrainingVectors, int k, string tag)
         {
             double x = 0;
             double y = 0;
@@ -32,7 +32,7 @@ namespace Logic.Metrics
                 absResult = 0;
             }
 
-            return KnnAlgorithm.Calculate(testArticle, TrainingVectors, k);
+            return KnnAlgorithm.Calculate(testArticle, TrainingVectors, k, tag);
         }
     }
 }

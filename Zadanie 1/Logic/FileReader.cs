@@ -40,7 +40,6 @@ namespace Logic
                         Article article = new Article();
 
                         string rawText = articleNode.Descendants("BODY").FirstOrDefault().InnerText;
-                        article.Places = articleNode.Descendants("PLACES").Select(placeNode => placeNode.Descendants("D").Select(node => node.InnerHtml)).First().ToList();
 
                         article.Title = articleNode.Descendants("TITLE").First().InnerText;
                         article.Tags = tags;

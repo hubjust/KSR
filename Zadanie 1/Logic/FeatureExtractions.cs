@@ -40,11 +40,11 @@ namespace Logic
 
             for (int i = 0; i < helperList.Count; i++)
             {
-                if (helperList.ElementAt(i).Places.Count != 1)
+                if (helperList.ElementAt(i).SelectedTagValues.Count != 1)
                 {
                     continue;
                 }
-                articles.Add(new Article { Places = helperList.ElementAt(i).Places, Text = helperList.ElementAt(i).Text });
+                articles.Add(new Article { SelectedTagValues = helperList.ElementAt(i).SelectedTagValues, Text = helperList.ElementAt(i).Text });
                 TermFrequency(articles.Last());
             }
 

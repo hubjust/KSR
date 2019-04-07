@@ -8,7 +8,8 @@ namespace Logic
         public string Title { get; set; }
         public List<string> Text { get; set; }
         public Dictionary<string, List<string>> Tags { get; set; }
-        public List<string> Places { get; set; } //tylko na chwilę w celach testowych, proszę nie usuwać
+        public List<string> SelectedTagValues { get; set; }
+        public string AssignedTag { get; set; }
 
         public Dictionary<string, double> VectorFeatures;
         public double Distance { get; set; }
@@ -22,10 +23,20 @@ namespace Logic
             }
 
             else
-            {
                 FeatureExtractions.InverseDocumentFrequency(articles);
-            }
+        }
 
+        public override string ToString()
+        {
+            string result = Title;
+            result += "\t\t\t\nTag: ";
+            foreach(string s in SelectedTagValues)
+            {
+                result += s + " ";
+            }
+            result += "\t\t\t\nPrzypisany tag: " + AssignedTag;
+
+            return result;
         }
     }
 }

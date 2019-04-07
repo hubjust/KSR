@@ -65,7 +65,8 @@
     <Compile Include="Metrics\Metric.cs" />
     <Compile Include="Metrics\Manhattan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrainingSets.cs" />
+    <Compile Include="Sets.cs" />
+    <Compile Include="TagCompatibilityChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

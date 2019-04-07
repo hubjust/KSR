@@ -6,16 +6,16 @@ namespace Logic
     public static class KnnAlgorithm
     {       
         // ChooseKNeighbours
-        public static bool Calculate(Article testArticle, List<Article> TrainingArticles, int k)
+        public static bool Calculate(Article testArticle, List<Article> TrainingArticles, int k, string tag)
         {
             TrainingArticles = TrainingArticles.OrderBy(h => h.Distance).ToList(); //sortuje
             var neighbours = TrainingArticles.Take(k).ToList(); //bierze k sąsiadów
 
-            return CheckTag(testArticle, neighbours);
+            return CheckTag(testArticle, neighbours, tag);
         }
 
         // sprawdza, czy w państwa z testowych danych znajdują się w podanych przez nas artykułach
-        private static bool CheckTag(Article testArticle, List<Article> neighbours) 
+        private static bool CheckTag(Article testArticle, List<Article> neighbours, string tag) 
         {
             Dictionary<string, int> howManyTags = new Dictionary<string, int>();
             int howManyTimesOccur = 0;
@@ -24,20 +24,20 @@ namespace Logic
             {
                 for (int j = 0; j < neighbours.Count; j++)
                 {
-                    if (neighbours.ElementAt(i).Places.FirstOrDefault() == neighbours.ElementAt(j).Places.FirstOrDefault())
+                    if (neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault() == neighbours.ElementAt(j).SelectedTagValues.FirstOrDefault())
                     {
                         howManyTimesOccur++;
                     }
                 }
 
-                if (neighbours.ElementAt(i).Places.FirstOrDefault() != null && howManyTags.ContainsKey(neighbours.ElementAt(i).Places.FirstOrDefault())) //zeruje licznik żeby nie powtarzać juz raz dodanych państsw 
+                if (neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault() != null && howManyTags.ContainsKey(neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault())) //zeruje licznik żeby nie powtarzać juz raz dodanych państsw 
                 {
                     howManyTimesOccur = 0;
                     continue;
                 }
 
-                if(neighbours.ElementAt(i).Places.FirstOrDefault() != null)
-                    howManyTags.Add(neighbours.ElementAt(i).Places.FirstOrDefault(), howManyTimesOccur);
+                if(neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault() != null)
+                    howManyTags.Add(neighbours.ElementAt(i).SelectedTagValues.FirstOrDefault(), howManyTimesOccur);
 
                 howManyTimesOccur = 0;
             }
@@ -46,9 +46,9 @@ namespace Logic
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
 
             List<KeyValuePair<string, int>> result = howManyTags.ToList();
-            var FoundPlace = result.First().Key;
+            testArticle.AssignedTag = result.First().Key;
 
-            if (testArticle.Places.FirstOrDefault() != null && testArticle.Places.FirstOrDefault().Equals(FoundPlace))
+            if (testArticle.SelectedTagValues.FirstOrDefault() != null && testArticle.SelectedTagValues.FirstOrDefault().Equals(testArticle.AssignedTag))
             {
                 return true;
             }

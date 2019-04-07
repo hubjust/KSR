@@ -6,7 +6,7 @@ namespace Logic.Metrics
 {
     public class Chebyshev : Metric
     {
-        private bool CalculateMetricForOneTestSet(Article testArticle, List<Article> TrainingVectors, int k)
+        public override bool CalculateMetricForOneTestSet(Article testArticle, List<Article> TrainingVectors, int k, string tag)
         {
             double x = 0;
             double y = 0;
@@ -37,7 +37,7 @@ namespace Logic.Metrics
                 maxResult = 0;
             }
 
-            return KnnAlgorithm.Calculate(testArticle,TrainingVectors, k);
+            return KnnAlgorithm.Calculate(testArticle,TrainingVectors, k, tag);
         }
     }
 }

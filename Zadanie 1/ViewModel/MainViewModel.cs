@@ -16,6 +16,7 @@ namespace ViewModel
         public ICommand AnalyzeArticlesCommand { get; set; }
 
         private List<Article> articles;
+        public List<Article> CompatibleArticles { get; set; }
         private Tuple<List<Article>, List<Article>> separatedArticles;
         private Metric metric;
 
@@ -54,21 +55,10 @@ namespace ViewModel
         public List<string> TagList { get; set; }
         public string SelectedTag { get; set; }
 
-
         public int AnalyzedArticlesCounter { get; set; }
         public double CorrectlyMatchedArticles { get; set; }
 
         #endregion
-
-        private readonly List<string> places = new List<string>
-        {
-            "west-germany",
-            "usa",
-            "france",
-            "uk",
-            "canada",
-            "japan"
-        };
 
         public MainViewModel()
         {
@@ -108,8 +98,9 @@ namespace ViewModel
 
         private void AnalyzeArticles()
         {
-            Article.GetExtract(MeasurementRadioButtonTF, articles);
-            separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, articles);
+            CompatibleArticles = TagCompatibilityChecker.CheckTags(articles, SelectedTag);
+            Article.GetExtract(MeasurementRadioButtonTF, CompatibleArticles);
+            separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, CompatibleArticles);
 
             try
             {
@@ -122,8 +113,10 @@ namespace ViewModel
                 else if (MetricRadioButtonChebyshew)
                     metric = new Chebyshev();
 
-                CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue);
+                CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue, SelectedTag);
                 CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 2) * 100));
+
+                OnPropertyChanged(nameof(CompatibleArticles));
                 OnPropertyChanged(nameof(CorrectlyMatchedArticles));
                 MessageBox.Show("Done");
             }
