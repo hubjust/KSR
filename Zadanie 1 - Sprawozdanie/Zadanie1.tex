@@ -74,7 +74,23 @@ $$
 \section{Opis implementacji}
 Program został stworzony w języku C\#. Graficzny interfejs użytkownika został stworzony przy  wykorzystaniu Windows Presentation Foundation. Logika aplikacji została odseparowana od GUI, w zgodzie ze wzorcem projektowym Model-view-viewmodel (MVVM), poprzez implementacje trzech projektów (Logic, ViewModel i GUI).
 
-% \newline TUTAJ JAKIS DIAGRAM UML \newline
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{{Rysunki/DiagramLogic.png}}
+	\caption{Diagram UML wygenerowany dla projektu Logic}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{{Rysunki/DiagramGUI.png}}
+	\caption{Diagram UML wygenerowany dla projektu GUI}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{{Rysunki/DiagramMainViewModel.png}}
+	\caption{Diagram UML wygenerowany dla projektu MainViewModel}
+\end{figure}
 
 \subsection{Logic}
 Klasy Chebyshev, Euclidean oraz Manhattan odpowiadają za prawidłowe obliczenia odległości tekstów. Dziedziczą one z klasy abstrakcyjnej Metric. \newline
