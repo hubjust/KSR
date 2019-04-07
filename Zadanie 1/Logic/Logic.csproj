@@ -60,13 +60,11 @@
     <Compile Include="FeatureExtractions.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="KnnAlgorithm.cs" />
-    <Compile Include="Matrix.cs" />
     <Compile Include="Metrics\Chebyshev.cs" />
     <Compile Include="Metrics\Euclidean.cs" />
     <Compile Include="Metrics\Metric.cs" />
     <Compile Include="Metrics\Manhattan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestVectorAndTrainingVectors.cs" />
     <Compile Include="TrainingSets.cs" />
   </ItemGroup>
   <ItemGroup>

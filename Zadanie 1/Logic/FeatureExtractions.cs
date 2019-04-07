@@ -45,7 +45,7 @@ namespace Logic
                     continue;
                 }
                 articles.Add(new Article { Places = helperList.ElementAt(i).Places, Text = helperList.ElementAt(i).Text });
-                FeatureExtractions.TermFrequency(articles.Last());
+                TermFrequency(articles.Last());
             }
 
             foreach (Article a in articles)
