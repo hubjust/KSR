@@ -28,10 +28,9 @@
 Celem zadania było stworzenie aplikacji do klasyfikacji tekstów metodą k-NN, korzystając z różnych sposób ekstrakcji wektorów cech oraz istniejących miar podobieństwa porównać kategorie do tych przypisanych przez aplikację.
 
 \section{Wprowadzenie}	
-
 Zagadnieniem, jakim zajmowaliśmy się w ramach projektu jest klasyfikacja statystyczna, która jest rodzajem algorytmu statystycznego przydzielającego elementy do klas, bazując na cechach tych elementów. W ramach przeprowadzanego eksperymentu zaimplementowaliśmy klasyfikator k-najbliższych sąsiadów. \newline
 
-Algorytm k najbliższych sąsiadów, nazywany także algorytmem k-nn, należy do grupy algorytmów leniwych, czyli takich, które nie tworzą wewnętrznej reprezentacji danych uczących, lecz szukają rozwiązania dopiero w momencie pojawienia się wzorca testującego. Przechowuje wszystkie wzorce uczące, względem których wyznacza odległość wzorca testowego [1]. Metoda k-nn wyznacza k sąsiadów, do których badany element ma najmniejszą odległość w danej metryce, a następnie wyznacza wynik w oparciu o najczęstszy element, wśród k najbliższych. W przypadku naszego projektu odległość definiujemy jako skalę podobieństwa tekstów. \newline
+Algorytm k najbliższych sąsiadów, nazywany także algorytmem k-NN, należy do grupy algorytmów leniwych, czyli takich, które nie tworzą wewnętrznej reprezentacji danych uczących, lecz szukają rozwiązania dopiero w momencie pojawienia się wzorca testującego. Przechowuje wszystkie wzorce uczące, względem których wyznacza odległość wzorca testowego [2]. Metoda k-NN wyznacza k sąsiadów, do których badany element ma najmniejszą odległość w danej metryce, a następnie wyznacza wynik w oparciu o najczęstszy element, wśród k najbliższych. W przypadku naszego projektu odległość definiujemy jako skalę podobieństwa tekstów. \newline
 
 W ramach zadania zostały użyte 2 metody ekstrakcji cech: \newline
 
@@ -77,21 +76,21 @@ Program został stworzony w języku C\#. Graficzny interfejs użytkownika zosta�
 \subsection{Logic}
 Klasy Chebyshev, Euclidean oraz Manhattan odpowiadają za prawidłowe obliczenia odległości tekstów. Dziedziczą one z klasy abstrakcyjnej Metric. \newline
 
-Klasa Article odwzorowuje artykuły wczytane do programu. Przechowuje informacje o dokumencie takie jak: tytuł, tekst, tagi, przypisane tagi, wektor cech, odległość. \newline
+Klasa Article odwzorowuje artykuły wczytane do programu. Przechowuje informacje o dokumencie takie jak: tytuł, tekst, kategorie, przypisane etykiety, wektor cech, odległość. \newline
 
 Klasa FeatureExtraction implementuje dwie metody ekstrakcji cech - term frequency oraz inverse document frequency. \newline
 
-Klasa FileReader odpowiada za poprawne wczytywanie plików do programu - wyselekcjoowanie wybranych przez nas informacji (tytuł, teksy, przypisaną etykietkę) i na ich podstawie stworzenie obiektu klasy Article. Z wczytanego tekstu usuwane są słowa, które występują w wykorzystanej przez nas stop liście [2]. Ten zabieg ma za zadanie wykluczyć terminy, które nie wnoszą kluczowych, dla nas, informacji. Następnie, tekst zostaje poddane stemizacji, czyli usunięciu ze słowa końcówki fleksyjnej pozostawiając tylko rdzeń wyrazu. Do tego także wykorzystujemy zewnętrzną bibliotekę [3]. \newline
+Klasa FileReader odpowiada za poprawne wczytywanie plików do programu - wyselekcjonowanie wybranych przez nas informacji (tytuł, teksy, przypisane etykiety) i na ich podstawie stworzenie obiektu klasy Article. Z wczytanego tekstu usuwane są słowa, które występują w wykorzystanej przez nas stop liście [3]. Ten zabieg ma za zadanie wykluczyć terminy, które nie wnoszą kluczowych, dla nas, informacji. Następnie, tekst zostaje poddane stemizacji, czyli usunięciu ze słowa końcówki fleksyjnej pozostawiając tylko rdzeń wyrazu. Do tego także wykorzystujemy zewnętrzną bibliotekę [4]. \newline
 
 Klasa KnnAlgorithm odpowiada za implementację algorytmu k-najbliższych sąsiadów. W tym miejscu wyliczane są wystąpienia słów w podanych dokumentach. \newline
 
-Klasa Sets odpowiedzialna jest za odpowiedni dobór danych testowych oraz treningowych. \newline
+Klasa Sets odpowiedzialna jest za podział wczytanych artykułów na dane testowe oraz treningowe. \newline
 
-Klasa CategoryCompatibilityChecker ma za zadanie sprawdzić, czy dany artykuł zawiera jeden tag z danej kategorii, oraz czy ten tag zawiera się w tagach branych pod uwagę.
+Klasa CategoryCompatibilityChecker ma za zadanie sprawdzić, czy dany artykuł zawiera jedną etykietę z danej kategorii, oraz czy ta etykieta jest brana pod uwagę przy analizowaniu danej kategorii.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{{Rysunki/DiagramLogic.png}}
+	\includegraphics[width=1\textwidth]{{Rysunki/DiagramLogic.png}}
 	\caption{Diagram UML wygenerowany dla projektu Logic}
 \end{figure}
 
@@ -102,8 +101,8 @@ Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{{Rysunki/DiagramGUI.png}}
-	\caption{Diagram UML wygenerowany dla projektu GUI}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/DiagramViewModel.png}}
+	\caption{Diagram UML wygenerowany dla projektu MainViewModel}
 \end{figure}
 
 \subsection{GUI}
@@ -111,23 +110,23 @@ Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w ob
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{{Rysunki/DiagramMainViewModel.png}}
-	\caption{Diagram UML wygenerowany dla projektu MainViewModel}
+	\includegraphics[width=1\textwidth]{{Rysunki/DiagramGUI.png}}
+	\caption{Diagram UML wygenerowany dla projektu GUI}
 \end{figure}
 
 \section{Materiały i metody}
 
-Klasyfikacja tekstów została wykonana wszystkimi dostępnymi metodami ekstrakcji cech dla wszystkich trzech metryk. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla k $\in$ \{2, 3, 5, 7, 10, 15, 20\} najbliższych sąsiadów. Wyniki porównano z faktyczną etykietą danego artykułu. Za każdym razem zbiór treningowy stanowił 60\% artykułów, zaś zbiór testowy 40\%. \newline
+Klasyfikacja tekstów została wykonana wszystkimi dostępnymi metodami ekstrakcji cech dla wszystkich trzech metryk. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla k $\in$ \{2, 3, 5, 7, 10, 15, 20\} najbliższych sąsiadów. Wyniki porównano z faktyczną etykietą danego artykułu. \newline
 
-Klasyfikacja dotycząca lokalizacji przeprowadzana była jedynie na danych, których pole places przyjmowało jedną z wartości: west-germany, usa, france, uk, canada, japan. \newline
+Klasyfikacja dotycząca lokalizacji przeprowadzana była jedynie na danych, których pole places przyjmowało jedną z wartości: west-germany, usa, france, uk, canada, japan. Zbiór treningowy stanowił 60\% artykułów, zaś zbiór testowy 40\% artykułów. \newline
 
-Klasyfikacja dotycząca tematów przeprowadzana była jedynie na danych, które pole topics przyjmowało jedną z wartości: gold, cocoa, sugar, coffe, grain. \newline
+Klasyfikacja dotycząca tematów przeprowadzana była jedynie na danych, które pole topics przyjmowało jedną z wartości: gold, cocoa, sugar, coffe, grain. Zbiory testowe stanowiły 50\% artykułów. \newline
 
-Klasyfikacja własnych tesktów przeprowadzana była na danych, których pole author przyjmowało jedną z wartości: taylor swift, macklemore, twenty one pilots, eminem, ed sheeran, black eyed peas.
+Danymi jakie sami przygotowaliśmy do analizy były teksty piosenek znanych artystów. Posiadały one jedną kategorię - author. Przyjmowało ono jedną z wartości: taylor swift, macklemore, twenty one pilots, eminem, ed sheeran, black eyed peas. Zbiór treningowy stanowił 60\% tekstów, zaś zbiór testowy 40\% tekstów.
 
 \section{Wyniki}
 
-Wyniki dla kolejnych eksperymentów przedstawiają tabele. Tabele 1-3 przedstawiają odpowiednio eksperymenty przeprowadzone dla metryki Euklidesa, ulicznej oraz Czebyszewa przy użyciu Term frequency, natomiast Tabele 4-6 przedstawiają alogiczne dane dla Inverse document frequency. Zamieszczone wykresy mają za zadanie porównać jak dobrze radzą sobie metryki z daną kategorią.
+Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez nas eksperymentów. Tabele 1-3 przedstawiają odpowiednio eksperymenty przeprowadzone dla metryki Euklidesa, ulicznej oraz Czebyszewa przy użyciu Term frequency, natomiast Tabele 4-6 przedstawiają alogiczne dane dla Inverse document frequency. Zamieszczone wykresy mają za zadanie porównać jak dobrze radzą sobie metryki z daną kategorią.
 
 \begin{table}[H]
 	\centering
@@ -286,12 +285,21 @@ Wyniki dla kolejnych eksperymentów przedstawiają tabele. Tabele 1-3 przedstawi
 	
 	
 \section{Wnioski}
+\begin{itemize}
+	\item 
+	\item 
+	\item 
+	\item 
+	\item Metoda k-NN źle sobie radzi z przypisaniem tekstów do autorów
+\end{itemize}
+
 	
 
 \begin{thebibliography}{}
 \bibitem{adam}
 Methods for the linguistic summarization of data - aplications of fuzzy sets and their extensions, Adam Niewiadomski, Akademicka Oficyna Wydawnicza EXIT, Warszawa 2008
-1. http://home.agh.edu.pl/~horzyk/lectures/miw/KNN.pdf
+\bibitem{AGH}
+http://home.agh.edu.pl/~horzyk/lectures/miw/KNN.pdf
 \bibitem{Stop Lista}
 https://github.com/hklemp/dotnet-stop-words
 \bibitem{Stemizacja}
