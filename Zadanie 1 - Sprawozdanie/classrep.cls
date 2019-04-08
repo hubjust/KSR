@@ -31,7 +31,7 @@
 \newcommand\courseteacherfield{Prowadz\k{a}cy}
 \newcommand\reportfiledfield{Data oddania}
 \newcommand\gradefield{Ocena}
-\newcommand\svnurlfield{SVN}
+\newcommand\svnurlfield{GitHub}
 
 \let\@svnurl\@empty
 \newcommand{\svnurl}[1]{
