@@ -17,13 +17,13 @@
             <MenuItem Header="Plik" Margin="5 0 0 0" Height="25" Foreground="White">
                 <MenuItem Header="Zamknij" Foreground="Black" Command="{Binding QuitCommand}" />
             </MenuItem>
-            <MenuItem Header="Analiza" Margin="5 0 0 0" Height="25" Foreground="White">
+            <!--<MenuItem Header="Analiza" Margin="5 0 0 0" Height="25" Foreground="White">
                 <MenuItem Header="Wczytaj artykuły" Foreground="Black" />
                 <MenuItem Header="Stwórz macierz" Foreground="Black" />
             </MenuItem>
             <MenuItem Header="Pomoc" Margin="5 0 0 0" Height="25" Foreground="White">
                 <MenuItem Header="O programie" Foreground="Black" />
-            </MenuItem>
+            </MenuItem>-->
         </Menu>
 
         <Grid >
