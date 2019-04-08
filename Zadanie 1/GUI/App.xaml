@@ -438,9 +438,9 @@
             <SolidColorBrush x:Key="OptionMark.MouseOver.Background" Color="#274452"/>
             <SolidColorBrush x:Key="OptionMark.MouseOver.Border" Color="#FF5593FF"/>
             <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph" Color="Gainsboro"/>
-            <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#FFE6E6E6"/>
-            <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FFBCBCBC"/>
-            <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="Gainsboro"/>
+            <SolidColorBrush x:Key="OptionMark.Disabled.Background" Color="#343434"/>
+            <SolidColorBrush x:Key="OptionMark.Disabled.Border" Color="#FF707070"/>
+            <SolidColorBrush x:Key="OptionMark.Disabled.Glyph" Color="#232323"/>
             <SolidColorBrush x:Key="OptionMark.Pressed.Background" Color="#255369"/>
             <SolidColorBrush x:Key="OptionMark.Pressed.Border" Color="#FF3C77DD"/>
             <SolidColorBrush x:Key="OptionMark.Pressed.Glyph" Color="Gainsboro"/>

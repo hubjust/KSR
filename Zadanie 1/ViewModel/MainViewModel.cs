@@ -6,6 +6,7 @@ using System;
 
 using Logic;
 using Logic.Metrics;
+using Logic.Extractors;
 
 namespace ViewModel
 {
@@ -22,6 +23,8 @@ namespace ViewModel
 
         #region Fields 
 
+        private FeatureExtractions featureExtractions = new FeatureExtractions();
+
         public int LoadedArticlesCounter { get; set; }
 
         #region RadioButtons
@@ -31,6 +34,17 @@ namespace ViewModel
         public bool MetricRadioButtonManhattan { get; set; }
         public bool MeasurementRadioButtonTF { get; set; }
         public bool MeasurementRadioButtonIDF { get; set; }
+        private bool _MeasurementRadioButtonOwn;
+        public bool MeasurementRadioButtonOwn
+        {
+            get { return _MeasurementRadioButtonOwn; }
+            set
+            {
+                _MeasurementRadioButtonOwn = value;
+                OnPropertyChanged(nameof(MeasurementRadioButtonOwn));
+            }
+        }
+
 
         #endregion
 
@@ -79,7 +93,7 @@ namespace ViewModel
 
             MeasurementRadioButtonTF = true;
 
-            WordsCounterCheckBox = false;
+            WordsCounterCheckBox = true;
             ShortWordsCounterCheckBox = true;
             MediumWordsCounterCheckBox = true;
             LongWordsCounterCheckBox = true;
@@ -123,7 +137,13 @@ namespace ViewModel
         private void AnalyzeArticles()
         {
             compatibleArticles = CategoryCompatibilityChecker.CheckTags(articles, SelectedCategory);
-            Article.GetExtract(MeasurementRadioButtonTF, compatibleArticles);
+
+            featureExtractions.SetBools(MeasurementRadioButtonTF, MeasurementRadioButtonIDF, MeasurementRadioButtonOwn,
+                                        WordsCounterCheckBox, ShortWordsCounterCheckBox, MediumWordsCounterCheckBox,
+                                        LongWordsCounterCheckBox, UniqueWordsCounterCheckBox, FirstLitterUpperCaseCheckBox,
+                                        WordsUpperCaseCheckBox);
+            featureExtractions.Extract(compatibleArticles);
+
             separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, compatibleArticles);
 
             try

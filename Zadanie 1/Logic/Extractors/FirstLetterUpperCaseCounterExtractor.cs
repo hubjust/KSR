@@ -2,9 +2,9 @@
 
 namespace Logic.Extractors
 {
-    class FirstLetterUpperCaseCounterExtractor : Extractor
+    public static class FirstLetterUpperCaseCounterExtractor
     {
-        public override double ComputeFactor(Article article)
+        public static double ComputeFactor(Article article)
         {
             int countOfMatches = 0;
 

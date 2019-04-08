@@ -78,16 +78,19 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <RadioButton Grid.Column="0" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"  
                                  IsChecked="{Binding Path=MeasurementRadioButtonTF, Mode=TwoWay}" Content="TF"/>
                     <RadioButton Grid.Column="1" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"
                                  IsChecked="{Binding Path=MeasurementRadioButtonIDF, Mode=TwoWay}" Content="IDF"/>
+                    <RadioButton Grid.Column="2" Foreground="White" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"
+                                 IsChecked="{Binding Path=MeasurementRadioButtonOwn, Mode=TwoWay}" Content="Własne cechy"/>
                 </Grid>
             </GroupBox>
 
-            <GroupBox Grid.Row="5" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10 0 0 0" Foreground="White"
+            <GroupBox Grid.Row="5" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10 0 0 0" Foreground="White" IsEnabled="{Binding MeasurementRadioButtonOwn}"
                       Style="{DynamicResource GroupBoxStyle}" Header=" Cechy do wyekstrahowania " >
                 <Grid>
                     <Grid.RowDefinitions>

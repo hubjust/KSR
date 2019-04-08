@@ -2,9 +2,9 @@
 
 namespace Logic.Extractors
 {
-    class ShortWordsCounterExtractor : IExtractor
+    public static class ShortWordsCounterExtractor
     {
-        public double ComputeFactor(Article article)
+        public static double ComputeFactor(Article article)
         {
             return article.Text.Count(p => p.Length <= 3);
         }

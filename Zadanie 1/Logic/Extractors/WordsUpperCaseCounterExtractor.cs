@@ -1,13 +1,27 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
 namespace Logic.Extractors
 {
-    class WordsUpperCaseCounterExtractor : IExtractor
+    public static class WordsUpperCaseCounterExtractor
     {
-        public double ComputeFactor(Article article)
+        public static double ComputeFactor(Article article)
         {
-            return article.Text.Count();
+            int countOfMatches = 0;
+
+            foreach(string word in article.Text)
+            {
+                countOfMatches++; 
+                foreach(char c in word)
+                {
+                    if (!Char.IsUpper(c))
+                    {
+                        countOfMatches--;
+                        break;
+                    }
+                }
+            }
+
+            return countOfMatches;
         }
     }
 }

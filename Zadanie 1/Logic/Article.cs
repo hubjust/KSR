@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Logic
 {
@@ -13,18 +12,6 @@ namespace Logic
 
         public Dictionary<string, double> VectorFeatures;
         public double Distance { get; set; }
-
-        public static void GetExtract(Boolean isTermFrequency, List<Article> articles)
-        {
-            if (isTermFrequency)
-            {
-                foreach(Article a in articles)
-                    FeatureExtractions.TermFrequency(a);
-            }
-
-            else
-                FeatureExtractions.InverseDocumentFrequency(articles);
-        }
 
         public override string ToString()
         {
