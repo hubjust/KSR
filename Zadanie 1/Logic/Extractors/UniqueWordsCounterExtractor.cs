@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Logic.Extractors
 {
-    class UniqueWordsCounterExtractor : Extractor
+    class UniqueWordsCounterExtractor : IExtractor
     {
-        public override double ComputeFactor(Article article)
+        public double ComputeFactor(Article article)
         {
             List<string> uniqueWords = new List<string>();
 

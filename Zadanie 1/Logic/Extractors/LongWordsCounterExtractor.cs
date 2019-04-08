@@ -2,9 +2,9 @@
 
 namespace Logic.Extractors
 {
-    class LongWordsCounterExtractor : Extractor
+    class LongWordsCounterExtractor : IExtractor
     {
-        public override double ComputeFactor(Article article)
+        public double ComputeFactor(Article article)
         {
             return article.Text.Count(p => p.Length >= 8);
         }

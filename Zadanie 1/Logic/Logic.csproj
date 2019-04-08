@@ -58,12 +58,13 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="Extractors\Extractor.cs" />
-    <Compile Include="Extractors\WholeWordUCExtractor.cs" />
-    <Compile Include="Extractors\WordsCounterExtractor.cs" />
-    <Compile Include="Extractors\LongWordsExtractor.cs" />
-    <Compile Include="Extractors\MediumWordsExtractor.cs" />
-    <Compile Include="Extractors\ShortWordsExtractor.cs" />
-    <Compile Include="Extractors\FirstLetterUCExtractor.cs" />
+    <Compile Include="Extractors\UniqueWordsCounterExtractor.cs" />
+    <Compile Include="Extractors\UpperWordsCounterExtractor.cs" />
+    <Compile Include="Extractors\WordsUpperCaseCounterExtractor.cs" />
+    <Compile Include="Extractors\LongWordsCounterExtractor.cs" />
+    <Compile Include="Extractors\MediumWordsCountExtractor.cs" />
+    <Compile Include="Extractors\ShortWordsCounterExtractor.cs" />
+    <Compile Include="Extractors\FirstLetterUpperCaseCounterExtractor.cs" />
     <Compile Include="FeatureExtractions.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="KnnAlgorithm.cs" />

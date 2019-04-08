@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Logic.Extractors
 {
-    class WordsCounterExtractor : Extractor
+    class WordsUpperCaseCounterExtractor : IExtractor
     {
-        public override double ComputeFactor(Article article)
+        public double ComputeFactor(Article article)
         {
             return article.Text.Count();
         }

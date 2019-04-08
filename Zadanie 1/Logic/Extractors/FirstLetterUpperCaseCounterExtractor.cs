@@ -2,7 +2,7 @@
 
 namespace Logic.Extractors
 {
-    class UpperFirstLetterCounterExtractor : Extractor
+    class FirstLetterUpperCaseCounterExtractor : Extractor
     {
         public override double ComputeFactor(Article article)
         {

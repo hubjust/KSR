@@ -34,6 +34,18 @@ namespace ViewModel
 
         #endregion
 
+        #region Checkbox
+
+        public bool WordsCounterCheckBox { get; set; }
+        public bool ShortWordsCounterCheckBox { get; set; }
+        public bool MediumWordsCounterCheckBox { get; set; }
+        public bool LongWordsCounterCheckBox { get; set; }
+        public bool UniqueWordsCounterCheckBox { get; set; }
+        public bool FirstLitterUpperCaseCheckBox { get; set; }
+        public bool WordsUpperCaseCheckBox { get; set; }
+
+        #endregion
+
         #region Sliders
 
         public int TrainingSetSlider { get; set; }
@@ -64,8 +76,19 @@ namespace ViewModel
         public MainViewModel()
         {
             MetricRadioButtonEuclidean = true;
+
             MeasurementRadioButtonTF = true;
+
+            WordsCounterCheckBox = false;
+            ShortWordsCounterCheckBox = true;
+            MediumWordsCounterCheckBox = true;
+            LongWordsCounterCheckBox = true;
+            UniqueWordsCounterCheckBox = true;
+            FirstLitterUpperCaseCheckBox = true;
+            WordsUpperCaseCheckBox = true;
+
             TrainingSetSliderValue = 60;
+
             KNNSliderValue = 2;
 
             LoadArticlesCommand = new RelayCommand(LoadArticles);

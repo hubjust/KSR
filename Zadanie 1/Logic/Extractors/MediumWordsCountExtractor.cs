@@ -2,9 +2,9 @@
 
 namespace Logic.Extractors
 {
-    class MediumWordsCountExtractor : Extractor
+    class MediumWordsCountExtractor : IExtractor
     {
-        public override double ComputeFactor(Article article)
+        public double ComputeFactor(Article article)
         {
             return article.Text.Count(p => p.Length >= 4 && p.Length <=7);
         }

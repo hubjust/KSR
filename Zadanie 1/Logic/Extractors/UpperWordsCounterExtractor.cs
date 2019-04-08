@@ -2,9 +2,9 @@
 
 namespace Logic.Extractors
 {
-    class UpperWordsCounterExtractor : Extractor
+    class UpperWordsCounterExtractor : IExtractor
     {
-        public override double ComputeFactor(Article article)
+        public double ComputeFactor(Article article)
         {
             int countOfMatches = 0;
 
