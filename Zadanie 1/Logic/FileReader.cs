@@ -68,10 +68,13 @@ namespace Logic
             rawText = rawText.Replace(">", "");
             rawText = rawText.Replace("(", "");
             rawText = rawText.Replace(")", "");
-            rawText = rawText.Replace("+:", "");
+            rawText = rawText.Replace("[", "");
+            rawText = rawText.Replace("]", "");
+            rawText = rawText.Replace(":", "");
+            rawText = rawText.Replace(";", "");
             rawText = rawText.Replace("+", "");
-            rawText = rawText.Replace("\"", "");
-            rawText = rawText.Replace("\\", "");
+            rawText = rawText.Replace("\"", ""); // "
+            rawText = rawText.Replace("\\", ""); // \
 
             // Zamiana na białe znaki
             rawText = rawText.Replace("/", " ");

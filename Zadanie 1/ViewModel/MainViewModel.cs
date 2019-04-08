@@ -65,8 +65,8 @@ namespace ViewModel
         {
             MetricRadioButtonEuclidean = true;
             MeasurementRadioButtonTF = true;
-            TrainingSetSliderValue = 10;
-            KNNSliderValue = 1;
+            TrainingSetSliderValue = 60;
+            KNNSliderValue = 2;
 
             LoadArticlesCommand = new RelayCommand(LoadArticles);
             AnalyzeArticlesCommand = new RelayCommand(AnalyzeArticles);
