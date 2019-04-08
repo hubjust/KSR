@@ -187,19 +187,19 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{{Rysunki/TF-places.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-places.png}}
 	\caption{Dane z Tabel 1-3 dla kategorii places}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{{Rysunki/TF-topics.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-topics.png}}
 	\caption{Dane z Tabel 1-3 dla kategorii topics}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{{Rysunki/TF-authors.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-authors.png}}
 	\caption{Dane z Tabel 1-3 dla kategorii authors (własne teksty)}
 \end{figure}
 
@@ -262,35 +262,48 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{{Rysunki/TF-places.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-places.png}}
 	\caption{Dane z Tabel 4-6 dla kategorii places}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{{Rysunki/TF-topics.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-topics.png}}
 	\caption{Dane z Tabel 4-6 dla kategorii topics}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{{Rysunki/TF-authors.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-authors.png}}
 	\caption{Dane z Tabel 4-6 dla kategorii authors (własne teksty)}
 \end{figure}
 
 \section{Dyskusja}
-	Po przeprowadzonych badaniach jesteśmy w stanie zauważyć, iż metryka uliczna charakteryzuje się największą skutecznością w przypadku pierwszego, jak i drugiego sposobu ekstrakcji cech. Niewiele mniejszą skuteczność wykazuje metryka Euklidesowa. Z kolei, najmniejszą skuteczność reprezentuje metryka Czebyszewa. W przeciwieństwo do dwóch pozostałych metryk, zmiana ilości k sąsiadów nie wpływała lub wpływała nieznacząco na liczbę dopasowanych dokumentów. \newline
-	Niska liczba liczba k-sąsiadów (od 2 do 5) zazwyczaj oraz bardzo wysoka ( 20) zazwyczaj negatywnie wpływały na skuteczność. Optymalna liczba sąsiadów do dokonania klasyfikacji w przypadku algorytmu k-nn wynosi 10 w przypadku ekstrakcji metodą term frequency oraz 7 w przypadku ekstrakcji inverse document frequency. \newline
-	Dwie użyte przez nas metody ekstrakcji cech wykazują bardzo podobną skuteczność - inverse document frequency nieznacznie przewyższa term frequency. Może to wynikać z faktu, iż IDF przeszukuje wszystkie dokumenty, a TF tylko jeden.  \newline
-	
+
+\subsection{Kategoria places oraz topic}
+Po przeprowadzonych badaniach jesteśmy w stanie zauważyć, iż metryka uliczna charakteryzuje się największą skutecznością w przypadku pierwszego, jak i drugiego sposobu ekstrakcji cech. Niewiele mniejszą skuteczność wykazuje metryka Euklidesowa. Z kolei, najmniejszą skuteczność reprezentuje metryka Czebyszewa. W przeciwieństwo do dwóch pozostałych metryk, zmiana ilości k sąsiadów nie wpływała lub wpływała nieznacząco na liczbę dopasowanych dokumentów. \newline
+
+Niska liczba liczba k-sąsiadów (od 2 do 5) zazwyczaj oraz bardzo wysoka (20) zazwyczaj negatywnie wpływały na skuteczność klasyfikacji. Optymalne wartości k w przypadku algorytmu k-NN wynosiły 10 i 15 w przypadku ekstrakcji metodą term frequency oraz 7 i 10 w przypadku ekstrakcji inverse document frequency. \newline
+
+Dwie użyte przez nas metody ekstrakcji cech wykazują bardzo podobną skuteczność - inverse document frequency nieznacznie przewyższa term frequency. Może to wynikać z faktu, iż IDF przeszukuje wszystkie dokumenty, a TF tylko jeden.  \newline
+
+Skuteczność klasyfikacji była znacznie wyższa dla kategorii places. Zazwyczaj oscylowała wokół 80%. Z kolei, dla kategorii topics w okolicach 50%. 
+
+\subsection{Kategoria authors (własne teksty)}
+Wyniki klasyfikacji dla własnych tekstów są wyraźnie gorsze niż dla artykułów Reutersa. Przypisanie autora do tekstu jego utworu jest dużo cięższym zadaniem, z którym nasz program sobie nie radzi tak dobrze. Poza małym zbiorem danych problemem jest dużo mniejsze powiązanie słów z danym autorem - mimo wybrania tekstów z jednej płyty, teksty nie były aż tak podobne tematycznie, by wyniki klasyfikacji były zadowalające.
+
+Metryka Euklidesowa wykazuje największą skuteczność w przypadku pierwszego, jak i drugiego sposobu ekstrakcji cech. Metryka uliczna osiąga nieznacznie niższą skuteczność w porównaniu do metryki Euklidesowej. Wyniki osiągane przez metrykę Czebyszewa nie były dla nas zaskakujące. Metryka ta, tak samo jak w przypadku klasyfikacji kategorii places oraz topics, poradziła sobie najgorzej. Również nie widzimy wyraźnego wpływu liczby k sąsiadów na osiąganą skuteczność. \newline
+
+W obu wybranych przez nas metodach ekstrakcji cech zauważyliśmy, iż wraz ze wzrostem liczby k sąsiadów, do pewnego momentu rośnie także osiągana skuteczność. Najwyższe wyniki pojawiają się w wypadku, gdy k jest równe 5. Najsłabsze, gdy k jest równe 7. Przy liczbie sąsiadów równej 10 i 15 skuteczność ponownie lekko wzrasta, aby przy 20 sąsiadach zacząć spadać.\newline
+
+W klasyfikacji kategorii authors, metoda ekstrakcji term frequency wykazała się większą skutecznością, niż inverse document frequency. Jest to wyraźnie widocznie przy użyciu metryki Euklidesowej i ulicznej. W przypadku metryki Czebyszewa, wyniki okazały się identyczne. 	
 	
 \section{Wnioski}
 \begin{itemize}
-	\item 
-	\item 
-	\item 
-	\item 
-	\item Metoda k-NN źle sobie radzi z przypisaniem tekstów do autorów
+	\item Metryka Euklidesowa oraz uliczna osiągają zadowalającą skuteczność
+	\item Metryka Czebyszewa nie osiąga satysfakcjonujących wyników w przypadku klasyfikacji
+	\item Algorytm k-NN radzi sobie najlepiej, kiedy k nie jest zbyt niskie oraz zbyt wysokie. W zależności od doboru danych do analizowania najmniejsza ilość sąsiadów waha się od 7 do 10, zaś największa oscyluje wokół 15.
+	\item Metoda k-NN przy założeniach tego zadania nie radzi sobie najlepiej z klasyfikacją piosenek do ich autorów.
 \end{itemize}
 
 	
