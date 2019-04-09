@@ -73,6 +73,7 @@ namespace Logic
             rawText = rawText.Replace(":", "");
             rawText = rawText.Replace(";", "");
             rawText = rawText.Replace("+", "");
+            rawText = rawText.Replace("?", "");
             rawText = rawText.Replace("\"", ""); // "
             rawText = rawText.Replace("\\", ""); // \
 
@@ -90,8 +91,10 @@ namespace Logic
             rawText = rawText.RemoveStopWords("en");
             rawText = rawText.Replace("Reuter", "");
             rawText = rawText.Replace("REUTER", "");
+            rawText = Regex.Replace(rawText, @"\s+", " ");
 
             // Podzielenie tekstu
+            rawText = rawText.TrimStart();
             rawText = rawText.TrimEnd();
             textList = rawText.Split(' ', '\n', '\t').ToList();
 

@@ -32,7 +32,7 @@ Zagadnieniem, jakim zajmowaliśmy się w ramach projektu jest klasyfikacja staty
 
 Algorytm k najbliższych sąsiadów, nazywany także algorytmem k-NN, należy do grupy algorytmów leniwych, czyli takich, które nie tworzą wewnętrznej reprezentacji danych uczących, lecz szukają rozwiązania dopiero w momencie pojawienia się wzorca testującego. Przechowuje wszystkie wzorce uczące, względem których wyznacza odległość wzorca testowego [2]. Metoda k-NN wyznacza k sąsiadów, do których badany element ma najmniejszą odległość w danej metryce, a następnie wyznacza wynik w oparciu o najczęstszy element, wśród k najbliższych. W przypadku naszego projektu odległość definiujemy jako skalę podobieństwa tekstów. \newline
 
-W ramach zadania zostały użyte 2 metody ekstrakcji cech: \newline
+W ramach zadania zostały użyte następujące metody ekstrakcji cech: \newline
 
 \begin{itemize}
 
@@ -47,6 +47,19 @@ $$
 idf_{i}
 = \log\frac{|D|}{|\{d : t_{i} \in d\}|}
 $$
+
+\item Ekstrakcja cech charakterystycznych tekstu - w tym celu tworzymy wektor cech, który opisuje tekst na podstawie następujących cech:
+\begin{enumerate}
+	\item Liczba słów,
+	\item Liczba słów, których długość nie przekracza 3 znaków,
+	\item Liczba słów, których długość zawiera się w zakresie 4-7 znaków,
+	\item Liczba słów, których długość przekracza 8 znaków,
+	\item Liczba unikalnych słów,
+	\item Liczba słów napisanych wielką literą,
+	\item liczba słów rozpoczynających się wielką literą. 
+\end{enumerate}
+Wektor cech będzie miał postać:
+$ v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}] $.
 \newline
 \end{itemize}
 
@@ -116,17 +129,28 @@ Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w ob
 
 \section{Materiały i metody}
 
-Klasyfikacja tekstów została wykonana wszystkimi dostępnymi metodami ekstrakcji cech dla wszystkich trzech metryk. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla k $\in$ \{2, 3, 5, 7, 10, 15, 20\} najbliższych sąsiadów. Wyniki porównano z faktyczną etykietą danego artykułu. \newline
+Klasyfikacja dotycząca lokalizacji przeprowadzana była jedynie na danych, których pole places przyjmowało jedną z wartości: west-germany, usa, france, uk, canada, japan. \newline
 
-Klasyfikacja dotycząca lokalizacji przeprowadzana była jedynie na danych, których pole places przyjmowało jedną z wartości: west-germany, usa, france, uk, canada, japan. Zbiór treningowy stanowił 60\% artykułów, zaś zbiór testowy 40\% artykułów. \newline
+Klasyfikacja dotycząca tematów przeprowadzana była jedynie na danych, które pole topics przyjmowało jedną z wartości: gold, cocoa, sugar, coffe, grain. \newline
 
-Klasyfikacja dotycząca tematów przeprowadzana była jedynie na danych, które pole topics przyjmowało jedną z wartości: gold, cocoa, sugar, coffe, grain. Zbiory testowe stanowiły 50\% artykułów. \newline
+Danymi jakie sami przygotowaliśmy do analizy były teksty piosenek znanych artystów. Posiadały one jedną kategorię - author. Przyjmowało ono jedną z wartości: taylor swift, macklemore, twenty one pilots, eminem, ed sheeran, black eyed peas.
 
-Danymi jakie sami przygotowaliśmy do analizy były teksty piosenek znanych artystów. Posiadały one jedną kategorię - author. Przyjmowało ono jedną z wartości: taylor swift, macklemore, twenty one pilots, eminem, ed sheeran, black eyed peas. Zbiór treningowy stanowił 60\% tekstów, zaś zbiór testowy 40\% tekstów.
+\subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
+
+Klasyfikacja tekstów została wykonana wszystkimi dostępnymi metodami ekstrakcji cech dla wszystkich trzech metryk. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla k $\in$ \{2, 3, 5, 7, 10, 15, 20\} najbliższych sąsiadów. Zbiór treningowy stanowił zawsze 60\% artykułów, zaś zbiór testowy 40\% artykułów. \newline
+
+\subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
+
+Klasyfikacja tekstów została wykonana przy pomocy Term frequency dla metryk Euklidesowej oraz ulicznej. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla k $\in$6 \{5, 7, 10, 15\} najbliższych sąsiadów. Zbiór treningowy w kolejnych próbach stanowił, 80\% 60\% oraz 40\% artykułów. \newline
+
+\subsection{Wpływ konkretnych cech na klasyfikację}
+Klasyfikacja tekstów została wykonana przy pomocy ekstrakcji cech charakterystycznych dla metryki \_ oraz dla zbioru treningowego stanowiącego \_ artykułów.
 
 \section{Wyniki}
 
-Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez nas eksperymentów. Tabele 1-3 przedstawiają odpowiednio eksperymenty przeprowadzone dla metryki Euklidesa, ulicznej oraz Czebyszewa przy użyciu Term frequency, natomiast Tabele 4-6 przedstawiają alogiczne dane dla Inverse document frequency. Zamieszczone wykresy mają za zadanie porównać jak dobrze radzą sobie metryki z daną kategorią.
+\subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
+
+Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez nas eksperymentów. Tabele 1-3 przedstawiają odpowiednio eksperymenty przeprowadzone dla metryki Euklidesa, ulicznej oraz Czebyszewa przy użyciu Term frequency, tabele 4-6 przedstawiają analogiczne dane dla Inverse document frequency, natomiast tabele 7-9 zawierają dane zebrane przy wykorzystaniu cech charakterystycznych tekstu. Zamieszczone wykresy mają za zadanie porównać jak dobrze radzą sobie metryki z daną kategorią.
 
 \begin{table}[H]
 	\centering
@@ -144,7 +168,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		20 & 81.4 & 61.2 & 36,6 \\ 
 		\hline
 	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla TF}
+	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla pierwszego sposobu ekstrakcji}
 \end{table}
 
 \begin{table}[H]
@@ -163,7 +187,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		20 & 82.1 & 63.4 & 36,6 \\ 
 		\hline
 	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla TF}
+	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla pierwszego sposobu ekstrakcji}
 \end{table}
 
 \begin{table}[H]
@@ -182,7 +206,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		20 & 80.3 & 44.0 & 17.1 \\ 
 		\hline
 	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla metryki Czebyszewa dla TF}
+	\caption{Skuteczność klasyfikacji dla metryki Czebyszewa dla pierwszego sposobu ekstrakcji}
 \end{table}
 
 \begin{figure}[H]
@@ -219,7 +243,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		20 & 81.1 & 67,1 & 14,6 \\ 
 		\hline
 	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla IDF}
+	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla drugiego sposobu ekstrakcji}
 \end{table}
 
 \begin{table}[H]
@@ -238,7 +262,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		20 & 81,6 & 67,9 & 14,6 \\ 
 		\hline
 	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla IDF}
+	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla drugiego sposobu ekstrakcji}
 \end{table}
 
 \begin{table}[H]
@@ -257,7 +281,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		20 & 77.0 & 44.0 & 17.1 \\ 
 		\hline
 	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla metryki Czebyszewa dla IDF}
+	\caption{Skuteczność klasyfikacji dla metryki Czebyszewa dla drugiego sposobu ekstrakcji}
 \end{table}
 
 \begin{figure}[H]
@@ -277,6 +301,96 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-authors.png}}
 	\caption{Dane z Tabel 4-6 dla kategorii authors (własne teksty)}
 \end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
+		\hline
+		\hline 
+		2 & 79,0 & 63,4 & 19,5 \\ 
+		3 & 82,0 & 64,2 & 17,1 \\
+		5 & 82,1 & 59,0  & 29,3 \\
+		7 & 83,3 & 62,1 & 19,5 \\
+		10 & 82,0 & 64,9 & 22,0 \\
+		15 & 81,9 & 67,9 & 14,6 \\
+		20 & 81.1 & 67,1 & 14,6 \\ 
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla trzeciego sposobu ekstrakcji}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
+		\hline
+		\hline 
+		2 & 80,2 & 59,7 & 19,5 \\ 
+		3 & 82,4 & 65,7 & 17,1 \\
+		5 & 82,6 & 67,2 & 29,3 \\
+		7 & 83,3 & 67,2 & 16,5 \\
+		10 & 82,6 & 67,2 & 22.0 \\
+		15 & 82,1 & 67,2 & 14,6 \\
+		20 & 81,6 & 67,9 & 14,6 \\ 
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla trzeciego sposobu ekstrakcji}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
+		\hline
+		\hline 
+		2 & 77.0 & 14.9 & 17.1 \\ 
+		3 & 77.0 & 44.0 & 17.1 \\
+		5 & 77.0 & 44.0 & 17.1 \\
+		7 & 77.0 & 44.0 & 17.1 \\
+		10 & 77.0 & 44.0 & 17.1 \\
+		15 & 77.0 & 44.0 & 17.1 \\
+		20 & 77.0 & 44.0 & 17.1 \\ 
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla metryki Czebyszewa dla trzeciego sposobu ekstrakcji}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-places.png}}
+	\caption{Dane z Tabel 7-9 dla kategorii places}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-topics.png}}
+	\caption{Dane z Tabel 7-9 dla kategorii topics}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-authors.png}}
+	\caption{Dane z Tabel 7-9 dla kategorii authors (własne teksty)}
+\end{figure}
+
+\subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
+
+\subsection{Wpływ konkretnych cech na klasyfikację}
+
+W tabelach z wynikami będziemy używać następujących skrótów:
+\begin{description}
+	\item [$c_{1})$] Liczba słów,
+	\item [$c_{2})$] Liczba słów, których długość nie przekracza 3 znaków,
+	\item [$c_{3})$] Liczba słów, których długość zawiera się w zakresie 4-7 znaków,
+	\item [$c_{4})$] Liczba słów, których długość przekracza 8 znaków,
+	\item [$c_{5})$] Liczba unikalnych słów,
+	\item [$c_{6})$] Liczba słów napisanych wielką literą,
+	\item [$c_{7})$] liczba słów rozpoczynających się wielką literą. 
+\end{description}
 
 \section{Dyskusja}
 

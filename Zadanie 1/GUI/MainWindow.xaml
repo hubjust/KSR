@@ -148,10 +148,10 @@
                      VerticalAlignment="Center" Height="21px" IsReadOnly = "True" Text="{Binding AnalyzedArticlesCounter}"/>-->
 
 
-            <Button Grid.Row="14" Grid.RowSpan="2" Grid.Column="0" Margin="5 0 0 0" Height="40" Width="200" FontSize="12px" 
+            <Button Grid.Row="14" Grid.RowSpan="2" Grid.Column="0" Margin="5 0 0 0" Height="40" MinWidth="100" MaxWidth="200" FontSize="12px" 
                             Style="{DynamicResource ButtonStyle}" Command="{Binding LoadArticlesCommand}" Content="Wczytaj artykuły" />
 
-            <Button Grid.Row="14" Grid.RowSpan="2" Grid.Column="1" Margin="5 0 0 0" Height="40" Width="200" FontSize="12px" 
+            <Button Grid.Row="14" Grid.RowSpan="2" Grid.Column="1" Margin="5 0 0 0" Height="40" MinWidth="100" MaxWidth="200" FontSize="12px" 
                             Style="{DynamicResource ButtonStyle}" Command="{Binding AnalyzeArticlesCommand}" Content="Analizuj artykuły" />
 
         </Grid>
