@@ -141,16 +141,16 @@ Klasyfikacja tekstów została wykonana wszystkimi dostępnymi metodami ekstrakc
 
 \subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
 
-Klasyfikacja tekstów została wykonana przy pomocy Term frequency dla metryk Euklidesowej oraz ulicznej. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla k $\in$6 \{5, 7, 10, 15\} najbliższych sąsiadów. Zbiór treningowy w kolejnych próbach stanowił, 80\% 60\% oraz 40\% artykułów. \newline
+Klasyfikacja tekstów została wykonana przy pomocy Term frequency oraz własnych charakterystyk dla metryki Euklidesowej. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla najodpowiedniejszych k dla danego sposobu ekstrakcji cech oraz metryki. Zbiór treningowy w kolejnych próbach stanowił, 80\% 60\% oraz 40\% artykułów. \newline
 
 \subsection{Wpływ konkretnych cech na klasyfikację}
 Klasyfikacja tekstów została wykonana przy pomocy ekstrakcji cech charakterystycznych dla metryki \_ oraz dla zbioru treningowego stanowiącego \_ artykułów.
 
 \section{Wyniki}
 
-\subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
+Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez nas eksperymentów.
 
-Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez nas eksperymentów. Tabele 1-3 przedstawiają odpowiednio eksperymenty przeprowadzone dla metryki Euklidesa, ulicznej oraz Czebyszewa przy użyciu Term frequency, tabele 4-6 przedstawiają analogiczne dane dla Inverse document frequency, natomiast tabele 7-9 zawierają dane zebrane przy wykorzystaniu cech charakterystycznych tekstu. Zamieszczone wykresy mają za zadanie porównać jak dobrze radzą sobie metryki z daną kategorią.
+\subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
 
 \begin{table}[H]
 	\centering
@@ -159,13 +159,13 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
 		\hline
 		\hline 
-		2 & 74.4 & 53.7 & 39.0 \\ 
-		3 & 78.5 & 52.2 & 43,9 \\
-		5 & 80.2 & 52.2 & 48,8 \\
-		7 & 81.0 & 53.7 & 36,6 \\
-		10 & 81.5 & 60.4 & 36,6 \\
-		15 & 81.6 & 62.7 & 39,0 \\
-		20 & 81.4 & 61.2 & 36,6 \\ 
+		2 & 74.4 & 53.7 & 43.9 \\ 
+		3 & 78.5 & 52.2 & 43.9 \\
+		5 & 80.2 & 52.2 & 36.6 \\
+		7 & 81.0 & 53.7 & 26.8 \\
+		10 & 81.5 & 60.4 & 24.4 \\
+		15 & 81.6 & 62.7 & 29.3 \\
+		20 & 81.4 & 61.2 & 31.7 \\ 
 		\hline
 	\end{tabular}
 	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla pierwszego sposobu ekstrakcji}
@@ -178,13 +178,13 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
 		\hline
 		\hline 
-		2 & 75.4 & 56.7 & 36,6 \\ 
-		3 & 79.4 & 56.7 & 41,5 \\
-		5 & 81.0 & 61.2 & 43,9 \\
-		7 & 81.3 & 59.0 & 36,6 \\
-		10 & 81.9 & 64.9 & 41,5 \\
-		15 & 82.0 & 64.9 & 39,0 \\
-		20 & 82.1 & 63.4 & 36,6 \\ 
+		2 & 75.4 & 56.7 & 36.6 \\ 
+		3 & 79.4 & 56.7 & 39.0 \\
+		5 & 81.0 & 61.2 & 36.6 \\
+		7 & 81.3 & 59.0 & 31.7 \\
+		10 & 81.9 & 64.9 & 24.4 \\
+		15 & 82.0 & 64.9 & 29.3 \\
+		20 & 82.1 & 63.4 & 29.3 \\ 
 		\hline
 	\end{tabular}
 	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla pierwszego sposobu ekstrakcji}
@@ -234,13 +234,13 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
 		\hline
 		\hline 
-		2 & 79,0 & 63,4 & 19,5 \\ 
-		3 & 82,0 & 64,2 & 17,1 \\
-		5 & 82,1 & 59,0  & 29,3 \\
-		7 & 83,3 & 62,1 & 19,5 \\
-		10 & 82,0 & 64,9 & 22,0 \\
-		15 & 81,9 & 67,9 & 14,6 \\
-		20 & 81.1 & 67,1 & 14,6 \\ 
+		2 & 79.0 & 63.4 & 22.0 \\ 
+		3 & 82.0 & 64.2 & 19.5 \\
+		5 & 82.1 & 59.0 & 29.3 \\
+		7 & 83.3 & 62.1 & 22.0 \\
+		10 & 82.0 & 64.9 & 26.8 \\
+		15 & 81.9 & 67.9 & 24.4 \\
+		20 & 81.1 & 67.1 & 17.1 \\ 
 		\hline
 	\end{tabular}
 	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla drugiego sposobu ekstrakcji}
@@ -253,13 +253,13 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
 		\hline
 		\hline 
-		2 & 80,2 & 59,7 & 19,5 \\ 
-		3 & 82,4 & 65,7 & 17,1 \\
-		5 & 82,6 & 67,2 & 29,3 \\
-		7 & 83,3 & 67,2 & 16,5 \\
-		10 & 82,6 & 67,2 & 22.0 \\
-		15 & 82,1 & 67,2 & 14,6 \\
-		20 & 81,6 & 67,9 & 14,6 \\ 
+		2 & 80.2 & 59.7 & 22.0 \\ 
+		3 & 82.4 & 65.7 & 19.5 \\
+		5 & 82.6 & 67.2 & 29.3 \\
+		7 & 83.3 & 67.2 & 22.0 \\
+		10 & 82.6 & 67.2 & 26.8 \\
+		15 & 82.1 & 67.2 & 24.4 \\
+		20 & 81.6 & 67.9 & 17.1 \\ 
 		\hline
 	\end{tabular}
 	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla drugiego sposobu ekstrakcji}
@@ -309,13 +309,13 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
 		\hline
 		\hline 
-		2 & 79,0 & 63,4 & 19,5 \\ 
-		3 & 82,0 & 64,2 & 17,1 \\
-		5 & 82,1 & 59,0  & 29,3 \\
-		7 & 83,3 & 62,1 & 19,5 \\
-		10 & 82,0 & 64,9 & 22,0 \\
-		15 & 81,9 & 67,9 & 14,6 \\
-		20 & 81.1 & 67,1 & 14,6 \\ 
+		2 &  &  &  \\ 
+		3 &  &  &  \\
+		5 &  &  & \\
+		7 &  &  &  \\
+		10 &  &  &  \\
+		15 &  &  &  \\
+		20 &  &  &  \\ 
 		\hline
 	\end{tabular}
 	\caption{Skuteczność klasyfikacji dla metryki Euklidesowej dla trzeciego sposobu ekstrakcji}
@@ -328,13 +328,13 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
 		\hline
 		\hline 
-		2 & 80,2 & 59,7 & 19,5 \\ 
-		3 & 82,4 & 65,7 & 17,1 \\
-		5 & 82,6 & 67,2 & 29,3 \\
-		7 & 83,3 & 67,2 & 16,5 \\
-		10 & 82,6 & 67,2 & 22.0 \\
-		15 & 82,1 & 67,2 & 14,6 \\
-		20 & 81,6 & 67,9 & 14,6 \\ 
+		2 &  &  &  \\ 
+		3 &  &  &  \\
+		5 &  &  &  \\
+		7 &  &  &  \\
+		10 &  &  &  \\
+		15 &  &  &  \\
+		20 &  &  &  \\ 
 		\hline
 	\end{tabular}
 	\caption{Skuteczność klasyfikacji dla metryki ulicznej dla trzeciego sposobu ekstrakcji}
@@ -347,13 +347,13 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
 		\hline
 		\hline 
-		2 & 77.0 & 14.9 & 17.1 \\ 
-		3 & 77.0 & 44.0 & 17.1 \\
-		5 & 77.0 & 44.0 & 17.1 \\
-		7 & 77.0 & 44.0 & 17.1 \\
-		10 & 77.0 & 44.0 & 17.1 \\
-		15 & 77.0 & 44.0 & 17.1 \\
-		20 & 77.0 & 44.0 & 17.1 \\ 
+		2 &  &  &  \\ 
+		3 &  &  &  \\
+		5 &  &  &  \\
+		7 &  &  &  \\
+		10 &  &  &  \\
+		15 &  &  &  \\
+		20 &  &  &  \\ 
 		\hline
 	\end{tabular}
 	\caption{Skuteczność klasyfikacji dla metryki Czebyszewa dla trzeciego sposobu ekstrakcji}
@@ -361,23 +361,156 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-places.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-places.png}}
 	\caption{Dane z Tabel 7-9 dla kategorii places}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-topics.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-topics.png}}
 	\caption{Dane z Tabel 7-9 dla kategorii topics}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-authors.png}}
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-authors.png}}
 	\caption{Dane z Tabel 7-9 dla kategorii authors (własne teksty)}
 \end{figure}
 
 \subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{80\%} & \textbf{60\%} &  \textbf{40\%} \\ [0.5ex] 
+		\hline
+		\hline 
+		5 & 82.7 & 80.2 & 78.4 \\
+		7 & 83.3 & 81.0 & 79.9 \\
+		10 & 84.2 & 81.5 & 80.4 \\
+		15 & 83.9 & 81.6 & 80.4 \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla pierwszego sposobu ekstrakcji, dla kategorii places}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-80-60-40-places.png}}
+	\caption{Skuteczność klasyfikacji dla pierwszego sposobu ekstrakcji, dla kategorii places}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{80\%} & \textbf{60\%} &  \textbf{40\%} \\ [0.5ex] 
+		\hline
+		\hline 
+		7 & 56.7 & 53.7 & 62.7 \\
+		10 & 59.7 & 60.4 & 62.2 \\
+		15 & 58.2 & 62.7 & 64.7 \\
+		20 & 62.7 & 61.2 & 64.7 \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla pierwszego sposobu ekstrakcji, dla kategorii topics}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-80-60-40-topics.png}}
+	\caption{Skuteczność klasyfikacji dla pierwszego sposobu ekstrakcji, dla kategorii topics}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{80\%} & \textbf{60\%} &  \textbf{40\%} \\ [0.5ex] 
+		\hline
+		\hline 
+		2 & 19.0 & 43.9 & 38.7 \\
+		3 & 19.0 & 43.9 & 37.1 \\
+		5 & 23.8 & 36.6 & 29.0 \\
+		7 & 14.3 & 26.8 & 32.3 \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla pierwszego sposobu ekstrakcji, dla kategorii authors}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/TF-80-60-40-authors.png}}
+	\caption{Skuteczność klasyfikacji dla pierwszego sposobu ekstrakcji, dla kategorii authors}
+\end{figure}
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
+		\hline
+		\hline 
+		5 &  &  &  \\
+		7 &  &  &  \\
+		10 &  &  &  \\
+		15 &  &  &  \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla 80\% danych treningowych dla drugiego sposobu ekstrakcji}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
+		\hline
+		\hline 
+		5 &  &  &  \\
+		7 &  &  &  \\
+		10 &  &  &  \\
+		15 &  &  &  \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla 60\% danych treningowych dla drugiego sposobu ekstrakcji}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
+		\hline
+		\hline 
+		5 &  &  &  \\
+		7 &  &  &  \\
+		10 &  &  &  \\
+		15 &  &  &  \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla 40\% danych treningowych dla drugiego sposobu ekstrakcji}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-80-60-40-places.png}}
+	\caption{Dane z Tabel 13-15 dla kategorii places}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-80-60-40-topics.png}}
+	\caption{Dane z Tabel 13-15 dla kategorii topics}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-80-60-40-authors.png}}
+	\caption{Dane z Tabel 13-15 dla kategorii authors (własne teksty)}
+\end{figure}
 
 \subsection{Wpływ konkretnych cech na klasyfikację}
 
