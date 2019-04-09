@@ -91,7 +91,7 @@ Klasy Chebyshev, Euclidean oraz Manhattan odpowiadają za prawidłowe obliczenia
 
 Klasa Article odwzorowuje artykuły wczytane do programu. Przechowuje informacje o dokumencie takie jak: tytuł, tekst, kategorie, przypisane etykiety, wektor cech, odległość. \newline
 
-Klasa FeatureExtraction implementuje dwie metody ekstrakcji cech - term frequency oraz inverse document frequency. \newline
+Klasy znajdujące się w folderze Extractors odpowiedzialne są za ekstrakcje cech. Sprawdzają one liczbę słów, liczbę słów, których długość nie przekracza 3 znaków, liczbę słów, których długość zawiera się w zakresie 4-7 znaków, liczbę unikalnych słów, liczbę słów napisanych wielką literą, liczbę słów rozpoczynających się wielką literą, zliczanie częstości danego słowa w dokumencie oraz oznaczanie wybranych słów jako powszechne lub rzadkie na podstawie wszystkich dokumentów.  \newline
 
 Klasa FileReader odpowiada za poprawne wczytywanie plików do programu - wyselekcjonowanie wybranych przez nas informacji (tytuł, teksy, przypisane etykiety) i na ich podstawie stworzenie obiektu klasy Article. Z wczytanego tekstu usuwane są słowa, które występują w wykorzystanej przez nas stop liście [3]. Ten zabieg ma za zadanie wykluczyć terminy, które nie wnoszą kluczowych, dla nas, informacji. Następnie, tekst zostaje poddane stemizacji, czyli usunięciu ze słowa końcówki fleksyjnej pozostawiając tylko rdzeń wyrazu. Do tego także wykorzystujemy zewnętrzną bibliotekę [4]. \newline
 
