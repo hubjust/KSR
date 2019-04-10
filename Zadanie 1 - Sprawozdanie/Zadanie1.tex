@@ -144,7 +144,7 @@ Klasyfikacja tekstów została wykonana wszystkimi dostępnymi metodami ekstrakc
 Klasyfikacja tekstów została wykonana przy pomocy Term frequency oraz własnych charakterystyk dla metryki Euklidesowej. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla najodpowiedniejszych k dla danego sposobu ekstrakcji cech oraz metryki. Zbiór treningowy w kolejnych próbach stanowił, 80\% 60\% oraz 40\% artykułów. \newline
 
 \subsection{Wpływ konkretnych cech na klasyfikację}
-Klasyfikacja tekstów została wykonana przy pomocy ekstrakcji cech charakterystycznych dla metryki \_ oraz dla zbioru treningowego stanowiącego \_ artykułów.
+Klasyfikacja tekstów została wykonana przy pomocy ekstrakcji cech charakterystycznych dla metryki Euklidesowej oraz dla zbioru treningowego stanowiącego 80\% artykułów przy $k = 7$. Badania zostały przeprowadzone na tekstach z tagami topics oraz author. Pierwszy test został przeprowadzony przy wyłączeniu jednej cechy, drugi przy stosowaniu tylko jednej cechy, a trzeci konkretnego zestawu cech. Za każdym razem porównano te wyniki z przypadkiem kiedy wszystkie cechy były włączone.
 
 \section{Wyniki}
 
@@ -450,71 +450,71 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 	\centering
 	\begin{tabular}{c c c c} 
 		\hline
-		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
+		\textbf{k} & \textbf{80\%} & \textbf{60\%} &  \textbf{40\%} \\ [0.5ex]
 		\hline
 		\hline 
-		5 & 81.1 & 55.2 & 47.6 \\
-		7 & 82.6 & 55.2 & 52.4 \\
-		10 & 83.1 & 56.7 & 52.4 \\
-		15 & 83.5 & 50.7 & 71.4 \\
+		7 & 82.6 & 79.4 & 78.5 \\
+		10 & 83.1 & 80.2 & 79.2 \\
+		15 & 83.5 & 80.5 & 79.6 \\
+		20 & 83.3 & 80.7 & 79.7 \\
 		\hline
 	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla 80\% danych treningowych dla drugiego sposobu ekstrakcji}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c c c} 
-		\hline
-		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
-		\hline
-		\hline 
-		7 & 78.3 & 48.5 & 56.1 \\
-		10 & 79.4 & 49.3 & 53.7 \\
-		15 & 80.2 & 47.8 & 48.8 \\
-		20 & 80.5 & 44.8 & 63.4 \\
-		\hline
-	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla 60\% danych treningowych dla drugiego sposobu ekstrakcji}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c c c} 
-		\hline
-		\textbf{k} & \textbf{places [\%]} & \textbf{topics [\%]} &  \textbf{authors [\%]} \\ [0.5ex] 
-		\hline
-		\hline 
-		2 & 77.3 & 42.3 & 53.2 \\
-		3 & 78.5 & 40.8 & 51.6 \\
-		5 & 79.2 & 41.8 & 56.5 \\
-		7 & 79.6 & 41.3 & 46.8 \\
-		\hline
-	\end{tabular}
-	\caption{Skuteczność klasyfikacji dla 40\% danych treningowych dla drugiego sposobu ekstrakcji}
+	\caption{Skuteczność klasyfikacji dla drugiego sposobu ekstrakcji, dla kategorii places}
 \end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-80-60-40-places.png}}
-	\caption{Dane z Tabel 13-15 dla kategorii places}
+	\caption{Skuteczność klasyfikacji dla drugiego sposobu ekstrakcji, dla kategorii places}
 \end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{80\%} & \textbf{60\%} &  \textbf{40\%} \\ [0.5ex]
+		\hline
+		\hline 
+		3 & 55.2 & 53.0 & 43.3 \\
+		5 & 55.2 & 47.0 & 43.8 \\
+		7 & 55.2 & 48.5 & 42.3 \\
+		10 & 55.2 & 49.3 & 40.8 \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla trzeciego sposobu ekstrakcji, dla kategorii topics}
+\end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-80-60-40-topics.png}}
-	\caption{Dane z Tabel 13-15 dla kategorii topics}
+	\caption{Skuteczność klasyfikacji dla trzeciego sposobu ekstrakcji, dla kategorii topics}
 \end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c} 
+		\hline
+		\textbf{k} & \textbf{80\%} & \textbf{60\%} &  \textbf{40\%} \\ [0.5ex]
+		\hline
+		\hline 
+		7 & 71.4 & 63.4 & 46.8 \\
+		10 & 66.7 & 63.4 & 48.4 \\
+		15 & 71.4 & 58.5 & 50.0 \\
+		20 & 71.4 & 53.7 &  33.9 \\
+		\hline
+	\end{tabular}
+	\caption{Skuteczność klasyfikacji dla trzeciego sposobu ekstrakcji, dla kategorii authors}
+\end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-80-60-40-authors.png}}
-	\caption{Dane z Tabel 13-15 dla kategorii authors (własne teksty)}
+	\caption{Skuteczność klasyfikacji dla trzeciego sposobu ekstrakcji, dla kategorii authors}
 \end{figure}
 
 \subsection{Wpływ konkretnych cech na klasyfikację}
 
-W tabelach z wynikami będziemy używać następujących skrótów:
+Na wykresach widoczne są następujące oznaczenia:
 \begin{description}
 	\item [$c_{1})$] Liczba słów,
 	\item [$c_{2})$] Liczba słów, których długość nie przekracza 3 znaków,
@@ -524,6 +524,42 @@ W tabelach z wynikami będziemy używać następujących skrótów:
 	\item [$c_{6})$] Liczba słów napisanych wielką literą,
 	\item [$c_{7})$] liczba słów rozpoczynających się wielką literą. 
 \end{description}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-missing-topics.png}}
+	\caption{Skuteczność klasyfikacji dla brakujących cech, dla kategorii topics}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-chosen-topics.png}}
+	\caption{Skuteczność klasyfikacji dla wybranych cech, dla kategorii topics}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-set-topics.png}}
+	\caption{Skuteczność klasyfikacji dla zestawu cech, dla kategorii topics}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-missing-authors.png}}
+	\caption{Skuteczność klasyfikacji dla brakujących cech, dla kategorii authors}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-chosen-authors.png}}
+	\caption{Skuteczność klasyfikacji dla wybranych cech, dla kategorii authors}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-set-authors.png}}
+	\caption{Skuteczność klasyfikacji dla zestawu cech, dla kategorii authors}
+\end{figure}
 
 \section{Dyskusja}
 
