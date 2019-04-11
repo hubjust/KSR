@@ -563,23 +563,24 @@ Na wykresach widoczne są następujące oznaczenia:
 
 \section{Dyskusja}
 
-\subsection{Kategoria places oraz topic}
-Po przeprowadzonych badaniach jesteśmy w stanie zauważyć, iż metryka uliczna charakteryzuje się największą skutecznością w przypadku pierwszego, jak i drugiego sposobu ekstrakcji cech. Niewiele mniejszą skuteczność wykazuje metryka Euklidesowa. Z kolei, najmniejszą skuteczność reprezentuje metryka Czebyszewa. W przeciwieństwo do dwóch pozostałych metryk, zmiana ilości k sąsiadów nie wpływała lub wpływała nieznacząco na liczbę dopasowanych dokumentów. \newline
+\subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
+W przypadku wszystkich trzech sposobów ekstrakcji, metryka Euklidesowa oraz metryka uliczna osiągają bardzo podobne wyniki i nie jesteśmy w stanie stwierdzić, która z nich wykazuje lepszą skuteczność. Metryka Czebyszewa charakteryzuje się zdecydowanie słabszą zdolnością do klasyfikacji. Osiąga niższe wyniki, niż dwie wcześniej wspomniane metryki.
+ \newline
 
-Niska liczba liczba k-sąsiadów (od 2 do 5) zazwyczaj oraz bardzo wysoka (20) zazwyczaj negatywnie wpływały na skuteczność klasyfikacji. Optymalne wartości k w przypadku algorytmu k-NN wynosiły 10 i 15 w przypadku ekstrakcji metodą term frequency oraz 7 i 10 w przypadku ekstrakcji inverse document frequency. \newline
+W przypadku pierwszego i drugiego sposobu ekstrakcji cech dla kategorii topics i places, zauważyliśmy, że wraz ze wzrostem liczby k sąsiadów zwiększała się także skuteczność. Najsłabsze wyiki osiągane były dla k równego 2. Jeśli zaś chodzi o kategorię authors, najwyższa skuteczność wykazywała mała liczba k sąsiadów (od 2 do 3). Wyraźny spadek wyników zaobserwowaliśmy, gdy k równało się 10. Podczas eksperymentu trzeciego sposobu ekstrakcji cech zauważyliśmy bardzo zmienną skuteczność w przypadku zmiany liczby k sąsiadów w zależności od wybranych kategorii. Kategoria places osiąga najsłabsze wyniki przy małej liczbie sąsiadów, z kolei kategoria topics najlepsze. Zauważyliśmy, że najwyższe wyniki w kategorii authors osiągane są przy liczbie sąsiadów równej 7 oraz 10. 
 
-Dwie użyte przez nas metody ekstrakcji cech wykazują bardzo podobną skuteczność - inverse document frequency nieznacznie przewyższa term frequency. Może to wynikać z faktu, iż IDF przeszukuje wszystkie dokumenty, a TF tylko jeden.  \newline
 
-Skuteczność klasyfikacji była znacznie wyższa dla kategorii places. Zazwyczaj oscylowała wokół 80%. Z kolei, dla kategorii topics w okolicach 50%. 
+\subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
+W przeważającej większości najwyższe wyniki osiągane były przy 80% zbioru treningowego. Tylko w jednym przypadku użycie 40% zbioru treningowego pozwoliło osiągnać najwyższą skutecznośći (pierwszy sposób ekstrakcji, kategoria topics). Zazwyczaj jednak ten dobór procentowy okazywał się być najsłabszym. 
+\newline
 
-\subsection{Kategoria authors (własne teksty)}
-Wyniki klasyfikacji dla własnych tekstów są wyraźnie gorsze niż dla artykułów Reutersa. Przypisanie autora do tekstu jego utworu jest dużo cięższym zadaniem, z którym nasz program sobie nie radzi tak dobrze. Poza małym zbiorem danych problemem jest dużo mniejsze powiązanie słów z danym autorem - mimo wybrania tekstów z jednej płyty, teksty nie były aż tak podobne tematycznie, by wyniki klasyfikacji były zadowalające.
+Najwyższą skuteczność wykazują teksty z kategorii places, zaś najniższą nasze własne teksty - kategoria authors.  
 
-Metryka Euklidesowa wykazuje największą skuteczność w przypadku pierwszego, jak i drugiego sposobu ekstrakcji cech. Metryka uliczna osiąga nieznacznie niższą skuteczność w porównaniu do metryki Euklidesowej. Wyniki osiągane przez metrykę Czebyszewa nie były dla nas zaskakujące. Metryka ta, tak samo jak w przypadku klasyfikacji kategorii places oraz topics, poradziła sobie najgorzej. Również nie widzimy wyraźnego wpływu liczby k sąsiadów na osiąganą skuteczność. \newline
+\subsection{Wpływ konkretnych cech na klasyfikację}
+Podczas klasyfikacji dla kategorii topics, zauważyliśmy, że liczba słów ma negatywny wpływ na osiąganą skuteczność. Cecha odpowiadająca za liczbę słów, których długość nie przekracza 3 znaków również okazała się mieć negatywny wpływ na wyniki. Świadczyć może o tym fakt, iż bez ww. cech osiągneliśmy najwyższą skuteczność. Podejrzewamy, że występowanie cechy odpowiadającej za liczbę słów rozpoczynających się wielką literą ma pozytywny wpływ na otrzymane przez nas wyniki. \newline
 
-W obu wybranych przez nas metodach ekstrakcji cech zauważyliśmy, iż wraz ze wzrostem liczby k sąsiadów, do pewnego momentu rośnie także osiągana skuteczność. Najwyższe wyniki pojawiają się w wypadku, gdy k jest równe 5. Najsłabsze, gdy k jest równe 7. Przy liczbie sąsiadów równej 10 i 15 skuteczność ponownie lekko wzrasta, aby przy 20 sąsiadach zacząć spadać.\newline
+Podczas klasyfikacji dla kategorii authors wyraźnie pozytywny wpływ na skuteczność ma cecha odpowiadająca za liczbę unikalnych słów. Bez niej skutecznośc spadła z 71% na 47%. Podobnie jak w przypadku kategorii topics, cechy sprawdzające liczbę słów oraz liczbę krótkich słów mogły osłabiać nasze wyniki. 
 
-W klasyfikacji kategorii authors, metoda ekstrakcji term frequency wykazała się większą skutecznością, niż inverse document frequency. Jest to wyraźnie widocznie przy użyciu metryki Euklidesowej i ulicznej. W przypadku metryki Czebyszewa, wyniki okazały się identyczne. 	
 	
 \section{Wnioski}
 \begin{itemize}
