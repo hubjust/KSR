@@ -561,6 +561,22 @@ Na wykresach widoczne są następujące oznaczenia:
 	\caption{Skuteczność klasyfikacji dla zestawu cech, dla kategorii authors}
 \end{figure}
 
+\subsection{Najlepsze wyniki}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c c} 
+		\hline
+		\textbf{Metryka} & \textbf{Skuteczność} & \textbf{Rodzaj ekstrakcji} &  \textbf{Liczba k sąsiadów} & \textbf{Kategoria} & \textbf{Zbiór treningowy}\\ [0.5ex]
+		\hline
+		\hline 
+		Euklidesowa & 83.3\% & IDF & 7 & Places & 60\% \\
+		Uliczna & 83.3\% & IF & 7 & Places & 60\% \\
+		Czebyszewa & 80.3\% & TF & 2-20 & Places & 60\% \\
+		\hline
+	\end{tabular}
+	\caption{Tabela przedstawiająca najwyżej osiągnięte wyniki przez metrykę Euklidesową, uliczną oraz Czebyszewa z pierwszego eksperymentu (4.1)}
+\end{table}
+
 \section{Dyskusja}
 
 \subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
