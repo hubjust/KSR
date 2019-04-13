@@ -584,10 +584,10 @@ Podczas klasyfikacji dla kategorii authors wyraźnie pozytywny wpływ na skutecz
 	
 \section{Wnioski}
 \begin{itemize}
-	\item Metryka Euklidesowa oraz uliczna osiągają zadowalającą skuteczność
-	\item Metryka Czebyszewa nie osiąga satysfakcjonujących wyników w przypadku klasyfikacji
-	\item Algorytm k-NN radzi sobie najlepiej, kiedy k nie jest zbyt niskie oraz zbyt wysokie. W zależności od doboru danych do analizowania najmniejsza ilość sąsiadów waha się od 7 do 10, zaś największa oscyluje wokół 15.
-	\item Metoda k-NN przy założeniach tego zadania nie radzi sobie najlepiej z klasyfikacją piosenek do ich autorów.
+	\item Cecha odpowiedzialna za liczbę słów w dokumencie nie sprawdza się w przypadku klasyfikacji tekstów.
+	\item Wektor cech nie powinien składać się z pojedynczej cechy, gdyż wtedy osiągana jest niska skuteczność.
+	\item Metryka Czebyszewa nie powinna być wykorzystywana w klasyfikacji tekstów, gdyż osiąga bardzo słabe wyniki.
+	\item Liczba k sąsiadów ma spory wpływ na skuteczność klasyfikacji.
 \end{itemize}
 
 	
