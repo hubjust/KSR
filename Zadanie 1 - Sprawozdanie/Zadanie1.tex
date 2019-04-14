@@ -564,17 +564,32 @@ Na wykresach widoczne są następujące oznaczenia:
 \subsection{Najlepsze wyniki}
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c c c c c c} 
+	\begin{tabular}{c c c c c} 
 		\hline
-		\textbf{Metryka} & \textbf{Skuteczność} & \textbf{Rodzaj ekstrakcji} &  \textbf{Liczba k sąsiadów} & \textbf{Kategoria} & \textbf{Zbiór treningowy}\\ [0.5ex]
+		\textbf{Kategoria} & \textbf{Skuteczność} & \textbf{Metryka} & \textbf{Ekstrakcja} &  \textbf{Liczba k sąsiadów} \\ [0.5ex]
 		\hline
 		\hline 
-		Euklidesowa & 83.3\% & IDF & 7 & Places & 60\% \\
-		Uliczna & 83.3\% & IF & 7 & Places & 60\% \\
-		Czebyszewa & 80.3\% & TF & 2-20 & Places & 60\% \\
+		Places & 83.3\% & Euklidesowa & IDF & 7 \\
+		Places & 83.3\% & Uliczna & IDF & 7 \\
+		Topics & \% & & &  \\
+		Authors & \% & & &  \\
 		\hline
 	\end{tabular}
-	\caption{Tabela przedstawiająca najwyżej osiągnięte wyniki przez metrykę Euklidesową, uliczną oraz Czebyszewa z pierwszego eksperymentu (4.1)}
+	\caption{Tabela przedstawiająca najlepsze wyniki z pierwszego eksperymentu (4.1)}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c} 
+		\hline
+		\textbf{Kategoria} & \textbf{Skuteczność} & \textbf{Wykorzystane cechy} \\ [0.5ex]
+		\hline
+		\hline 
+		Topics & 62,7\% & $c_{3}$, $c_{4}$, $c_{5}$, $c_{6}$, $c_{7}$ \\
+		Authors & 76,2\% & $c_{3}$, $c_{4}$, $c_{5}$, $c_{6}$, $c_{7}$ \\
+		\hline
+	\end{tabular}
+	\caption{Tabela przedstawiająca najlepsze wyniki z trzeciego eksperymentu (4.3)}
 \end{table}
 
 \section{Dyskusja}
@@ -583,27 +598,26 @@ Na wykresach widoczne są następujące oznaczenia:
 W przypadku wszystkich trzech sposobów ekstrakcji, metryka Euklidesowa oraz metryka uliczna osiągają bardzo podobne wyniki i nie jesteśmy w stanie stwierdzić, która z nich wykazuje lepszą skuteczność. Metryka Czebyszewa charakteryzuje się zdecydowanie słabszą zdolnością do klasyfikacji. Osiąga niższe wyniki, niż dwie wcześniej wspomniane metryki.
  \newline
 
-W przypadku pierwszego i drugiego sposobu ekstrakcji cech dla kategorii topics i places, zauważyliśmy, że wraz ze wzrostem liczby k sąsiadów zwiększała się także skuteczność. Najsłabsze wyiki osiągane były dla k równego 2. Jeśli zaś chodzi o kategorię authors, najwyższa skuteczność wykazywała mała liczba k sąsiadów (od 2 do 3). Wyraźny spadek wyników zaobserwowaliśmy, gdy k równało się 10. Podczas eksperymentu trzeciego sposobu ekstrakcji cech zauważyliśmy bardzo zmienną skuteczność w przypadku zmiany liczby k sąsiadów w zależności od wybranych kategorii. Kategoria places osiąga najsłabsze wyniki przy małej liczbie sąsiadów, z kolei kategoria topics najlepsze. Zauważyliśmy, że najwyższe wyniki w kategorii authors osiągane są przy liczbie sąsiadów równej 7 oraz 10. 
+W przypadku pierwszego i drugiego sposobu ekstrakcji cech dla kategorii topics i places, zauważyliśmy, że wraz ze wzrostem liczby k sąsiadów zwiększała się także skuteczność. Najsłabsze wyniki osiągane były dla k równego 2. Jeśli zaś chodzi o kategorię authors, najwyższa skuteczność wykazywała mała liczba k sąsiadów (od 2 do 3). Wyraźny spadek wyników zaobserwowaliśmy, gdy k równało się 10. Podczas eksperymentu trzeciego sposobu ekstrakcji cech zauważyliśmy bardzo zmienną skuteczność w przypadku zmiany liczby k sąsiadów w zależności od wybranych kategorii. Kategoria places osiąga najsłabsze wyniki przy małej liczbie sąsiadów, z kolei kategoria topics najlepsze. Zauważyliśmy, że najwyższe wyniki w kategorii authors osiągane są przy liczbie sąsiadów równej 7 oraz 10. 
 
 
 \subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
-W przeważającej większości najwyższe wyniki osiągane były przy 80% zbioru treningowego. Tylko w jednym przypadku użycie 40% zbioru treningowego pozwoliło osiągnać najwyższą skutecznośći (pierwszy sposób ekstrakcji, kategoria topics). Zazwyczaj jednak ten dobór procentowy okazywał się być najsłabszym. 
+W przeważającej większości najwyższe wyniki osiągane były przy 80\% zbioru treningowego. Tylko w jednym przypadku użycie 40\% zbioru treningowego pozwoliło osiągnąć najwyższą skuteczności (pierwszy sposób ekstrakcji, kategoria topics). Zazwyczaj jednak ten dobór procentowy okazywał się być najsłabszym ze względu na niedouczenie. 
 \newline
 
-Najwyższą skuteczność wykazują teksty z kategorii places, zaś najniższą nasze własne teksty - kategoria authors.  
-
 \subsection{Wpływ konkretnych cech na klasyfikację}
-Podczas klasyfikacji dla kategorii topics, zauważyliśmy, że liczba słów ma negatywny wpływ na osiąganą skuteczność. Cecha odpowiadająca za liczbę słów, których długość nie przekracza 3 znaków również okazała się mieć negatywny wpływ na wyniki. Świadczyć może o tym fakt, iż bez ww. cech osiągneliśmy najwyższą skuteczność. Podejrzewamy, że występowanie cechy odpowiadającej za liczbę słów rozpoczynających się wielką literą ma pozytywny wpływ na otrzymane przez nas wyniki. \newline
+Podczas klasyfikacji dla kategorii topics, zauważyliśmy, że liczba słów oraz liczba słów, których długość nie przekracza 3 znaków mają negatywny wpływ na osiąganą skuteczność. Świadczyć może o tym fakt, iż bez ww. cech osiągnęliśmy najwyższą skuteczność. Dużo ważniejsze okazały się cechy związane z unikalnością słów oraz wielkimi literami. \newline
 
-Podczas klasyfikacji dla kategorii authors wyraźnie pozytywny wpływ na skuteczność ma cecha odpowiadająca za liczbę unikalnych słów. Bez niej skutecznośc spadła z 71% na 47%. Podobnie jak w przypadku kategorii topics, cechy sprawdzające liczbę słów oraz liczbę krótkich słów mogły osłabiać nasze wyniki. 
+Podczas klasyfikacji dla kategorii authors najważniejsza okazała się cecha odpowiadająca za liczbę unikalnych słów. Bez niej skuteczność spadła z 71\% na 47\%. Podobnie jak w przypadku kategorii topics, cechy sprawdzające liczbę słów oraz liczbę krótkich słów osłabiały nasze wyniki - dzięki wyłączeniu ich, uzyskaliśmy wyższe wyniki niż w przypadku wszystkich cech. 
 
 	
 \section{Wnioski}
 \begin{itemize}
-	\item Cecha odpowiedzialna za liczbę słów w dokumencie nie sprawdza się w przypadku klasyfikacji tekstów.
-	\item Wektor cech nie powinien składać się z pojedynczej cechy, gdyż wtedy osiągana jest niska skuteczność.
+	\item Cechy odpowiedzialne za liczbę słów oraz liczbę krótkich słów (do 3 znaków)  nie sprawdzają się w przypadku klasyfikacji tekstów.
+	\item Wektor cech powinien się składać z przynajmniej kilku cech, żeby osiągnąć większą skuteczność.
 	\item Metryka Czebyszewa nie powinna być wykorzystywana w klasyfikacji tekstów, gdyż osiąga bardzo słabe wyniki.
-	\item Liczba k sąsiadów ma spory wpływ na skuteczność klasyfikacji.
+	\item Istotny jest podział tekstów na zbiory testowe oraz treningowe. W przypadku zbyt małego zbioru treningowego osiągamy zjawisko niedouczenia, w przypadku zbyt dużego - przeuczenia.
+	\item Liczba k sąsiadów ma spory wpływ na skuteczność klasyfikacji, jednak nie ma jednej, optymalnej wartości - zmiana metryki, podziału zbiorów czy klasyfikowanych kategorii może spowodować obniżenie wyników dla stałego k.
 \end{itemize}
 
 	
