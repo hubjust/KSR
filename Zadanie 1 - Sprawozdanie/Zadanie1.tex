@@ -566,7 +566,7 @@ Na wykresach widoczne są następujące oznaczenia:
 	\centering
 	\begin{tabular}{c c c c c} 
 		\hline
-		\textbf{Kategoria} & \textbf{Skuteczność} & \textbf{Metryka} & \textbf{Ekstrakcja} &  \textbf{Liczba k sąsiadów} \\ [0.5ex]
+		\textbf{Kategoria} & \textbf{Skuteczność} & \textbf{Metryka} & \textbf{Ekstrakcja} &  \textbf{k} \\ [0.5ex]
 		\hline
 		\hline 
 		Places & 83.3\% & Euklidesowa & IDF & 7 \\
@@ -583,7 +583,7 @@ Na wykresach widoczne są następujące oznaczenia:
 	\centering
 	\begin{tabular}{c c c c c} 
 		\hline
-		\textbf{Kategoria} & \textbf{Skuteczność} & \textbf{Zbiór treningowy} & \textbf{Ekstrakcja} &  \textbf{Liczba k sąsiadów} \\ [0.5ex]
+		\textbf{Kategoria} & \textbf{Skuteczność} & \textbf{Zb. treningowy} & \textbf{Ekstrakcja} &  \textbf{k} \\ [0.5ex]
 		\hline
 		\hline 
 		Topics & 64.73\% & 40\% & TF & 15, 20 \\
@@ -592,7 +592,7 @@ Na wykresach widoczne są następujące oznaczenia:
 		Authors & 71.4\% & 80\% & Własne cechy & 7, 15, 20 \\
 		\hline
 	\end{tabular}
-	\caption{Tabela przedstawiająca najlepsze wyniki z drugiego eksperymentu (4.1)}
+	\caption{Tabela przedstawiająca najlepsze wyniki z drugiego eksperymentu (4.2)}
 \end{table}
 
 \begin{table}[H]
@@ -630,11 +630,12 @@ Podczas klasyfikacji dla kategorii authors najważniejsza okazała się cecha od
 	
 \section{Wnioski}
 \begin{itemize}
-	\item Cechy odpowiedzialne za liczbę słów oraz liczbę krótkich słów (do 3 znaków)  nie sprawdzają się w przypadku klasyfikacji tekstów.
-	\item Wektor cech powinien się składać z przynajmniej kilku cech, żeby osiągnąć większą skuteczność.
+	\item Liczba k sąsiadów ma spory wpływ na skuteczność klasyfikacji, jednak nie ma jednej, optymalnej wartości - zmiana metryki, podziału zbiorów czy klasyfikowanych kategorii może spowodować obniżenie wyników dla stałego k.
+	\item Dla mniejszych zbiorów tekstowych lepiej sprawdzają się mniejsze wartości k sąsiadów, dla większych - wyższe wartości.
 	\item Metryka Czebyszewa nie powinna być wykorzystywana w klasyfikacji tekstów, gdyż osiąga bardzo słabe wyniki.
 	\item Istotny jest podział tekstów na zbiory testowe oraz treningowe. W przypadku zbyt małego zbioru treningowego osiągamy zjawisko niedouczenia, w przypadku zbyt dużego - przeuczenia.
-	\item Liczba k sąsiadów ma spory wpływ na skuteczność klasyfikacji, jednak nie ma jednej, optymalnej wartości - zmiana metryki, podziału zbiorów czy klasyfikowanych kategorii może spowodować obniżenie wyników dla stałego k.
+	\item Cechy odpowiedzialne za liczbę słów oraz liczbę krótkich słów (do 3 znaków)  nie sprawdzają się przy klasyfikacji tekstów.
+	\item Wektor cech powinien się składać z przynajmniej kilku cech, żeby osiągnąć większą skuteczność.
 \end{itemize}
 
 	
