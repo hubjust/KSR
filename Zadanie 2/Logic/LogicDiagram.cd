@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Logic.Article">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAEAEAAAAAAAAAAAIAEBAAAAACAACAAA=</HashCode>
+      <FileName>Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.CategoryCompatibilityChecker">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CategoryCompatibilityChecker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.FileReader">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>FileReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.KnnAlgorithm">
+    <Position X="10.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KnnAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Sets">
+    <Position X="8.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sets.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.FeatureExtractions">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAABAIAwAAgKAAAEAAAIBAEAAAAAAEAAAUAAAA=</HashCode>
+      <FileName>Extractors\FeatureExtractions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.FirstLetterUpperCaseCounterExtractor">
+    <Position X="1.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extractors\FirstLetterUpperCaseCounterExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.LongWordsCounterExtractor">
+    <Position X="1.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extractors\LongWordsCounterExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.MediumWordsCountExtractor">
+    <Position X="6.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extractors\MediumWordsCountExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.ShortWordsCounterExtractor">
+    <Position X="5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extractors\ShortWordsCounterExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.UniqueWordsCounterExtractor">
+    <Position X="3.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extractors\UniqueWordsCounterExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.WordsCounterExtractor">
+    <Position X="5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extractors\WordsCounterExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Extractors.WordsUpperCaseCounterExtractor">
+    <Position X="3.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extractors\WordsUpperCaseCounterExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Metrics.Chebyshev">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metrics\Chebyshev.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Metrics.Euclidean">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metrics\Euclidean.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Metrics.Manhattan">
+    <Position X="2.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metrics\Manhattan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logic.Metrics.Metric">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Metrics\Metric.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
