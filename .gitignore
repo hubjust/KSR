@@ -616,3 +616,4 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/latex,visualstudio
+Zadanie 2/Database/database.sqlite
