@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FuzzySet.cs" />
     <Compile Include="LinguisticVariable.cs" />
     <Compile Include="MembershipFunctions\IMembershipFunction.cs" />
     <Compile Include="Database\FifaPlayer.cs" />
