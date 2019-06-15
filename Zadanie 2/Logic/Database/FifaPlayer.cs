@@ -20,7 +20,7 @@ namespace Logic.Database
         private int pace;
         private int acceleration;
         private int sprintSpeed;
-        private int dribling;
+        private int dribbling;
         private int agility;
         private int  balance;
         private int reactions;
@@ -190,17 +190,17 @@ namespace Logic.Database
         }
 
         [Column(Name = "Dribling")]
-        public int Dribling
+        public int Dribbling
         {
             get
             {
-                return dribling;
+                return dribbling;
             }
             set
             {
-                if ((this.dribling != value))
+                if ((this.dribbling != value))
                 {
-                    this.dribling = value;
+                    this.dribbling = value;
                 }
             }
         }
