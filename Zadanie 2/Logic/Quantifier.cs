@@ -59,19 +59,19 @@ namespace Logic
         public static LinguisticVariable around4000 = new LinguisticVariable
         {
             Name = "Około 4000",
-            MembershipFunction = new TriangularFunction(new List<double> { 3000, 4000, 5000 }),
+            MembershipFunction = new TriangularFunction(new List<double> { 3750, 4000, 4250 }),
             Absolute = true
         };
         public static LinguisticVariable around9000 = new LinguisticVariable
         {
             Name = "Około 9000",
-            MembershipFunction = new TriangularFunction(new List<double> { 8000, 9000, 10000 }),
+            MembershipFunction = new TriangularFunction(new List<double> { 8750, 9000, 9250}),
             Absolute = true
         };
         public static LinguisticVariable around12000 = new LinguisticVariable
         {
             Name = "Około 12000",
-            MembershipFunction = new TriangularFunction(new List<double> { 8000, 9000, 10000 }),
+            MembershipFunction = new TriangularFunction(new List<double> { 11750, 12000, 12250 }),
             Absolute = true
         };
         public static LinguisticVariable moreThan14000 = new LinguisticVariable

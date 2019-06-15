@@ -5,8 +5,6 @@ using System.Windows.Forms;
 using System;
 
 using Logic;
-using Logic.Metrics;
-using Logic.Extractors;
 
 namespace ViewModel
 {
