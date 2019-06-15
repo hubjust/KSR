@@ -3,6 +3,18 @@
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{environ}
+\usepackage{comment}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{lscape}
+\usepackage{icomma}
+{\theoremstyle{definition}
+  \newtheorem{definition}{Definicja}
+}
 
 \studycycle{Informatyka, studia dzienne, I st.}
 \coursesemester{VI}
@@ -28,123 +40,218 @@
 Celem zadania było aplikacji desktopowej, która posiada charakter doradczy, generujący pewną ilość podsumowań lingwistycznych dla podanej bazy, a następnie przedstawia użytkownikowu wybrane - według zastosowanych miar jakości wyniki, czyli podsumowania lingwistyczne.
 
 \section{Wprowadzenie}	
-Zagadnieniem, jakim zajmowaliśmy się w ramach projektu jest klasyfikacja statystyczna, która jest rodzajem algorytmu statystycznego przydzielającego elementy do klas, bazując na cechach tych elementów. W ramach przeprowadzanego eksperymentu zaimplementowaliśmy klasyfikator k-najbliższych sąsiadów. \newline
+Zagadnieniem jakim zajmowaliśmy się w ramach projektu była analiza działania lingwistycznych podsumowań baz danych na zbiorach rozmytych. Zbiór rozmyty jest podstawowym pojęciem wykorzystywanym przy naszym zadaniu, zatem przytoczmy jego definicję:
 
-Algorytm k najbliższych sąsiadów, nazywany także algorytmem k-NN, należy do grupy algorytmów leniwych, czyli takich, które nie tworzą wewnętrznej reprezentacji danych uczących, lecz szukają rozwiązania dopiero w momencie pojawienia się wzorca testującego. Przechowuje wszystkie wzorce uczące, względem których wyznacza odległość wzorca testowego [2]. Metoda k-NN wyznacza k sąsiadów, do których badany element ma najmniejszą odległość w danej metryce, a następnie wyznacza wynik w oparciu o najczęstszy element, wśród k najbliższych. W przypadku naszego projektu odległość definiujemy jako skalę podobieństwa tekstów. \newline
+\begin{definition}[Zbiór rozmyty typu I]
+Niech \(\mathcal{X}\) będzie zbiorem, którego elementy interesują
+nas w sposób bezpośredni (czyli ,,zbiorem zwykłym'' znanym z teorii mnogości).
+Wówczas \emph{zbiorem rozmytym na uniwersum \(\mathcal{X}\)}
+nazywamy każdy zbiór \(A\) postaci:
+\[A = \bigcup_{x \in \mathcal{X}} \{(x,\, \mu_A(x))\},\]
+gdzie \(\mu_A(x) : \mathcal{X} \to [0,\,1]\) nazywamy \emph{funkcją
+przynależności do zbioru rozmytego \(A\)}.
+\end{definition}
 
-W ramach zadania zostały użyte następujące metody ekstrakcji cech: \newline
+W celu określenia, czy element należy do zbioru wykorzystaliśmy funkcję przynależności. Określa ona stopień przynależności elementu do zbioru. W naszym projekcie skorzystaliśmy z funkcji przynależności trójkątnej oraz prostokątnej. Przytoczmy ich definicje:
 
-\begin{itemize}
+\begin{definition}[Zbiór rozmyty o prostokątnej funkcji przynależności]
+Zbiór rozmyty \(A\) typu I na uniwersum \(\mathbb{R}\) jest
+\emph{liczbą rozmytą prostokątną o parametrach \(a, b\)} wtedy i tylko
+wtedy, gdy \(a \leq b\) oraz:
 
-\item Term frequency - metoda polegająca na zliczeniu częstości występowania danego słowa w dokumencie. Obliczana jest z poniższego wzoru:
-$$
-tf_{i,j}
-= \frac{n_{i,j}}{\sum_{k}n{k,j}}
-$$
+\[\mu_A(x) = \begin{cases}
+0                 & \mbox{gdy } x \in (-\infty,\, a], \\
+1                 & \mbox{gdy } x \in (a,\, b), \\
+0                 & \mbox{gdy } x \in [b,\, +\infty).
+\end{cases}\]
+\end{definition}
 
-\item Inverse document frequency - metoda polegająca na wyznaczeniu, czy dane słowo występuje powszechnie we wszystkich dokumentach. Jest to logarytmicznie skalowana odwrotna część dokumentów zawierających wybrane słowo (uzyskana poprzez podzielenie całkowitej liczby dokumentów przez liczbę dokumentów zawierających ten termin). Obliczana jest z poniższego wzoru:
-$$
-idf_{i}
-= \log\frac{|D|}{|\{d : t_{i} \in d\}|}
-$$
+\vspace\baselineskip
 
-\item Ekstrakcja cech charakterystycznych tekstu - w tym celu tworzymy wektor cech, który opisuje tekst na podstawie następujących cech:
-\begin{enumerate}
-	\item Liczba słów,
-	\item Liczba słów, których długość nie przekracza 3 znaków,
-	\item Liczba słów, których długość zawiera się w zakresie 4-7 znaków,
-	\item Liczba słów, których długość przekracza 8 znaków,
-	\item Liczba unikalnych słów,
-	\item Liczba słów napisanych wielką literą,
-	\item liczba słów rozpoczynających się wielką literą. 
-\end{enumerate}
-Wektor cech będzie miał postać:
-$ v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}] $.
-\newline
-\end{itemize}
+\begin{definition}[Zbiór rozmyty o trójkątnej funkcji przynależności]
+Zbiór rozmyty \(A\) typu I na uniwersum \(\mathbb{R}\) jest
+\emph{liczbą rozmytą trójkątną o parametrach \(a, b, c\)} wtedy i tylko
+wtedy, gdy \(a \leq b \leq c\) oraz:
 
-Do obliczenia odległości tekstów posłużyliśmy się 3 metrykami: \newline
+\[\mu_A(x) = \begin{cases}
+0                 & \mbox{gdy } x \in (-\infty,\, a], \\
+(x - a) / (b - a) & \mbox{gdy } x \in (a,\, b), \\
+1                 & \mbox{gdy } x = b, \\
+(c - x) / (c - b) & \mbox{gdy } x \in (b,\, c), \\
+0                 & \mbox{gdy } x \in [c,\, +\infty).
+\end{cases}\]
+\end{definition}
 
-\begin{itemize}
-\item metryka Euklidesowa - w celu obliczenia odległości $ d_{e}(x,y) $ między dwoma punktami $ x, y $ należy obliczyć pierwiastek kwadratowy z sumy drugich potęg różnic wartości współrzędnych o tych samych indeksach, zgodnie ze wzorem:
-$$
-d_{e}(x,y)= \sqrt{ (y_{1} - x_{1})^2 + \cdots + (y_{n} - x_{n})^2 }
-$$
+\vspace\baselineskip
 
-\item metryka uliczna (Manhattan, miejska) - w celu obliczenia odległości $ d_{e}(x,y) $ między dwoma punktami $ x, y $ należy obliczyć sumę wartości bezwzględnych różnic współrzędnych punktów $ x $ oraz $ y $, zgodnie ze wzorem:
-$$
-d_{m}(x,y)= \sum_{k=1}^{n} | x_{k} - y_{k} |
-$$
+Wyjaśnijmy także, czym jest lingwistyczne podsumowanie. Niech \(\mathcal{D}\) będzie bazą danych, czyli zbiorem \(m\)
+krotek opisujących poszczególne rekordy (każdą \(i\)-tą krotkę
+dla \(i=1 \ldots m\) będziemy oznaczać jako \(d_i\)). Każda
+kolumna opisuje cechę pewnego typu. Cechę krotki możemy nazwać \emph{zmienną lingwistyczną}, a jej wartością może być konkretna liczba, ale może być to także rozmyta klasa (np. mało/trochę/dużo/sporo). Niech \(P\) będzie zbiorem rozmytym na uniwersum krotek bazy danych \(\mathcal{D}\),
+który zawiera w sobie krotki posiadające pewną własność. Taki zbiór
+może nam posłużyć jako podmiot podsumowania lingwistycznego (np. mężczyźni, kobiety, samochody, zawodnicy"). Bardzo ważnym elementem, wykorzystywanym we wszystkich rodzajach podsumowań
+lingwistycznych, jest kwantyfikator oznaczany jako \(Q\).
+Przykładami kwantyfikatorów mogą być: "około 10", "ponad 70"
+(kwantyfikatory absolutne - zbiory rozmyte na uniwersum \(\mathbb{R}\)) lub "większość", "znikoma część"
+(kwantyfikatory relatywne - zbiory rozmyte na uniwersum \([0,\, 1]\)).
+Istotny dla nas będzie stopień przynależności \(P\) do \(Q\). Zdefiniujmy także sumaryzator
+\(S_j\). Jest to zbiór rozmyty na zbiorze wartości przyjmowanych przez \(j\)-tą kolumnę bazy danych.
+Np. gdyby krotki dotyczyły różnych osób, a jedną ze zmiennych lingwistycznych
+były ich zarobki, to sumaryzatory mogłyby mieć postać "zarabia za mało",
+"zarabia ponad 6400\,zł" itp.
 
-\item metryka Czebyszewa - w celu obliczenia odległości $ d_{e}(x,y) $ między dwoma punktami $ x, y $ należy obliczyć maksymalną wartość bezwzględnych różnic współrzędnych punktów $ x $ oraz $ y $, zgodnie ze wzorem:
-$$
-d_{ch}(x,y)= \max_{i} |x_{i} - y_{i}|
-$$
-\newline
-\end{itemize}
+\vspace\baselineskip
+
+Wykorzystując powyższe elementy można skonstruować \textbf{lingwistyczne podsumowanie
+bazy danych wg. Yagera}, czyli:
+\[Q ~ P \mbox{ jest/są } S_j ~[T] ~\mbox{,}\]
+gdzie \(T\) to stopień prawdziwości podsumowania.
+
+\vspace\baselineskip
+
+W celu rozszerzenie podsumowania lingwistycznego należy skorzystać ze złożonego sumaryztora. Sumę sumaryzatorów można w podsumowaniu lingwistycznym zapisać
+za pomocą słowa "lub", zaś iloczyn za pomocą słowa "i".
+W rezultacie \textbf{podsumowanie ze złożonym sumaryzatorem} może
+mieć postać:
+\[Q ~ P \mbox{ jest/są } S_1 \mbox{ i/lub } S_2 \mbox{ i/lub } \ldots \mbox{ i/lub } S_n  ~[T] ~\mbox{.}\]
+
+\vspace\baselineskip
+
+Innym sposobem rozszerzenia pojęcia podsumowań
+jest zastosowanie kwalifikatora. Kwalifikator
+\(W\) jest zbiorem rozmytym na \(\mathcal{D}\),
+który opisuje w jakim stopniu krotki posiadają
+pewną własność. Typowe przykłady to "[osoby] które są bezrobotne",
+"[osoby] które są dziećmi". \textbf{Podsumowanie
+z~kwalifikatorem} ma postać:
+\[Q ~ P \mbox{ mających własność } W \mbox{ ma własność } S_j ~[T] ~\mbox{.}\]
+
+\vspace\baselineskip
+
+Aby określić jakość naszych podsumowaniań zaimplementowaliśmy poniższe miary jakości:
+
+\subsection{\(T_1\) -- stopień prawdziwości}
+
+Najbardziej naturalną miarą jakości podsumowania lingwistycznego
+jest wprowadzony przez Yagera stopień prawdziwości.
+Abstrahując od tego, czy sumaryzator \(S_j\) jest wynikiem
+złożenia wielu sumaryzatorów czy nie, możemy obliczyć
+sumę przynależności wszystkich rozważanych krotek do niego:
+\[r = \sum_{i=1}^{m} \mu_{\mathrm{ce}(S_j)}(d_i) ~\mbox{,}\]
+gdzie \(\mathrm{ce}(S_j)\) jest rozszerzeniem cylindrycznym
+sumaryzatora \(S_j\), a \(m\) liczba wszystkich krotek.
+Zatem dla kwantyfikatorów relatywnych stopnień
+prawdziwości możemy zapisać jako \(T_1 = \mu_Q(\frac{r}{m})\),
+zaś dla kwantyfikatorów absolutnych jako \(T_1 = \mu_Q(r)\).
+
+\subsection{\(T_2\) -- stopień nieprecyzyjności}
+Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\)
+(w szczególności dla \(n=1\)) możemy określić miarę
+jakości podsumowania określaną jako stopień nieprecyzyjności,
+definiowaną następującym wzorem:
+\[T_2 = 1 - \left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n} ~\mbox{.}\]
+Wyrażenie \(\left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n}\) to po prostu
+średnia geometryczna ze stopni rozmycia wykorzystanych sumaryzatorów.
+
+\subsection{\(T_3\) -- stopień pokrycia}
+Stopień pokrycia \(T_3\) jest zdefiniowany dla podsumowań z kwalifikatorami, czyli tymi opartymi na drugiej formie ilościowych wyrażeń lingwistycznych
+Stopień pokrycia T3 
+Dla każdego \(i=1\ldots m\) (związanego z krotką \(d_i\) z bazy
+danych) możemy zdefiniować:
+\[
+\begin{array}{l}
+t_i = \begin{cases}
+1 & \mbox{gdy } \mu_{\mathrm{ce}(S_j)}(d_i) > 0 ~ \wedge ~ \mu_{W}(d_i) > 0 \\
+0 & \mbox{w przeciwnym wypadku.}
+\end{cases} \\
+h_i = \begin{cases}
+1 & \mbox{gdy } \mu_{W}(d_i) > 0 \\
+0 & \mbox{w przeciwnym wypadku.}
+\end{cases}
+\end{array}\]
+
+Przy powyższych oznaczeniach:
+\[T_3 = \frac{\sum_{i=1}^{m} t_i}{\sum_{i=1}^{m} h_i} ~\mbox{.}\]
+
+
+\subsection{\(T_4\) -- stopień stosowności}
+Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\)
+oraz \(m\) krotkami w bazie danych możemy wprowadzić oznaczenia:
+\[g_{ij} = \begin{cases}
+1 & \mbox{gdy } \mu_{\mathrm{ce}(S_j)}(d_i) > 0 \\
+0 & \mbox{w przeciwnym wypadku.}
+\end{cases}\]
+oraz
+\[r_j = \frac{\sum_{i=1}^{m} g_{ij}}{m} ~\mbox{.}\]
+Wówczas możemy zapisać:
+\[T_4 = \left|\left( \prod_{j=1}^{n} r_j \right) - T_3\right| ~\mbox{.}\]
+
+\subsection{\(T_5\) -- długość podsumowania}
+Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\)
+miarę długości podsumowania definiujemy jako:
+\[T_5 = \left(\frac{1}{2}\right)^{n-1} ~\mbox{.}\]
+
+\subsection{\(T_6\) -- stopień nieprecyzyjności kwantyfikatora}
+Nazwy miar \(T_6\)--\(T_{10}\) można określić jako samoopisujące się,
+więc przedstawienie wzoru wyczerpuje zagadnienie w stopniu wystarczającym
+dla niniejszego sprawozdania:
+\[T_6 = 1-\mathrm{in}(Q) ~\mbox{.}\]
+
+\subsection{\(T_7\) -- stopień liczności kwantyfikatora}
+W przeciwieństwie do \(T_6\), zamiast zliczać elementy z nośnika \(Q\),
+policzymy moc zbioru rozmytego:
+\[T_7 = 1-\frac{\card(Q)}{\card(\mathcal{X}_Q)} ~\mbox{.}\]
+
+\subsection{\(T_8\) -- stopień liczności sumaryzatora}
+Możemy mieć do czynienia z sumaryzatorem złożonym; wtedy,
+podobnie jak przy poprzednich miarach, stosujemy średnią geometryczną.
+Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\):
+
+\[T_8 = 1- \left(\prod_{j=1}^{n} \frac{\card(S_j)}{\card(\mathcal{X}_j)}\right) ~\mbox{.}\]
+
+\subsection{\(T_9\) -- stopień nieprecyzyjności kwalifikatora}
+Stopień precyzji kwalifikatora \(T_9\) jest oparty na drugiej formie podsumowań tzn.: Q obiektów będących/mających W jest/ma S, gdzie W jest reprezentowane przez zbiór rozmyty i jest kwalifikatorem. Definicja tej miary jest następująca:
+\[T_9 = 1-\mathrm{in}(W) ~\mbox{.}\]
+
+\subsection{\(T_{10}\) -- stopień liczności kwalifikatora}
+Stopień kardynalności kwalifikatora \(T_{10}\) definiujemy jako:
+\[T_{10} = 1-\frac{\card(W)}{\card(\mathcal{X}_g)} ~\mbox{.}\]\\
+gdzie miara \card() jest dana tak jak we wcześniejszych sekcjach.
+
+\subsection{\(T_{11}\) -- długość kwalifikatora}
+Długość kwalifikatora \(T_{11}\) definiujemy następująco:
+\[T_{11} = 2\left(\frac{1}{2}\right)^{\card({W})} ~\mbox{.}\]
+gdzie \card(W) jest ilością zbiorów rozmytych, z których kwalifikator jest skomponowany. Im bardziej złożony kwalifikator tym jakość podsumowania gorsza.
+
+\vspace\baselineskip
 
 \section{Opis implementacji}
 Program został stworzony w języku C\#. Graficzny interfejs użytkownika został stworzony przy  wykorzystaniu Windows Presentation Foundation. Logika aplikacji została odseparowana od GUI, w zgodzie ze wzorcem projektowym Model-view-viewmodel (MVVM), poprzez implementacje trzech projektów (Logic, ViewModel i GUI).
 
 \subsection{Logic}
-Klasy Chebyshev, Euclidean oraz Manhattan odpowiadają za prawidłowe obliczenia odległości tekstów. Dziedziczą one z klasy abstrakcyjnej Metric. \newline
-
-Klasa Article odwzorowuje artykuły wczytane do programu. Przechowuje informacje o dokumencie takie jak: tytuł, tekst, kategorie, przypisane etykiety, wektor cech, odległość. \newline
-
-Klasy znajdujące się w folderze Extractors odpowiedzialne są za ekstrakcje cech. Sprawdzają one liczbę słów, liczbę słów, których długość nie przekracza 3 znaków, liczbę słów, których długość zawiera się w zakresie 4-7 znaków, liczbę unikalnych słów, liczbę słów napisanych wielką literą, liczbę słów rozpoczynających się wielką literą, zliczanie częstości danego słowa w dokumencie oraz oznaczanie wybranych słów jako powszechne lub rzadkie na podstawie wszystkich dokumentów.  \newline
-
-Klasa FileReader odpowiada za poprawne wczytywanie plików do programu - wyselekcjonowanie wybranych przez nas informacji (tytuł, teksy, przypisane etykiety) i na ich podstawie stworzenie obiektu klasy Article. Z wczytanego tekstu usuwane są słowa, które występują w wykorzystanej przez nas stop liście [3]. Ten zabieg ma za zadanie wykluczyć terminy, które nie wnoszą kluczowych, dla nas, informacji. Następnie, tekst zostaje poddane stemizacji, czyli usunięciu ze słowa końcówki fleksyjnej pozostawiając tylko rdzeń wyrazu. Do tego także wykorzystujemy zewnętrzną bibliotekę [4]. \newline
-
-Klasa KnnAlgorithm odpowiada za implementację algorytmu k-najbliższych sąsiadów. W tym miejscu wyliczane są wystąpienia słów w podanych dokumentach. \newline
-
-Klasa Sets odpowiedzialna jest za podział wczytanych artykułów na dane testowe oraz treningowe. \newline
-
-Klasa CategoryCompatibilityChecker ma za zadanie sprawdzić, czy dany artykuł zawiera jedną etykietę z danej kategorii, oraz czy ta etykieta jest brana pod uwagę przy analizowaniu danej kategorii.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{{Rysunki/DiagramLogic.png}}
-	\caption{Diagram UML wygenerowany dla projektu Logic}
-\end{figure}
-
-\subsection{ViewModel}
-Projekt ViewModel ma za zadanie odseparować logikę programu od interfejsu graficznego. \newline
-
-Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego poczynania wywołując wybrane akcje z logiki programu oraz odpowiada za odświeżanie widoków w interfejsie graficznym.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{{Rysunki/DiagramViewModel.png}}
-	\caption{Diagram UML wygenerowany dla projektu MainViewModel}
-\end{figure}
-
-\subsection{GUI}
-Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w obsłudze graficzny interfejs użytkownika. 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{{Rysunki/DiagramGUI.png}}
-	\caption{Diagram UML wygenerowany dla projektu GUI}
-\end{figure}
 
 \section{Materiały i metody}
 
-Klasyfikacja dotycząca lokalizacji przeprowadzana była jedynie na danych, których pole places przyjmowało jedną z wartości: west-germany, usa, france, uk, canada, japan. \newline
+Do przeprowadzenia badań i generowania konkretnych podsumowań wykorzystaliśmy bazę danych dotyczącą przechowującą statystyki piłkarzy z gry Fifa 2019.Składa się ona z 15397 krotek znajdujących się w tabeli z 20 różnymi kolumnami - w ramach naszego projektu skorzystaliśmy tylko z 13. Przedstawiamy je pniżej:
 
-Klasyfikacja dotycząca tematów przeprowadzana była jedynie na danych, które pole topics przyjmowało jedną z wartości: gold, cocoa, sugar, coffe, grain. \newline
+\begin{itemize}
+	\item Wiek
+	\item Wzrost
+	\item Waga
+	\item Tempo
+	\item Przyspieszenie
+	\item Prędkość
+	\item Dribbling
+	\item Zręczność
+	\item Balans
+	\item Reakcje
+	\item Kontrola piłki
+	\item Opanowanie
+	\item Precyzja
+	\item Ustawienie się 
+\end{itemize}
 
-Danymi jakie sami przygotowaliśmy do analizy były teksty piosenek znanych artystów. Posiadały one jedną kategorię - author. Przyjmowało ono jedną z wartości: taylor swift, macklemore, twenty one pilots, eminem, ed sheeran, black eyed peas.
-
-\subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
-
-Klasyfikacja tekstów została wykonana wszystkimi dostępnymi metodami ekstrakcji cech dla wszystkich trzech metryk. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla k $\in$ \{2, 3, 5, 7, 10, 15, 20\} najbliższych sąsiadów. Zbiór treningowy stanowił zawsze 60\% artykułów, zaś zbiór testowy 40\% artykułów. \newline
-
-\subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
-
-Klasyfikacja tekstów została wykonana przy pomocy Term frequency oraz własnych charakterystyk dla metryki Euklidesowej. Dla każdego przypadku testowego dokonano klasyfikacji tekstu dla najodpowiedniejszych k dla danego sposobu ekstrakcji cech oraz metryki. Zbiór treningowy w kolejnych próbach stanowił, 80\% 60\% oraz 40\% artykułów. \newline
-
-\subsection{Wpływ konkretnych cech na klasyfikację}
-Klasyfikacja tekstów została wykonana przy pomocy ekstrakcji cech charakterystycznych dla metryki Euklidesowej oraz dla zbioru treningowego stanowiącego 80\% artykułów przy $k = 7$. Badania zostały przeprowadzone na tekstach z tagami topics oraz author. Pierwszy test został przeprowadzony przy wyłączeniu jednej cechy, drugi przy stosowaniu tylko jednej cechy, a trzeci konkretnego zestawu cech. Za każdym razem porównano te wyniki z przypadkiem kiedy wszystkie cechy były włączone.
+Każda z ww. kolumn jest typem całkowitym.
 
 \section{Wyniki}
 
@@ -355,7 +462,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		15 & 80.8 & 44 & 17.1 \\
 		20 & 80.9 & 44 & 17.1 \\ 
 		\hline
-	\end{tabular}
+	\end{tabular}Możliwość wniesienia i instalacji sprzętu
 	\caption{Skuteczność klasyfikacji dla metryki Czebyszewa dla trzeciego sposobu ekstrakcji}
 \end{table}
 
@@ -365,7 +472,7 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 	\caption{Dane z Tabel 7-9 dla kategorii places}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[H]Możliwość wniesienia i instalacji sprzętu
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/OWN-topics.png}}
 	\caption{Dane z Tabel 7-9 dla kategorii topics}
