@@ -57,7 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MembershipFunctions\IMembershipFunction.cs" />
     <Compile Include="Database\FifaPlayer.cs" />
+    <Compile Include="MembershipFunctions\RectangularFunction.cs" />
+    <Compile Include="MembershipFunctions\TriangularFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
