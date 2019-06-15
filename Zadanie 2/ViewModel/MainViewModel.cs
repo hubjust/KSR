@@ -13,162 +13,41 @@ namespace ViewModel
     public class MainViewModel : BaseViewModel
     {
         public ICommand QuitCommand { get; set; }
-        public ICommand LoadArticlesCommand { get; set; }
-        public ICommand AnalyzeArticlesCommand { get; set; }
+        public ICommand CreateMessagesCommand { get; set; }
+        public ICommand CreateComplexMessagesCommand { get; set; }
 
-        private List<Article> articles;
-        private List<Article> compatibleArticles;
-        private Tuple<List<Article>, List<Article>> separatedArticles;
-        private Metric metric;
-
-        #region Fields 
-
-        private FeatureExtractions featureExtractions = new FeatureExtractions();
-
-        public int LoadedArticlesCounter { get; set; }
-
-        #region RadioButtons
-
-        public bool MetricRadioButtonEuclidean { get; set; }
-        public bool MetricRadioButtonChebyshew { get; set; }
-        public bool MetricRadioButtonManhattan { get; set; }
-        public bool MeasurementRadioButtonTF { get; set; }
-        public bool MeasurementRadioButtonIDF { get; set; }
-        private bool _MeasurementRadioButtonOwn;
-        public bool MeasurementRadioButtonOwn
-        {
-            get { return _MeasurementRadioButtonOwn; }
-            set
-            {
-                _MeasurementRadioButtonOwn = value;
-                OnPropertyChanged(nameof(MeasurementRadioButtonOwn));
-            }
-        }
+        private List<string> QualifierList;
+        private List<string> FirstSummarizerList;
+        private List<string> SecondSummarizerList;
 
 
-        #endregion
+        public bool ConjunctionAndRB { get; set; }
+        public bool ConjunctionOrRB { get; set; }
 
-        #region Checkbox
-
-        public bool WordsCounterCheckBox { get; set; }
-        public bool ShortWordsCounterCheckBox { get; set; }
-        public bool MediumWordsCounterCheckBox { get; set; }
-        public bool LongWordsCounterCheckBox { get; set; }
-        public bool UniqueWordsCounterCheckBox { get; set; }
-        public bool FirstLitterUpperCaseCheckBox { get; set; }
-        public bool WordsUpperCaseCheckBox { get; set; }
-
-        #endregion
-
-        #region Sliders
-
-        public int TrainingSetSlider { get; set; }
-        public int TrainingSetSliderValue
-        {
-            get => TrainingSetSlider;
-            set => TrainingSetSlider = value;
-        }
-
-        public int KNNSlider { get; set; }
-        public int KNNSliderValue
-        {
-            get => KNNSlider;
-            set => KNNSlider = value;
-        }
-
-        #endregion
-
-        public List<string> CategoryList { get; set; }
-        public string SelectedCategory { get; set; }
-
-        public int AnalyzedArticlesCounter { get; set; }
-        public double CorrectlyMatchedArticles { get; set; }
-        public List<Article> AnalyzedArticles { get; set; }
-
-        #endregion
 
         public MainViewModel()
         {
-            MetricRadioButtonEuclidean = true;
+            ConjunctionAndRB = true;
 
-            MeasurementRadioButtonTF = true;
-
-            WordsCounterCheckBox = true;
-            ShortWordsCounterCheckBox = true;
-            MediumWordsCounterCheckBox = true;
-            LongWordsCounterCheckBox = true;
-            UniqueWordsCounterCheckBox = true;
-            FirstLitterUpperCaseCheckBox = true;
-            WordsUpperCaseCheckBox = true;
-
-            TrainingSetSliderValue = 60;
-
-            KNNSliderValue = 2;
-
-            LoadArticlesCommand = new RelayCommand(LoadArticles);
-            AnalyzeArticlesCommand = new RelayCommand(AnalyzeArticles);
+            CreateMessagesCommand = new RelayCommand(SimpleMessages);
+            CreateComplexMessagesCommand = new RelayCommand(ComplexMessages);
             QuitCommand = new RelayCommand(Quit);
         }
 
-        private void LoadArticles()
+
+        private void SimpleMessages()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Sgm File(*.sgm)| *.sgm",
-                Multiselect = true
-            };
-            openFileDialog.ShowDialog();
-            string[] path = openFileDialog.FileNames;
-
-            articles = FileReader.GetArticlesFromFile(path).ToList();
-
-            LoadedArticlesCounter = articles.Count();
-
-            CategoryList = articles.SelectMany(article => article.Tags).Select(pair => pair.Key).Distinct().ToList();
-            SelectedCategory = CategoryList[0];
-
-            OnPropertyChanged(nameof(LoadedArticlesCounter));
-            OnPropertyChanged(nameof(CategoryList));
-            OnPropertyChanged(nameof(SelectedCategory));
-
-            MessageBox.Show("Wczytano artykuły");
+            CreateMessages();
         }
 
-        private void AnalyzeArticles()
+        private void ComplexMessages()
         {
-            compatibleArticles = CategoryCompatibilityChecker.CheckTags(articles, SelectedCategory);
+            CreateMessages(true);
+        }
 
-            featureExtractions.SetBools(MeasurementRadioButtonTF, MeasurementRadioButtonIDF, MeasurementRadioButtonOwn,
-                                        WordsCounterCheckBox, ShortWordsCounterCheckBox, MediumWordsCounterCheckBox,
-                                        LongWordsCounterCheckBox, UniqueWordsCounterCheckBox, FirstLitterUpperCaseCheckBox,
-                                        WordsUpperCaseCheckBox);
-            featureExtractions.Extract(compatibleArticles);
+        private void CreateMessages(bool isComplex = false)
+        {
 
-            separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, compatibleArticles);
-
-            try
-            {
-                if (MetricRadioButtonEuclidean)
-                    metric = new Euclidean();
-
-                else if (MetricRadioButtonManhattan)
-                    metric = new Manhattan();
-
-                else if (MetricRadioButtonChebyshew)
-                    metric = new Chebyshev();
-
-                CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue, SelectedCategory);
-                CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 3) * 100));
-                AnalyzedArticles = separatedArticles.Item2;
-
-                OnPropertyChanged(nameof(AnalyzedArticles));
-                OnPropertyChanged(nameof(CorrectlyMatchedArticles));
-                MessageBox.Show("Done");
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Błąd podczas analizowania artykułów");
-            }
         }
 
         private void Quit()

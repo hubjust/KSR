@@ -50,7 +50,7 @@
             </GroupBox>
 
             <Button Grid.Row="7" Margin="5 0 0 0" Height="32" MinWidth="100" MaxWidth="200" FontSize="12px" 
-                            Style="{DynamicResource ButtonStyle}" Command="{Binding CreateMessages}" Content="Stwórz komunikaty" />
+                            Style="{DynamicResource ButtonStyle}" Command="{Binding CreateMessagesCommand}" Content="Stwórz komunikaty" />
 
             <GroupBox Grid.Row="8" Margin="10 5 0 5" Foreground="White" Style="{DynamicResource GroupBoxStyle}" Header=" Spójnik " >
                 <Grid>
@@ -60,9 +60,9 @@
                     </Grid.ColumnDefinitions>
 
                     <RadioButton Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"  
-                                 IsChecked="{Binding Path=ConjunctionRadioButton, Mode=TwoWay}" Content="ORAZ"/>
+                                 IsChecked="{Binding Path=ConjunctionAndRB, Mode=TwoWay}" Content="ORAZ"/>
                     <RadioButton Grid.Column="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource RadioButtonStyle}"
-                                 IsChecked="{Binding Path=ConjunctionRadioButton, Mode=TwoWay}" Content="LUB"/>
+                                 IsChecked="{Binding Path=ConjunctionOrRB, Mode=TwoWay}" Content="LUB"/>
                 </Grid>
             </GroupBox>
 
@@ -71,11 +71,11 @@
             </GroupBox>
 
             <Button Grid.Row="12" Margin="5 0 0 0" Height="32" MinWidth="100" MaxWidth="200" FontSize="12px" 
-                            Style="{DynamicResource ButtonStyle}" Command="{Binding CreateComplexMessages}" Content="Stwórz złożone komunikaty" />
+                            Style="{DynamicResource ButtonStyle}" Command="{Binding CreateComplexMessagesCommand}" Content="Stwórz złożone komunikaty" />
         </Grid>
 
         <TabControl Grid.Column="1" Background="#454545" Margin="20 35 20 20" ItemContainerStyle="{DynamicResource TabItemStyle}" >
-            <TabItem Header="Opis danych">
+            <TabItem Header="Komunikaty">
                 <ListBox FontSize="12px" Background="#232323" Foreground="White"  ItemsSource="{Binding Messages}"/>
             </TabItem>
         </TabControl>
