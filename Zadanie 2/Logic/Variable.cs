@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public static class StaticVariable
+    public static class Variable
     {
         #region Age
         public static LinguisticVariable ageYoung = new LinguisticVariable
@@ -40,8 +40,8 @@ namespace Logic
             Name = "Dojrzały",
             MemberToExtract = "Wiek",
             Extractor = e => new RectangularFunction(new List<double> { 36, 40, 45, 45 }).GetMembership(e.Age),
-                MembershipFunction = new RectangularFunction(new List<double> { 36, 40, 45, 45 }),
-                FieldExtractor = (e) => e.Age
+            MembershipFunction = new RectangularFunction(new List<double> { 36, 40, 45, 45 }),
+            FieldExtractor = (e) => e.Age
         };
         #endregion
 
@@ -51,40 +51,40 @@ namespace Logic
             Name = "Bardzo Niski",
             MemberToExtract = "Wzrost",
             Extractor = e => new RectangularFunction(new List<double> { 155, 155, 160, 162 }).GetMembership(e.Height),
-                MembershipFunction = new RectangularFunction(new List<double> { 155, 155, 160, 162 }),
-                FieldExtractor = (e) => e.Height
+            MembershipFunction = new RectangularFunction(new List<double> { 155, 155, 160, 162 }),
+            FieldExtractor = (e) => e.Height
         };
         public static LinguisticVariable heightShort = new LinguisticVariable
         {
             Name = "Niski",
             MemberToExtract = "Wzrost",
             Extractor = e => new RectangularFunction(new List<double> { 161, 165, 168, 170 }).GetMembership(e.Height),
-                MembershipFunction = new RectangularFunction(new List<double> { 161, 165, 168, 170 }),
-                FieldExtractor = (e) => e.Height
+            MembershipFunction = new RectangularFunction(new List<double> { 161, 165, 168, 170 }),
+            FieldExtractor = (e) => e.Height
         };
         public static LinguisticVariable heightAverage = new LinguisticVariable
         {
             Name = "Przeciętny",
             MemberToExtract = "Wzrost",
             Extractor = e => new RectangularFunction(new List<double> { 169, 172, 176, 180 }).GetMembership(e.Height),
-                MembershipFunction = new RectangularFunction(new List<double> { 169, 172, 176, 180 }),
-                FieldExtractor = (e) => e.Height
+            MembershipFunction = new RectangularFunction(new List<double> { 169, 172, 176, 180 }),
+            FieldExtractor = (e) => e.Height
         };
         public static LinguisticVariable heightHigh = new LinguisticVariable
         {
             Name = "Wysoki",
             MemberToExtract = "Wzrost",
             Extractor = e => new RectangularFunction(new List<double> { 179, 182, 186, 192 }).GetMembership(e.Height),
-                MembershipFunction = new RectangularFunction(new List<double> { 179, 182, 186, 192 }),
-                FieldExtractor = (e) => e.Height
+            MembershipFunction = new RectangularFunction(new List<double> { 179, 182, 186, 192 }),
+            FieldExtractor = (e) => e.Height
         };
         public static LinguisticVariable heightVeryHigh = new LinguisticVariable
         {
             Name = "Bardzo wysoki",
             MemberToExtract = "Wzrost",
             Extractor = e => new RectangularFunction(new List<double> { 191, 196, 205, 205 }).GetMembership(e.Height),
-                MembershipFunction = new RectangularFunction(new List<double> { 191, 196, 205, 205 }),
-                FieldExtractor = (e) => e.Height
+            MembershipFunction = new RectangularFunction(new List<double> { 191, 196, 205, 205 }),
+            FieldExtractor = (e) => e.Height
         };
         #endregion
 
@@ -94,32 +94,32 @@ namespace Logic
             Name = "Niska",
             MemberToExtract = "Waga",
             Extractor = e => new RectangularFunction(new List<double> { 50, 55, 63, 68 }).GetMembership(e.Weight),
-                MembershipFunction = new RectangularFunction(new List<double> { 50, 59, 66, 73 }),
-                FieldExtractor = (e) => e.Weight
+            MembershipFunction = new RectangularFunction(new List<double> { 50, 59, 66, 73 }),
+            FieldExtractor = (e) => e.Weight
         };
         public static LinguisticVariable weightNormal = new LinguisticVariable
         {
             Name = "Standardowa",
             MemberToExtract = "Waga",
             Extractor = e => new RectangularFunction(new List<double> { 72, 77, 79, 84 }).GetMembership(e.Weight),
-                MembershipFunction = new RectangularFunction(new List<double> { 72, 77, 79, 84 }),
-                FieldExtractor = (e) => e.Weight
+            MembershipFunction = new RectangularFunction(new List<double> { 72, 77, 79, 84 }),
+            FieldExtractor = (e) => e.Weight
         };
         public static LinguisticVariable weightPortly = new LinguisticVariable
         {
             Name = "Postawna",
             MemberToExtract = "Waga",
             Extractor = e => new RectangularFunction(new List<double> { 83, 86, 89, 91 }).GetMembership(e.Weight),
-                MembershipFunction = new RectangularFunction(new List<double> { 83, 86, 89, 91 }),
-                FieldExtractor = (e) => e.Weight
+            MembershipFunction = new RectangularFunction(new List<double> { 83, 86, 89, 91 }),
+            FieldExtractor = (e) => e.Weight
         };
         public static LinguisticVariable weightHeavy = new LinguisticVariable
         {
             Name = "Ciężka",
             MemberToExtract = "Waga",
             Extractor = e => new RectangularFunction(new List<double> { 90, 98, 110, 110 }).GetMembership(e.Weight),
-                MembershipFunction = new RectangularFunction(new List<double> { 90, 98, 110, 110 }),
-                FieldExtractor = (e) => e.Weight
+            MembershipFunction = new RectangularFunction(new List<double> { 90, 98, 110, 110 }),
+            FieldExtractor = (e) => e.Weight
         };
         #endregion
 
@@ -129,24 +129,24 @@ namespace Logic
             Name = "Niskie",
             MemberToExtract = "Tempo",
             Extractor = e => new RectangularFunction(new List<double> { 0, 15, 27, 35 }).GetMembership(e.Pace),
-                MembershipFunction = new RectangularFunction(new List<double> { 0, 15, 27, 35 }),
-                FieldExtractor = (e) => e.Pace
+            MembershipFunction = new RectangularFunction(new List<double> { 0, 15, 27, 35 }),
+            FieldExtractor = (e) => e.Pace
         };
         public static LinguisticVariable paceAverage = new LinguisticVariable
         {
             Name = "Średnie",
             MemberToExtract = "Tempo",
             Extractor = e => new RectangularFunction(new List<double> { 33, 46, 58, 66 }).GetMembership(e.Pace),
-                MembershipFunction = new RectangularFunction(new List<double> { 33, 46, 58, 66 }),
-                FieldExtractor = (e) => e.Pace
+            MembershipFunction = new RectangularFunction(new List<double> { 33, 46, 58, 66 }),
+            FieldExtractor = (e) => e.Pace
         };
         public static LinguisticVariable paceHigh = new LinguisticVariable
         {
             Name = "Wysokie",
             MemberToExtract = "Tempo",
             Extractor = e => new RectangularFunction(new List<double> { 65, 79, 88, 97 }).GetMembership(e.Pace),
-                MembershipFunction = new RectangularFunction(new List<double> { 65, 79, 88, 97 }),
-                FieldExtractor = (e) => e.Pace
+            MembershipFunction = new RectangularFunction(new List<double> { 65, 79, 88, 97 }),
+            FieldExtractor = (e) => e.Pace
         };
 
         #endregion
@@ -157,24 +157,24 @@ namespace Logic
             Name = "Słabe",
             MemberToExtract = "Przyspieszenie",
             Extractor = e => new RectangularFunction(new List<double> { 13, 25, 29, 35 }).GetMembership(e.Acceleration),
-                MembershipFunction = new RectangularFunction(new List<double> { 13, 25, 29, 35 }),
-                FieldExtractor = (e) => e.Acceleration
+            MembershipFunction = new RectangularFunction(new List<double> { 13, 25, 29, 35 }),
+            FieldExtractor = (e) => e.Acceleration
         };
         public static LinguisticVariable accelerationNormal = new LinguisticVariable
         {
             Name = "Przeciętne",
             MemberToExtract = "Przyspieszenie",
             Extractor = e => new RectangularFunction(new List<double> { 33, 46, 58, 66 }).GetMembership(e.Acceleration),
-                MembershipFunction = new RectangularFunction(new List<double> { 33, 46, 58, 66 }),
-                FieldExtractor = (e) => e.Acceleration
+            MembershipFunction = new RectangularFunction(new List<double> { 33, 46, 58, 66 }),
+            FieldExtractor = (e) => e.Acceleration
         };
         public static LinguisticVariable accelerationGood = new LinguisticVariable
         {
             Name = "Dobre",
             MemberToExtract = "Przyspieszenie",
             Extractor = e => new RectangularFunction(new List<double> { 65, 79, 88, 98 }).GetMembership(e.Acceleration),
-                MembershipFunction = new RectangularFunction(new List<double> { 65, 79, 88, 98 }),
-                FieldExtractor = (e) => e.Acceleration
+            MembershipFunction = new RectangularFunction(new List<double> { 65, 79, 88, 98 }),
+            FieldExtractor = (e) => e.Acceleration
         };
 
         #endregion
@@ -185,24 +185,24 @@ namespace Logic
             Name = "Słaba",
             MemberToExtract = "Prędkość",
             Extractor = e => new RectangularFunction(new List<double> { 12, 25, 29, 37 }).GetMembership(e.SprintSpeed),
-                MembershipFunction = new RectangularFunction(new List<double> { 12, 25, 29, 37 }),
-                FieldExtractor = (e) => e.SprintSpeed
+            MembershipFunction = new RectangularFunction(new List<double> { 12, 25, 29, 37 }),
+            FieldExtractor = (e) => e.SprintSpeed
         };
         public static LinguisticVariable sprintSpeedNormal = new LinguisticVariable
         {
             Name = "Przeciętna",
             MemberToExtract = "Prędkość",
             Extractor = e => new RectangularFunction(new List<double> { 36, 46, 58, 69 }).GetMembership(e.SprintSpeed),
-                MembershipFunction = new RectangularFunction(new List<double> { 36, 46, 58, 69 }),
-                FieldExtractor = (e) => e.SprintSpeed
+            MembershipFunction = new RectangularFunction(new List<double> { 36, 46, 58, 69 }),
+            FieldExtractor = (e) => e.SprintSpeed
         };
         public static LinguisticVariable sprintSpeedHigh = new LinguisticVariable
         {
             Name = "Dobra",
             MemberToExtract = "Prędkość",
             Extractor = e => new RectangularFunction(new List<double> { 67, 79, 88, 97 }).GetMembership(e.SprintSpeed),
-                MembershipFunction = new RectangularFunction(new List<double> { 67, 79, 88, 97 }),
-                FieldExtractor = (e) => e.SprintSpeed
+            MembershipFunction = new RectangularFunction(new List<double> { 67, 79, 88, 97 }),
+            FieldExtractor = (e) => e.SprintSpeed
         };
 
         #endregion
@@ -213,24 +213,24 @@ namespace Logic
             Name = "Słaby",
             MemberToExtract = "Dribbling",
             Extractor = e => new RectangularFunction(new List<double> { 0, 15, 27, 37 }).GetMembership(e.Dribbling),
-                MembershipFunction = new RectangularFunction(new List<double> { 0, 15, 27, 37 }),
-                FieldExtractor = (e) => e.Dribbling
+            MembershipFunction = new RectangularFunction(new List<double> { 0, 15, 27, 37 }),
+            FieldExtractor = (e) => e.Dribbling
         };
         public static LinguisticVariable dribblingNormal = new LinguisticVariable
         {
             Name = "Przeciętny",
             MemberToExtract = "Dribbling",
             Extractor = e => new RectangularFunction(new List<double> { 36, 46, 58, 69 }).GetMembership(e.Dribbling),
-                MembershipFunction = new RectangularFunction(new List<double> { 36, 46, 58, 69 }),
-                FieldExtractor = (e) => e.Dribbling
+            MembershipFunction = new RectangularFunction(new List<double> { 36, 46, 58, 69 }),
+            FieldExtractor = (e) => e.Dribbling
         };
         public static LinguisticVariable dribblingGood = new LinguisticVariable
         {
             Name = "Dobry",
             MemberToExtract = "Dribbling",
             Extractor = e => new RectangularFunction(new List<double> { 67, 79, 88, 97 }).GetMembership(e.Dribbling),
-                MembershipFunction = new RectangularFunction(new List<double> { 67, 79, 88, 97 }),
-                FieldExtractor = (e) => e.Dribbling
+            MembershipFunction = new RectangularFunction(new List<double> { 67, 79, 88, 97 }),
+            FieldExtractor = (e) => e.Dribbling
         };
 
         #endregion
@@ -241,24 +241,24 @@ namespace Logic
             Name = "Słaba",
             MemberToExtract = "Zręczność",
             Extractor = e => new RectangularFunction(new List<double> { 14, 21, 27, 37 }).GetMembership(e.Agility),
-                MembershipFunction = new RectangularFunction(new List<double> { 14, 21, 27, 37 }),
-                FieldExtractor = (e) => e.Agility
+            MembershipFunction = new RectangularFunction(new List<double> { 14, 21, 27, 37 }),
+            FieldExtractor = (e) => e.Agility
         };
         public static LinguisticVariable agilityNormal = new LinguisticVariable
         {
             Name = "Przeciętna",
             MemberToExtract = "Zręczność",
             Extractor = e => new RectangularFunction(new List<double> { 36, 46, 58, 69 }).GetMembership(e.Agility),
-                MembershipFunction = new RectangularFunction(new List<double> { 36, 46, 58, 69 }),
-                FieldExtractor = (e) => e.Agility
+            MembershipFunction = new RectangularFunction(new List<double> { 36, 46, 58, 69 }),
+            FieldExtractor = (e) => e.Agility
         };
         public static LinguisticVariable agilityGood = new LinguisticVariable
         {
             Name = "Dobra",
             MemberToExtract = "Zręczność",
             Extractor = e => new RectangularFunction(new List<double> { 67, 79, 88, 98 }).GetMembership(e.Agility),
-                MembershipFunction = new RectangularFunction(new List<double> { 67, 79, 88, 98 }),
-                FieldExtractor = (e) => e.Agility
+            MembershipFunction = new RectangularFunction(new List<double> { 67, 79, 88, 98 }),
+            FieldExtractor = (e) => e.Agility
         };
 
         #endregion
@@ -269,24 +269,24 @@ namespace Logic
             Name = "Słaby",
             MemberToExtract = "Balans",
             Extractor = e => new RectangularFunction(new List<double> { 16, 21, 29, 40 }).GetMembership(e.Balance),
-                MembershipFunction = new RectangularFunction(new List<double> { 16, 21, 29, 40 }),
-                FieldExtractor = (e) => e.Balance
+            MembershipFunction = new RectangularFunction(new List<double> { 16, 21, 29, 40 }),
+            FieldExtractor = (e) => e.Balance
         };
         public static LinguisticVariable balanceNormal = new LinguisticVariable
         {
             Name = "Przeciętny",
             MemberToExtract = "Balans",
             Extractor = e => new RectangularFunction(new List<double> { 38, 46, 58, 72 }).GetMembership(e.Balance),
-                MembershipFunction = new RectangularFunction(new List<double> { 38, 46, 58, 72 }),
-                FieldExtractor = (e) => e.Balance
+            MembershipFunction = new RectangularFunction(new List<double> { 38, 46, 58, 72 }),
+            FieldExtractor = (e) => e.Balance
         };
         public static LinguisticVariable balanceGood = new LinguisticVariable
         {
             Name = "Dobry",
             MemberToExtract = "Balans",
             Extractor = e => new RectangularFunction(new List<double> { 71, 79, 88, 99 }).GetMembership(e.Balance),
-                MembershipFunction = new RectangularFunction(new List<double> { 71, 79, 88, 99 }),
-                FieldExtractor = (e) => e.Balance
+            MembershipFunction = new RectangularFunction(new List<double> { 71, 79, 88, 99 }),
+            FieldExtractor = (e) => e.Balance
         };
 
         #endregion
@@ -297,24 +297,24 @@ namespace Logic
             Name = "Wolne",
             MemberToExtract = "Reakcje",
             Extractor = e => new RectangularFunction(new List<double> { 30, 37, 43, 47 }).GetMembership(e.Reactions),
-                MembershipFunction = new RectangularFunction(new List<double> { 30, 37, 43, 47 }),
-                FieldExtractor = (e) => e.Reactions
+            MembershipFunction = new RectangularFunction(new List<double> { 30, 37, 43, 47 }),
+            FieldExtractor = (e) => e.Reactions
         };
         public static LinguisticVariable reactionsNormal = new LinguisticVariable
         {
             Name = "Przeciętne",
             MemberToExtract = "Reakcje",
             Extractor = e => new RectangularFunction(new List<double> { 46, 59, 66, 72 }).GetMembership(e.Reactions),
-                MembershipFunction = new RectangularFunction(new List<double> { 46, 59, 66, 72 }),
-                FieldExtractor = (e) => e.Reactions
+            MembershipFunction = new RectangularFunction(new List<double> { 46, 59, 66, 72 }),
+            FieldExtractor = (e) => e.Reactions
         };
         public static LinguisticVariable reactionsGood = new LinguisticVariable
         {
             Name = "Szybkie",
             MemberToExtract = "Reakcje",
             Extractor = e => new RectangularFunction(new List<double> { 71, 79, 88, 96 }).GetMembership(e.Reactions),
-                MembershipFunction = new RectangularFunction(new List<double> { 71, 79, 88, 96 }),
-                FieldExtractor = (e) => e.Reactions
+            MembershipFunction = new RectangularFunction(new List<double> { 71, 79, 88, 96 }),
+            FieldExtractor = (e) => e.Reactions
         };
 
         #endregion
@@ -325,32 +325,32 @@ namespace Logic
             Name = "Słaba",
             MemberToExtract = "Kontrola piłki",
             Extractor = e => new RectangularFunction(new List<double> { 3, 14, 23, 26 }).GetMembership(e.BallControl),
-                MembershipFunction = new RectangularFunction(new List<double> { 3, 14, 23, 26 }),
-                FieldExtractor = (e) => e.BallControl
+            MembershipFunction = new RectangularFunction(new List<double> { 3, 14, 23, 26 }),
+            FieldExtractor = (e) => e.BallControl
         };
         public static LinguisticVariable ballControlNormal = new LinguisticVariable
         {
             Name = "Przeciętna",
             MemberToExtract = "Kontrola piłki",
             Extractor = e => new RectangularFunction(new List<double> { 25, 39, 48, 57 }).GetMembership(e.BallControl),
-                MembershipFunction = new RectangularFunction(new List<double> { 25, 39, 48, 57 }),
-                FieldExtractor = (e) => e.BallControl
+            MembershipFunction = new RectangularFunction(new List<double> { 25, 39, 48, 57 }),
+            FieldExtractor = (e) => e.BallControl
         };
         public static LinguisticVariable ballControlGood = new LinguisticVariable
         {
             Name = "Dobra",
             MemberToExtract = "Kontrola piłki",
             Extractor = e => new RectangularFunction(new List<double> { 56, 63, 69, 75 }).GetMembership(e.BallControl),
-                MembershipFunction = new RectangularFunction(new List<double> { 56, 63, 69, 75 }),
-                FieldExtractor = (e) => e.BallControl
+            MembershipFunction = new RectangularFunction(new List<double> { 56, 63, 69, 75 }),
+            FieldExtractor = (e) => e.BallControl
         };
         public static LinguisticVariable ballControlVeryGood = new LinguisticVariable
         {
             Name = "Bardzo dobra",
             MemberToExtract = "Kontrola piłki",
             Extractor = e => new RectangularFunction(new List<double> { 74, 81, 88, 99 }).GetMembership(e.BallControl),
-                MembershipFunction = new RectangularFunction(new List<double> { 74, 81, 88, 99 }),
-                FieldExtractor = (e) => e.BallControl
+            MembershipFunction = new RectangularFunction(new List<double> { 74, 81, 88, 99 }),
+            FieldExtractor = (e) => e.BallControl
         };
 
         #endregion
@@ -361,24 +361,24 @@ namespace Logic
             Name = "Słabe",
             MemberToExtract = "Opanowanie",
             Extractor = e => new RectangularFunction(new List<double> { 3, 15, 24, 32 }).GetMembership(e.Composure),
-                MembershipFunction = new RectangularFunction(new List<double> { 3, 15, 24, 32 }),
-                FieldExtractor = (e) => e.Composure
+            MembershipFunction = new RectangularFunction(new List<double> { 3, 15, 24, 32 }),
+            FieldExtractor = (e) => e.Composure
         };
         public static LinguisticVariable composureNormal = new LinguisticVariable
         {
             Name = "Zadowalające",
             MemberToExtract = "Opanowanie",
             Extractor = e => new RectangularFunction(new List<double> { 31, 44, 57, 66 }).GetMembership(e.Composure),
-                MembershipFunction = new RectangularFunction(new List<double> { 31, 44, 57, 66 }),
-                FieldExtractor = (e) => e.Composure
+            MembershipFunction = new RectangularFunction(new List<double> { 31, 44, 57, 66 }),
+            FieldExtractor = (e) => e.Composure
         };
         public static LinguisticVariable composureGood = new LinguisticVariable
         {
             Name = "Bardzo dobre",
             MemberToExtract = "Opanowanie",
             Extractor = e => new RectangularFunction(new List<double> { 65, 75, 88, 97 }).GetMembership(e.Composure),
-                MembershipFunction = new RectangularFunction(new List<double> { 65, 75, 88, 97 }),
-                FieldExtractor = (e) => e.Composure
+            MembershipFunction = new RectangularFunction(new List<double> { 65, 75, 88, 97 }),
+            FieldExtractor = (e) => e.Composure
         };
 
         #endregion
@@ -389,24 +389,24 @@ namespace Logic
             Name = "Słaba",
             MemberToExtract = "Celność",
             Extractor = e => new RectangularFunction(new List<double> { 3, 15, 24, 32 }).GetMembership(e.Shooting),
-                MembershipFunction = new RectangularFunction(new List<double> { 3, 15, 24, 32 }),
-                FieldExtractor = (e) => e.Shooting
+            MembershipFunction = new RectangularFunction(new List<double> { 3, 15, 24, 32 }),
+            FieldExtractor = (e) => e.Shooting
         };
         public static LinguisticVariable shootingNormal = new LinguisticVariable
         {
             Name = "Przeciętna",
             MemberToExtract = "Celność",
             Extractor = e => new RectangularFunction(new List<double> { 31, 44, 57, 66 }).GetMembership(e.Shooting),
-                MembershipFunction = new RectangularFunction(new List<double> { 31, 44, 57, 66 }),
-                FieldExtractor = (e) => e.Shooting
+            MembershipFunction = new RectangularFunction(new List<double> { 31, 44, 57, 66 }),
+            FieldExtractor = (e) => e.Shooting
         };
         public static LinguisticVariable shootingGood = new LinguisticVariable
         {
             Name = "Dobra",
             MemberToExtract = "Celność",
             Extractor = e => new RectangularFunction(new List<double> { 65, 75, 88, 97 }).GetMembership(e.Shooting),
-                MembershipFunction = new RectangularFunction(new List<double> { 65, 75, 88, 97 }),
-                FieldExtractor = (e) => e.Shooting
+            MembershipFunction = new RectangularFunction(new List<double> { 65, 75, 88, 97 }),
+            FieldExtractor = (e) => e.Shooting
         };
 
         #endregion
@@ -417,8 +417,8 @@ namespace Logic
             Name = "Słabe",
             MemberToExtract = "Ustawianie się",
             Extractor = e => new RectangularFunction(new List<double> { 3, 15, 24, 32 }).GetMembership(e.Positioning),
-                MembershipFunction = new RectangularFunction(new List<double> { 3, 15, 24, 32 }),
-                FieldExtractor = (e) => e.Positioning
+            MembershipFunction = new RectangularFunction(new List<double> { 3, 15, 24, 32 }),
+            FieldExtractor = (e) => e.Positioning
         };
         public static LinguisticVariable positioningNormal = new LinguisticVariable
         {
@@ -445,20 +445,20 @@ namespace Logic
         {
             return new ObservableCollection<LinguisticVariable>
             {
-                ageYoung, ageYoungAdult, ageAdult, ageOld,
-                heightVeryShort, heightShort, heightAverage, heightHigh, heightVeryHigh,
-                weightLight, weightNormal, weightPortly, weightHeavy,
-                paceAverage, paceHigh, paceLow,
-                accelerationBad, accelerationGood, accelerationNormal,
-                sprintSpeedHigh, sprintSpeedLow, sprintSpeedNormal,
-                dribblingBad, dribblingGood, dribblingNormal,
-                agilityBad, agilityGood, agilityNormal,
-                balanceBad, balanceGood, balanceNormal,
-                reactionsGood, reactionsNormal, reactionsSlow,
-                ballControlBad, ballControlGood, ballControlNormal, ballControlVeryGood,
-                composureBad, composureGood, composureNormal,
-                shootingBad, shootingGood, shootingNormal,
-                positioningBad, positioningGood, positioningNormal
+            ageYoung, ageYoungAdult, ageAdult, ageOld,
+            heightVeryShort, heightShort, heightAverage, heightHigh, heightVeryHigh,
+            weightLight, weightNormal, weightPortly, weightHeavy,
+            paceAverage, paceHigh, paceLow,
+            accelerationBad, accelerationGood, accelerationNormal,
+            sprintSpeedHigh, sprintSpeedLow, sprintSpeedNormal,
+            dribblingBad, dribblingGood, dribblingNormal,
+            agilityBad, agilityGood, agilityNormal,
+            balanceBad, balanceGood, balanceNormal,
+            reactionsGood, reactionsNormal, reactionsSlow,
+            ballControlBad, ballControlGood, ballControlNormal, ballControlVeryGood,
+            composureBad, composureGood, composureNormal,
+            shootingBad, shootingGood, shootingNormal,
+            positioningBad, positioningGood, positioningNormal
             };
         }
     }
