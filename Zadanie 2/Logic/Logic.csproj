@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="And.cs" />
     <Compile Include="LinguisticVariable.cs" />
+    <Compile Include="Measures.cs" />
     <Compile Include="MembershipFunctions\IMembershipFunction.cs" />
     <Compile Include="Database\FifaPlayer.cs" />
     <Compile Include="MembershipFunctions\RectangularFunction.cs" />
