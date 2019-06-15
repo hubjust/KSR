@@ -10,10 +10,6 @@ namespace Logic.Database
     [Table(Name = "FIFA19PlayerDB")]
     public partial class FifaPlayer
     {
-        private string club;
-        private string league;
-        private string nationality;
-        private string position;
         private int age;
         private int height;
         private int weight;
@@ -22,76 +18,12 @@ namespace Logic.Database
         private int sprintSpeed;
         private int dribbling;
         private int agility;
-        private int  balance;
+        private int balance;
         private int reactions;
         private int ballControl;
         private int composure;
         private int shooting;
         private int positioning;
-
-        [Column(Name = "Club")]
-        public string Club
-        {
-            get
-            {
-                return club;
-            }
-            set
-            {
-                if ((this.club != value))
-                {
-                    this.club = value;
-                }
-            }
-        }
-
-        [Column(Name = "League")]
-        public string League
-        {
-            get
-            {
-                return league;
-            }
-            set
-            {
-                if ((this.league != value))
-                {
-                    this.league = value;
-                }
-            }
-        }
-
-        [Column(Name = "Nationality")]
-        public string Nationality
-        {
-            get
-            {
-                return nationality;
-            }
-            set
-            {
-                if ((this.nationality != value))
-                {
-                    this.nationality = value;
-                }
-            }
-        }
-
-        [Column(Name = "Position")]
-        public string Position
-        {
-            get
-            {
-                return position;
-            }
-            set
-            {
-                if ((this.position != value))
-                {
-                    this.position = value;
-                }
-            }
-        }
 
         [Column(Name = "Age")]
         public int Age
