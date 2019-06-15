@@ -1,173 +1,103 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using System.Windows.Forms;
-using System;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 using Logic;
-using Logic.Metrics;
-using Logic.Extractors;
+using Logic.Database;
 
 namespace ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
         public ICommand QuitCommand { get; set; }
-        public ICommand LoadArticlesCommand { get; set; }
-        public ICommand AnalyzeArticlesCommand { get; set; }
+        public ICommand CreateMessagesCommand { get; set; }
+        public ICommand CreateComplexMessagesCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
 
-        private List<Article> articles;
-        private List<Article> compatibleArticles;
-        private Tuple<List<Article>, List<Article>> separatedArticles;
-        private Metric metric;
+        private DbDataContext dataContext;
 
-        #region Fields 
+        public List<LinguisticVariable> QualifierList { get; set; }
+        public List<LinguisticVariable> FirstSummarizerList { get; set; }
+        public List<LinguisticVariable> SecondSummarizerList { get; set; }
 
-        private FeatureExtractions featureExtractions = new FeatureExtractions();
+        public LinguisticVariable SelectedQualifier { get; set; }
+        public LinguisticVariable SelectedFirstSummarizer { get; set; }
+        public LinguisticVariable SelectedSecondSummarizer { get; set; }
 
-        public int LoadedArticlesCounter { get; set; }
+        public ObservableCollection<LinguisticVariable> LinguisticVariables { get; set; }
 
-        #region RadioButtons
+        public LinguisticVariable SelectedFunction { get; set; }
 
-        public bool MetricRadioButtonEuclidean { get; set; }
-        public bool MetricRadioButtonChebyshew { get; set; }
-        public bool MetricRadioButtonManhattan { get; set; }
-        public bool MeasurementRadioButtonTF { get; set; }
-        public bool MeasurementRadioButtonIDF { get; set; }
-        private bool _MeasurementRadioButtonOwn;
-        public bool MeasurementRadioButtonOwn
+
+        public bool ConjunctionAndRB { get; set; }
+        public bool ConjunctionOrRB { get; set; }
+
+        public string Output
         {
-            get { return _MeasurementRadioButtonOwn; }
-            set
+            get => output;
+            private set
             {
-                _MeasurementRadioButtonOwn = value;
-                OnPropertyChanged(nameof(MeasurementRadioButtonOwn));
+                output = value;
+                OnPropertyChanged("Output");
             }
         }
+        private string output;
 
 
-        #endregion
-
-        #region Checkbox
-
-        public bool WordsCounterCheckBox { get; set; }
-        public bool ShortWordsCounterCheckBox { get; set; }
-        public bool MediumWordsCounterCheckBox { get; set; }
-        public bool LongWordsCounterCheckBox { get; set; }
-        public bool UniqueWordsCounterCheckBox { get; set; }
-        public bool FirstLitterUpperCaseCheckBox { get; set; }
-        public bool WordsUpperCaseCheckBox { get; set; }
-
-        #endregion
-
-        #region Sliders
-
-        public int TrainingSetSlider { get; set; }
-        public int TrainingSetSliderValue
+        public MainViewModel(DbDataContext dataContext)
         {
-            get => TrainingSetSlider;
-            set => TrainingSetSlider = value;
+            //this.dataContext = dataContext;
+            //LinguisticVariables = Variable.getAllVariables();
+            //quantifiers = Quantifier.getAllQuantifiers();
         }
-
-        public int KNNSlider { get; set; }
-        public int KNNSliderValue
-        {
-            get => KNNSlider;
-            set => KNNSlider = value;
-        }
-
-        #endregion
-
-        public List<string> CategoryList { get; set; }
-        public string SelectedCategory { get; set; }
-
-        public int AnalyzedArticlesCounter { get; set; }
-        public double CorrectlyMatchedArticles { get; set; }
-        public List<Article> AnalyzedArticles { get; set; }
-
-        #endregion
 
         public MainViewModel()
         {
-            MetricRadioButtonEuclidean = true;
+            ConjunctionAndRB = true;
 
-            MeasurementRadioButtonTF = true;
+            QualifierList = Variable.getAllVariables().ToList();
+            SelectedQualifier = QualifierList[0];
 
-            WordsCounterCheckBox = true;
-            ShortWordsCounterCheckBox = true;
-            MediumWordsCounterCheckBox = true;
-            LongWordsCounterCheckBox = true;
-            UniqueWordsCounterCheckBox = true;
-            FirstLitterUpperCaseCheckBox = true;
-            WordsUpperCaseCheckBox = true;
+            FirstSummarizerList = Variable.getAllVariables().ToList();
+            SelectedQualifier = FirstSummarizerList[0];
 
-            TrainingSetSliderValue = 60;
+            SecondSummarizerList = Variable.getAllVariables().ToList();
+            SelectedSecondSummarizer = SecondSummarizerList[0];
 
-            KNNSliderValue = 2;
-
-            LoadArticlesCommand = new RelayCommand(LoadArticles);
-            AnalyzeArticlesCommand = new RelayCommand(AnalyzeArticles);
+            CreateMessagesCommand = new RelayCommand(SimpleMessages);
+            CreateComplexMessagesCommand = new RelayCommand(ComplexMessages);
             QuitCommand = new RelayCommand(Quit);
         }
 
-        private void LoadArticles()
+        private void SimpleMessages()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Sgm File(*.sgm)| *.sgm",
-                Multiselect = true
-            };
-            openFileDialog.ShowDialog();
-            string[] path = openFileDialog.FileNames;
-
-            articles = FileReader.GetArticlesFromFile(path).ToList();
-
-            LoadedArticlesCounter = articles.Count();
-
-            CategoryList = articles.SelectMany(article => article.Tags).Select(pair => pair.Key).Distinct().ToList();
-            SelectedCategory = CategoryList[0];
-
-            OnPropertyChanged(nameof(LoadedArticlesCounter));
-            OnPropertyChanged(nameof(CategoryList));
-            OnPropertyChanged(nameof(SelectedCategory));
-
-            MessageBox.Show("Wczytano artykuły");
+            CreateMessages();
         }
 
-        private void AnalyzeArticles()
+        private void ComplexMessages()
         {
-            compatibleArticles = CategoryCompatibilityChecker.CheckTags(articles, SelectedCategory);
+            CreateMessages(true);
+        }
 
-            featureExtractions.SetBools(MeasurementRadioButtonTF, MeasurementRadioButtonIDF, MeasurementRadioButtonOwn,
-                                        WordsCounterCheckBox, ShortWordsCounterCheckBox, MediumWordsCounterCheckBox,
-                                        LongWordsCounterCheckBox, UniqueWordsCounterCheckBox, FirstLitterUpperCaseCheckBox,
-                                        WordsUpperCaseCheckBox);
-            featureExtractions.Extract(compatibleArticles);
+        private void CreateMessages(bool isComplex = false)
+        {
+           
+        }
 
-            separatedArticles = Sets.SetTrainingAndTestSet(TrainingSetSliderValue, compatibleArticles);
+        private void Save()
+        {
+            string path = "savedData.txt";
 
-            try
+            if (!File.Exists(path))
             {
-                if (MetricRadioButtonEuclidean)
-                    metric = new Euclidean();
-
-                else if (MetricRadioButtonManhattan)
-                    metric = new Manhattan();
-
-                else if (MetricRadioButtonChebyshew)
-                    metric = new Chebyshev();
-
-                CorrectlyMatchedArticles = metric.Calculate(separatedArticles.Item1, separatedArticles.Item2, KNNSliderValue, SelectedCategory);
-                CorrectlyMatchedArticles = ((Math.Round(CorrectlyMatchedArticles, 3) * 100));
-                AnalyzedArticles = separatedArticles.Item2;
-
-                OnPropertyChanged(nameof(AnalyzedArticles));
-                OnPropertyChanged(nameof(CorrectlyMatchedArticles));
-                MessageBox.Show("Done");
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Błąd podczas analizowania artykułów");
+                File.WriteAllText(path, Output);
             }
         }
 
