@@ -11,8 +11,6 @@ using System.Windows.Input;
 
 using Logic;
 using Logic.Database;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 namespace ViewModel
 {
@@ -25,19 +23,18 @@ namespace ViewModel
 
         private DbDataContext dataContext;
 
-        private List<string> QualifierList;
-        private List<string> FirstSummarizerList;
-        private List<string> SecondSummarizerList;
+        public List<LinguisticVariable> QualifierList { get; set; }
+        public List<LinguisticVariable> FirstSummarizerList { get; set; }
+        public List<LinguisticVariable> SecondSummarizerList { get; set; }
 
         public LinguisticVariable SelectedQualifier { get; set; }
-        public LinguisticVariable SelectedSummarizer1 { get; set; }
-        public LinguisticVariable SelectedSummarizer2 { get; set; }
-        private ObservableCollection<LinguisticVariable> quantifiers;
+        public LinguisticVariable SelectedFirstSummarizer { get; set; }
+        public LinguisticVariable SelectedSecondSummarizer { get; set; }
+
         public ObservableCollection<LinguisticVariable> LinguisticVariables { get; set; }
 
         public LinguisticVariable SelectedFunction { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool ConjunctionAndRB { get; set; }
         public bool ConjunctionOrRB { get; set; }
@@ -56,19 +53,27 @@ namespace ViewModel
 
         public MainViewModel(DbDataContext dataContext)
         {
-            ConjunctionAndRB = true;
-
-            this.dataContext = dataContext;
-            LinguisticVariables = Variable.getAllVariables();
-            quantifiers = Quantifier.getAllQuantifiers();
-
-            CreateMessagesCommand = new RelayCommand(SimpleMessages);
-            CreateComplexMessagesCommand = new RelayCommand(ComplexMessages);
-            QuitCommand = new RelayCommand(Quit);
+            //this.dataContext = dataContext;
+            //LinguisticVariables = Variable.getAllVariables();
+            //quantifiers = Quantifier.getAllQuantifiers();
         }
 
         public MainViewModel()
         {
+            ConjunctionAndRB = true;
+
+            QualifierList = Variable.getAllVariables().ToList();
+            SelectedQualifier = QualifierList[0];
+
+            FirstSummarizerList = Variable.getAllVariables().ToList();
+            SelectedQualifier = FirstSummarizerList[0];
+
+            SecondSummarizerList = Variable.getAllVariables().ToList();
+            SelectedSecondSummarizer = SecondSummarizerList[0];
+
+            CreateMessagesCommand = new RelayCommand(SimpleMessages);
+            CreateComplexMessagesCommand = new RelayCommand(ComplexMessages);
+            QuitCommand = new RelayCommand(Quit);
         }
 
         private void SimpleMessages()
@@ -84,11 +89,6 @@ namespace ViewModel
         private void CreateMessages(bool isComplex = false)
         {
            
-        }
-
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         private void Save()

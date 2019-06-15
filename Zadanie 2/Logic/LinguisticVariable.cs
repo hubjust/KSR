@@ -7,13 +7,11 @@ namespace Logic
 {
     public class LinguisticVariable
     {
-        public string Name { get; set; }
+        public string QuantifierName { get; set; }
         public bool Absolute { get; set; }
         public string MemberToExtract { get; set; }
         public IMembershipFunction MembershipFunction { get; set; }
         public Func<FifaPlayer, double> Extractor { get; set; }
-
-        public string MemberAndName { get => MemberToExtract + ": " + Name; }
 
         public virtual double GetMembership(FifaPlayer player)
         {
@@ -71,5 +69,11 @@ namespace Logic
         {
 
         }
+
+        public override string ToString()
+        {
+            return QuantifierName + " " + MemberToExtract.ToUpper();
+        }
+
     }
 }
