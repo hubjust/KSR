@@ -12,25 +12,19 @@ namespace Logic
         public string MemberToExtract { get; set; }
         public IMembershipFunction MembershipFunction { get; set; }
         public Func<FifaPlayer, double> Extractor { get; set; }
-        public Func<FifaPlayer, double> FieldExtractor { get; set; }
-
-        //public double GetMembership(FifaPlayer player)
-        //{
-        //    return MembershipFunction.GetMembership(Extractor(player));
-        //}
 
         public string MemberAndName { get => MemberToExtract + ": " + Name; }
 
         public virtual double GetMembership(FifaPlayer player)
         {
-            return MembershipFunction.GetMembership(FieldExtractor(player));
+            return MembershipFunction.GetMembership(Extractor(player));
         }
 
         private List<FifaPlayer> Support(List<FifaPlayer> players, IMembershipFunction function)
         {
             List<FifaPlayer> result = new List<FifaPlayer>();
             players.ForEach((e) => {
-                if (function.GetMembership(FieldExtractor(e)) > 0)
+                if (function.GetMembership(Extractor(e)) > 0)
                 {
                     result.Add(e);
                 }
