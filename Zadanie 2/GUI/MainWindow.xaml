@@ -15,7 +15,7 @@
 
         <Menu Grid.ColumnSpan="2" VerticalAlignment="Top" Background="#282828" Height="25" >
             <MenuItem Header="Plik" Margin="5 0 0 0" Height="25" Foreground="White">
-                <MenuItem Header="Zapisz jako..." Foreground="Black" Command="{Binding QuitCommand}" />
+                <MenuItem Header="Zapisz jako..." Foreground="Black" Command="{Binding SaveCommand}" />
                 <MenuItem Header="Zamknij" Foreground="Black" Command="{Binding QuitCommand}" />
             </MenuItem>
             <MenuItem Header="Pomoc" Margin="5 0 0 0" Height="25" Foreground="White">
@@ -76,7 +76,7 @@
 
         <TabControl Grid.Column="1" Background="#454545" Margin="20 35 20 20" ItemContainerStyle="{DynamicResource TabItemStyle}" >
             <TabItem Header="Komunikaty">
-                <ListBox FontSize="12px" Background="#232323" Foreground="White"  ItemsSource="{Binding Messages}"/>
+                <TextBox FontSize="12px" Background="#232323" Foreground="White" Text="{Binding Messages}"/>
             </TabItem>
         </TabControl>
 

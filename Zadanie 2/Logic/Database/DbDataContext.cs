@@ -11,7 +11,7 @@ namespace Logic.Database
 {
     public partial class DbDataContext : DataContext
     {
-        public DbDataContext(string fileOrServerOrConnection) : base(fileOrServerOrConnection)
+        public DbDataContext(IDbConnection connection) : base(connection)
         {
         }
 

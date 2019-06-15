@@ -109,7 +109,7 @@ namespace Logic.Database
             }
         }
 
-        [Column(Name = "Height (cm)")]
+        [Column(Name = "Height(cm)")]
         public int Height
         {
             get
@@ -125,7 +125,7 @@ namespace Logic.Database
             }
         }
 
-        [Column(Name = "Weight (cm)")]
+        [Column(Name = "Weight(Kg)")]
         public int Weight
         {
             get
@@ -173,7 +173,7 @@ namespace Logic.Database
             }
         }
 
-        [Column(Name = "Sprint Speed")]
+        [Column(Name = "SprintSpeed")]
         public int SprintSpeed
         {
             get
@@ -189,7 +189,7 @@ namespace Logic.Database
             }
         }
 
-        [Column(Name = "Dribling")]
+        [Column(Name = "Dribbling")]
         public int Dribbling
         {
             get
@@ -253,7 +253,7 @@ namespace Logic.Database
             }
         }
 
-        [Column(Name = "Ball Control")]
+        [Column(Name = "BallControl")]
         public int BallControl
         {
             get
