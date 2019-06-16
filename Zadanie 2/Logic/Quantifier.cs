@@ -51,7 +51,7 @@ namespace Logic
         public static LinguisticVariable almostAll = new LinguisticVariable
         {
             QuantifierName = "Prawie każdy",
-            MembershipFunction = new TriangularFunction(0.85, 0.9, 1),
+            MembershipFunction = new TriangularFunction(0.85, 0.9, 1.05),
             Absolute = false
         };
 

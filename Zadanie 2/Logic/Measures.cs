@@ -9,28 +9,6 @@ namespace Logic
 {
     public class Measures
     {
-        public static double WeightedMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
-        {
-            //List<double> measureValues = new List<double>
-            //{
-            //    (8.0 / 11) * DegreeOfTruth(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfImprecision(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfCovering(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfAppropriateness(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * LengthOfSummary(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfQuantifierImprecision(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfQuantifierCardinality(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, players),
-            //    (3.0 / 110) * LengthOfQualifier(quantificator, qualifier, summarizer, players)
-            //};
-
-            //return measureValues.Sum();
-
-            return DegreeOfTruth(quantificator, qualifier, summarizer, players);
-        }
-
         // T1 - stopień prawdziwości
         public static double DegreeOfTruth(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
