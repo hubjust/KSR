@@ -73,9 +73,10 @@ namespace ViewModel
 
             foreach (LinguisticVariable quantifier in QuantifierList)
             {
-                string message = "";
+                string message = quantifier.QuantifierName + " piłkarzy posiadających/będących " + SelectedQualifier + " mają/są " + SelectedFirstSummarizer + "\n";
 
-                message += quantifier.QuantifierName + " piłakrzy posiadających/będących " + SelectedQualifier + " mają/są " + SelectedFirstSummarizer + "\n";
+                if(SelectedQualifier.QuantifierName == "Każdy")
+                    message = quantifier.QuantifierName + " piłkarzy mają/są " + SelectedFirstSummarizer + "\n";
 
                 message += "T1 = " + Math.Round(Measures.DegreeOfTruth(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
                 message += "T2 = " + Math.Round(Measures.DegreeOfImprecision(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
@@ -108,10 +109,11 @@ namespace ViewModel
 
             foreach (LinguisticVariable quantifier in QuantifierList)
             {
-                string message = "";
+                string message = quantifier.QuantifierName + " piłkarzy posiadających/będących " + SelectedQualifier + " mają/są " +
+                                 SelectedFirstSummarizer + ComplexSummarizer + SelectedSecondSummarizer + '\n';
 
-                message += quantifier.QuantifierName + " piłakrzy posiadających/będących " + SelectedQualifier + " mają/są " +
-                           SelectedFirstSummarizer + ComplexSummarizer + SelectedSecondSummarizer +'\n';
+                if (SelectedQualifier.QuantifierName == "Każdy")
+                    message = quantifier.QuantifierName + " piłkarzy mają/są " + SelectedFirstSummarizer + ComplexSummarizer + SelectedSecondSummarizer + '\n';
 
                 message += "T1 = " + Math.Round(Measures.DegreeOfTruth(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
                 message += "T2 = " + Math.Round(Measures.DegreeOfImprecision(ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";

@@ -84,7 +84,12 @@ namespace Logic
         // T6 -  stopień nieprecyzyjności kwantyfikatora
         public static double DegreeOfQuantifierImprecision(LinguisticVariable quantifier, List<FifaPlayer> players)
         {
+            //double result = quantifier.DegreeOfFuzziness(players);
 
+            //if (quantifier.Absolute)
+            //    result /= (double)players.Count;
+
+            //return 1 - result;
             return 1;
         }
 

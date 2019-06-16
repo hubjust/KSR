@@ -390,8 +390,15 @@ namespace Logic
             MembershipFunction = new RectangularFunction(65, 75, 88, 97)
             
         };
-
         #endregion
+
+        public static LinguisticVariable none = new LinguisticVariable
+        {
+            QuantifierName = "Każdy",
+            MemberToExtract = "",
+            StatExtractor = player => player.Age,
+            MembershipFunction = new RectangularFunction(0, 1, 99, 100)
+        };
 
         public static ObservableCollection<LinguisticVariable> getAllVariables()
         {
@@ -410,7 +417,8 @@ namespace Logic
             ballControlBad, ballControlGood, ballControlNormal, ballControlVeryGood,
             composureBad, composureGood, composureNormal,
             shootingBad, shootingGood, shootingNormal,
-            positioningBad, positioningGood, positioningNormal
+            positioningBad, positioningGood, positioningNormal,
+            none
             };
         }
     }

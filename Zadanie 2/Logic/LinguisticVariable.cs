@@ -41,16 +41,6 @@ namespace Logic
             return (double)Support(players).Count / (double)players.Count;
         }
 
-        public virtual List<double> DegreeOfFuzzinessForAllFunctions(List<FifaPlayer> players)
-        {
-            List<double> result = new List<double>();
-            foreach (var func in MembershipFunction.GetAllFunctions())
-            {
-                result.Add(DegreeOfFuzziness(players));
-            }
-            return result;
-        }
-
         public virtual double Cardinality()
         {
             return MembershipFunction.Cardinality();
