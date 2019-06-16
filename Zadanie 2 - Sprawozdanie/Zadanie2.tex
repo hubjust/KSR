@@ -257,7 +257,7 @@ Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w ob
 \section{Materiały i metody}
 
 \subsection{Baza danych}
-Do przeprowadzenia badań i generowania konkretnych podsumowań wykorzystaliśmy bazę danych dotyczącą przechowującą statystyki piłkarzy z gry Fifa 2019 [.Składa się ona z 15397 krotek znajdujących się w tabeli z 20 różnymi kolumnami - w ramach naszego projektu skorzystaliśmy z 13. Przedstawiamy je poniżej:
+Do przeprowadzenia badań i generowania konkretnych podsumowań wykorzystaliśmy bazę danych dotyczącą przechowującą statystyki piłkarzy z gry Fifa 2019 [4].Składa się ona z 15397 krotek znajdujących się w tabeli z 20 różnymi kolumnami - w ramach naszego projektu skorzystaliśmy z 13. Przedstawiamy je poniżej:
 
 \begin{itemize}
 	\item Wiek - wartości z przedziału [17-45]
@@ -506,7 +506,7 @@ Kwantyfikatory podzieliliśmy na względne i absolutne . Przedstawiamy je poniż
 		\hline
 		\hline 
 		Żaden & Trójkątna & 0 & 0 & 0.1 & - \\ 
-		Mniej niż ćwierć & Trapezoidalna & 0 & 0 & 0.2 & 0.25 \\
+		Mniej niż ćwierć & Trapezoidalna & 0 & 0 & 0.25 & 0.35 \\
 		Około jedna trzecia & Trójkątna & 0.23 & 0.33 & 0.43 & - \\
 		Około połowa & Trójkątna & 0.4 & 0.5 & 0.6 & - \\
 		Około dwie trzecie & Trójkątna & 0.56 & 0.66 & 0.76 & - \\
@@ -523,10 +523,11 @@ Kwantyfikatory podzieliliśmy na względne i absolutne . Przedstawiamy je poniż
 		\textbf{Etykieta} & \textbf{Funkcja przynależności} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
 		\hline
 		\hline 
-		Mniej niż 1000 & Trapezoidalna & 0 & 0 & 900 & 1000 \\ 
-		Około 4000 & Trójkątna & 3000 & 4000 & 5000 & - \\
-		Około 8000 & Trójkątna & 7000 & 8000 & 9000 & - \\
-		Więcej niż 1000 & Trapezoidalna & 9000 & 9990 & 10000 & 20000 \\
+		Mniej niż 100 & Trapezoidalna & 0 & 0 & 99 & 150 \\ 
+		Około 250 & Trójkątna & 150 & 250 & 350 & - \\
+		Około 500 & Trójkątna & 400 & 500 & 600 & - \\
+		Około 750 & Trójkątna & 650 & 750 & 850 & - \\
+		Więcej niż 100 & Trapezoidalna & 950 & 1000 & 15397 & 15397 \\
 		\hline
 	\end{tabular}
 	\caption{Przyporządkowane parametry dla kwantyfikatora absolutnego.}
@@ -561,12 +562,8 @@ Podczas klasyfikacji dla kategorii authors najważniejsza okazała się cecha od
 	
 \section{Wnioski}
 \begin{itemize}
-	\item Liczba k sąsiadów ma spory wpływ na skuteczność klasyfikacji, jednak nie ma jednej, optymalnej wartości - zmiana metryki, podziału zbiorów czy klasyfikowanych kategorii może spowodować obniżenie wyników dla stałego k.
-	\item Dla mniejszych zbiorów tekstowych lepiej sprawdzają się mniejsze wartości k sąsiadów, dla większych - wyższe wartości.
-	\item Metryka Czebyszewa nie powinna być wykorzystywana w klasyfikacji tekstów, gdyż osiąga bardzo słabe wyniki.
-	\item Istotny jest podział tekstów na zbiory testowe oraz treningowe. W przypadku zbyt małego zbioru treningowego osiągamy zjawisko niedouczenia, w przypadku zbyt dużego - przeuczenia.
-	\item Cechy odpowiedzialne za liczbę słów oraz liczbę krótkich słów (do 3 znaków)  nie sprawdzają się przy klasyfikacji tekstów.
-	\item Wektor cech powinien się składać z przynajmniej kilku cech, żeby osiągnąć większą skuteczność.
+	\item Należy dobierać precyzyjnie wartości przy funkcjach przynależności, aby uzyskać miarodajne wyniki.
+	\item Parametry dla kwantyfikatora absolutnego muszą być precyzyjnie dobrane to typu i rodzaju bazy. 
 \end{itemize}
 
 	
