@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
+using Microsoft.Win32;
 using Microsoft.Data.Sqlite;
 
 using Logic;
 using Logic.Database;
-using System;
+using System.Text;
 
 namespace ViewModel
 {
@@ -78,16 +81,16 @@ namespace ViewModel
                 if(SelectedQualifier.QuantifierName == "Każdy")
                     message = quantifier.QuantifierName + " piłkarzy mają/są " + SelectedFirstSummarizer + "\n";
 
-                message += "T1 = " + Math.Round(Measures.DegreeOfTruth(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T2 = " + Math.Round(Measures.DegreeOfImprecision(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T3 = " + Math.Round(Measures.DegreeOfCovering(SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T4 = " + Math.Round(Measures.DegreeOfAppropriateness(SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T5 = " + Math.Round(Measures.LengthOfSummary(SelectedFirstSummarizer), 3) + ", ";
-                message += "T6 = " + Math.Round(Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T7 = " + Math.Round(Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T8 = " + Math.Round(Measures.DegreeOfSummarizerCardinality(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
+                message += "T1 = " + Math.Round(Measures.DegreeOfTruth(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T2 = " + Math.Round(Measures.DegreeOfImprecision(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T3 = " + Math.Round(Measures.DegreeOfCovering(SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T4 = " + Math.Round(Measures.DegreeOfAppropriateness(SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T5 = " + Math.Round(Measures.LengthOfSummary(SelectedFirstSummarizer), 3) + "; ";
+                message += "T6 = " + Math.Round(Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T7 = " + Math.Round(Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T8 = " + Math.Round(Measures.DegreeOfSummarizerCardinality(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
                 message += "T11 = " + Math.Round(Measures.LengthOfQualifier(quantifier), 3) + '\n';
 
                 MessagesList.Add(message);
@@ -115,16 +118,16 @@ namespace ViewModel
                 if (SelectedQualifier.QuantifierName == "Każdy")
                     message = quantifier.QuantifierName + " piłkarzy mają/są " + SelectedFirstSummarizer + ComplexSummarizer + SelectedSecondSummarizer + '\n';
 
-                message += "T1 = " + Math.Round(Measures.DegreeOfTruth(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T2 = " + Math.Round(Measures.DegreeOfImprecision(ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T3 = " + Math.Round(Measures.DegreeOfCovering(SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T4 = " + Math.Round(Measures.DegreeOfAppropriateness(SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T5 = " + Math.Round(Measures.LengthOfSummary(ComplexSummarizer), 3) + ", ";
-                message += "T6 = " + Math.Round(Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T7 = " + Math.Round(Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T8 = " + Math.Round(Measures.DegreeOfSummarizerCardinality(ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
-                message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + ", ";
+                message += "T1 = " + Math.Round(Measures.DegreeOfTruth(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T2 = " + Math.Round(Measures.DegreeOfImprecision(ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T3 = " + Math.Round(Measures.DegreeOfCovering(SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T4 = " + Math.Round(Measures.DegreeOfAppropriateness(SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T5 = " + Math.Round(Measures.LengthOfSummary(ComplexSummarizer), 3) + "; ";
+                message += "T6 = " + Math.Round(Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T7 = " + Math.Round(Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T8 = " + Math.Round(Measures.DegreeOfSummarizerCardinality(ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
                 message += "T11 = " + Math.Round(Measures.LengthOfQualifier(quantifier), 3) + '\n';
 
                 MessagesList.Add(message);
@@ -136,16 +139,26 @@ namespace ViewModel
 
         private void Save()
         {
-            string path = "savedData.txt";
-            string message = "";
+            string messageToSave = "";
 
-            if (!File.Exists(path))
+            foreach (string m in MessagesList)
             {
-                foreach (string m in MessagesList)
-                    message += m;
+                string message = m.Replace("\n", ";");
+                message += '\n';
+                message = message.Replace(";\n", "\n");
+                message = Regex.Replace(message, @"T\d{1,2} = ", "");
 
-                File.WriteAllText(path, message);
+                messageToSave += message;
             }
+
+            SaveFileDialog dialog = new SaveFileDialog
+            {
+                Filter = "CSV file(.csv) | *.csv"
+            };
+
+            dialog.ShowDialog();
+            string path = dialog.FileName;
+            File.WriteAllText(path, messageToSave, Encoding.UTF8);
         }
 
         private void Quit()
