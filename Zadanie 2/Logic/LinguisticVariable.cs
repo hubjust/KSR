@@ -8,21 +8,26 @@ namespace Logic
     public class LinguisticVariable
     {
         public string QuantifierName { get; set; }
-        public bool Absolute { get; set; }
         public string MemberToExtract { get; set; }
+        public bool Absolute { get; set; }
         public IMembershipFunction MembershipFunction { get; set; }
-        public Func<FifaPlayer, double> Extractor { get; set; }
+        public Func<FifaPlayer, double> StatExtractor { get; set; }
 
         public virtual double GetMembership(FifaPlayer player)
         {
-            return MembershipFunction.GetMembership(Extractor(player));
+            return MembershipFunction.GetMembership(StatExtractor(player));
+        }
+
+        public virtual double GetMembership(double value)
+        {
+            return MembershipFunction.GetMembership(value);
         }
 
         private List<FifaPlayer> Support(List<FifaPlayer> players, IMembershipFunction function)
         {
             List<FifaPlayer> result = new List<FifaPlayer>();
             players.ForEach((e) => {
-                if (function.GetMembership(Extractor(e)) > 0)
+                if (function.GetMembership(StatExtractor(e)) > 0)
                 {
                     result.Add(e);
                 }
@@ -72,8 +77,7 @@ namespace Logic
 
         public override string ToString()
         {
-            return QuantifierName + " " + MemberToExtract.ToUpper();
+            return QuantifierName + " " + MemberToExtract;
         }
-
     }
 }

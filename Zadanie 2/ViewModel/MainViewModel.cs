@@ -32,7 +32,7 @@ namespace ViewModel
         public List<LinguisticVariable> QuantifierList { get; set; }
 
         public string Messages { get; set; }
-
+        public List<string> MessagesList { get; set; }
 
         public MainViewModel()
         {
@@ -77,9 +77,9 @@ namespace ViewModel
             {
                 Summaries.Add(new KeyValuePair<double, string>(
                     Measures.WeightedMeasure(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()),
-                    quantifier.QuantifierName + " people being/having " + SelectedQualifier.ToString() + " are/have " + SelectedFirstSummarizer.ToString()));
+                    quantifier.QuantifierName + " piłakrzy posiadających/będących " + SelectedQualifier.ToString() + " mają/są " + SelectedFirstSummarizer.ToString()));
             }
-            Summaries.Sort((x, y) => y.Key.CompareTo(x.Key));
+
             string temp = "";
             foreach (KeyValuePair<double, string> summary in Summaries)
             {

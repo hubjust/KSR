@@ -17,10 +17,7 @@ namespace Logic.Database
 
         public System.Data.Linq.Table<FifaPlayer> FifaPlayer
         {
-            get
-            {
-                return GetTable<FifaPlayer>();
-            }
+            get { return GetTable<FifaPlayer>(); }
         }
     }
 }

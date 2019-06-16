@@ -8,32 +8,24 @@ namespace Logic.MembershipFunctions
 {
     public class TriangularFunction : IMembershipFunction
     {
-        public List<double> Parameters
-        {
-            get => new List<double> { a, b, c };
-            set
-            {
-                if (value.Count != 3)
-                    throw new ArgumentException("Niepoprawna liczba argumentów funkcji trójkątnej");
-                a = value[0];
-                b = value[1];
-                c = value[2];
-            }
-        }
-        private double a, b, c;
+        private readonly double a, b, c;
 
-        public TriangularFunction(List<double> parameters)
+        public TriangularFunction(double a, double b, double c)
         {
-            Parameters = parameters;
+            this.a = a;
+            this.b = b;
+            this.c = c;
         }
 
         public double GetMembership(double x)
         {
-            if (x <= a)
+            if (x < a)
                 return 0.0;
-            else if (a <= x && x <= b)
+            else if (a <= x && x < b)
                 return (x - a) / (b - a);
-            else if (b <= x && x <= c)
+            else if (b == x)
+                return 1.0;
+            else if (b < x && x <= c)
                 return (c - x) / (c - b);
             else
                 return 0.0;

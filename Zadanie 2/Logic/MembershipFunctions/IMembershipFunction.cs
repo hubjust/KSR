@@ -10,7 +10,6 @@ namespace Logic.MembershipFunctions
     {
         double GetMembership(double x);
         List<IMembershipFunction> GetAllFunctions();
-        List<double> Parameters { get; set; }
         double Cardinality();
     }
 }

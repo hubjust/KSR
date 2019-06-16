@@ -11,37 +11,48 @@ namespace Logic
     {
         public static double WeightedMeasure(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            List<double> measureValues = new List<double>
-            {
-                (8.0 / 11) * DegreeOfTruth(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfImprecision(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfCovering(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfAppropriateness(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * LengthOfSummary(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfQuantifierImprecision(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfQuantifierCardinality(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, players),
-                (3.0 / 110) * LengthOfQualifier(quantificator, qualifier, summarizer, players)
-            };
+            //List<double> measureValues = new List<double>
+            //{
+            //    (8.0 / 11) * DegreeOfTruth(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfImprecision(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfCovering(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfAppropriateness(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * LengthOfSummary(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfQuantifierImprecision(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfQuantifierCardinality(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfSummarizerCardinality(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfQualifierImprecision(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * DegreeOfQualifierCardinality(quantificator, qualifier, summarizer, players),
+            //    (3.0 / 110) * LengthOfQualifier(quantificator, qualifier, summarizer, players)
+            //};
 
-            return measureValues.Sum();
+            //return measureValues.Sum();
+
+            return DegreeOfTruth(quantificator, qualifier, summarizer, players);
         }
 
-        //T1
+        // T1 - stopień prawdziwości
         public static double DegreeOfTruth(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            double up = 0;
-            double down = 0;
-            foreach (FifaPlayer e in players)
+            double result = 0;
+            double rUp = 0;
+            double rDown = 0;
+
+            foreach (FifaPlayer player in players)
             {
-                up += Math.Min(qualifier.GetMembership(e), summarizer.GetMembership(e));
-                down += qualifier.Extractor(e);
+                double a = qualifier.GetMembership(player);
+                double b = summarizer.GetMembership(player);
+
+                rUp += Math.Min(qualifier.GetMembership(player), summarizer.GetMembership(player));
+                rDown += qualifier.GetMembership(player);
             }
+
             if (quantificator.Absolute)
-                return quantificator.MembershipFunction.GetMembership(up);
-            return quantificator.MembershipFunction.GetMembership(up / down);
+                result = quantificator.GetMembership(rUp);
+            else
+                result = quantificator.GetMembership(rUp / rDown);
+
+            return result;
         }
 
         //T2
@@ -93,24 +104,25 @@ namespace Logic
             return Math.Abs(ret);
         }
 
-        //T5
+        // T5 -  długość podsumowania
         public static double LengthOfSummary(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            var nOfSummarizers = summarizer.GetAllLinguisticVariables().Count;
-            return 2 * Math.Pow(1.0 / 2.0, nOfSummarizers);
+            int summarizers = summarizer.GetAllLinguisticVariables().Count;
+            return 2 * Math.Pow(1.0 / 2.0, summarizers);
         }
 
         //T6
         public static double DegreeOfQuantifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            var ret = (quantificator.MembershipFunction.Parameters.Last()
-                       - quantificator.MembershipFunction.Parameters.First());
+            //var ret = (quantificator.MembershipFunction.Parameters.Last()
+            //           - quantificator.MembershipFunction.Parameters.First());
 
-            if (quantificator.Absolute)
-            {
-                ret /= (double)players.Count;
-            }
-            return 1 - ret;
+            //if (quantificator.Absolute)
+            //{
+            //    ret /= (double)players.Count;
+            //}
+            //return 1 - ret;
+            return 0;
         }
 
         //T7

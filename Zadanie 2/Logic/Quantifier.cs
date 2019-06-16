@@ -15,69 +15,69 @@ namespace Logic
         public static LinguisticVariable no = new LinguisticVariable
         {
             QuantifierName = "Żaden",
-            MembershipFunction = new TriangularFunction(new List<double> { 0, 0, 0.1 }),
+            MembershipFunction = new TriangularFunction(0, 0, 0.1),
             Absolute = false
         };
         public static LinguisticVariable lessThanQuarter = new LinguisticVariable
         {
             QuantifierName = "Mniej niż ćwierć",
-            MembershipFunction = new RectangularFunction(new List<double> { 0, 0, 0.2, 0.25 }),
+            MembershipFunction = new RectangularFunction(0, 0, 0.2, 0.25),
+            Absolute = false
+        };
+        public static LinguisticVariable aroundOneThirds = new LinguisticVariable
+        {
+            QuantifierName = "Około jedna trzecia",
+            MembershipFunction = new TriangularFunction(0.23, 0.33, 0.43),
             Absolute = false
         };
         public static LinguisticVariable aroundHalf = new LinguisticVariable
         {
             QuantifierName = "Około połowa",
-            MembershipFunction = new TriangularFunction(new List<double> { 0.4, 0.5, 0.6 }),
+            MembershipFunction = new TriangularFunction(0.4, 0.5, 0.6),
             Absolute = false
         };
         public static LinguisticVariable aroundTwoThirds = new LinguisticVariable
         {
-            QuantifierName = "Około trzy czwarte",
-            MembershipFunction = new TriangularFunction(new List<double> { 0.6, 0.65, 0.7 }),
+            QuantifierName = "Około dwie trzecie",
+            MembershipFunction = new TriangularFunction(0.56, 0.66, 0.76),
             Absolute = false
         };
         public static LinguisticVariable majority = new LinguisticVariable
         {
             QuantifierName = "Większość",
-            MembershipFunction = new TriangularFunction(new List<double> { 0.75, 0.83, 0.9 }),
+            MembershipFunction = new TriangularFunction(0.73, 0.83, 0.93),
             Absolute = false
         };
         public static LinguisticVariable almostAll = new LinguisticVariable
         {
             QuantifierName = "Prawie każdy",
-            MembershipFunction = new RectangularFunction(new List<double> { 0.85, 0.9, 1, 1 }),
+            MembershipFunction = new TriangularFunction(0.85, 0.9, 1),
             Absolute = false
         };
 
         //Absolutne
         public static LinguisticVariable lessThan1000 = new LinguisticVariable
         {
-            QuantifierName = "Mniej niż tysiąc",
-            MembershipFunction = new RectangularFunction(new List<double> { 0, 0, 990, 5000 }),
+            QuantifierName = "Mniej niż 1000",
+            MembershipFunction = new RectangularFunction(0, 0, 990, 2000),
             Absolute = true
         };
         public static LinguisticVariable around4000 = new LinguisticVariable
         {
             QuantifierName = "Około 4000",
-            MembershipFunction = new TriangularFunction(new List<double> { 3750, 4000, 4250 }),
+            MembershipFunction = new TriangularFunction(3000, 4000, 5000),
             Absolute = true
         };
         public static LinguisticVariable around9000 = new LinguisticVariable
         {
-            QuantifierName = "Około 9000",
-            MembershipFunction = new TriangularFunction(new List<double> { 8750, 9000, 9250}),
+            QuantifierName = "Około 8000",
+            MembershipFunction = new TriangularFunction(7000, 8000, 9000),
             Absolute = true
         };
-        public static LinguisticVariable around12000 = new LinguisticVariable
+        public static LinguisticVariable moreThan10000 = new LinguisticVariable
         {
-            QuantifierName = "Około 12000",
-            MembershipFunction = new TriangularFunction(new List<double> { 11750, 12000, 12250 }),
-            Absolute = true
-        };
-        public static LinguisticVariable moreThan14000 = new LinguisticVariable
-        {
-            QuantifierName = "Więcej niż 14000",
-            MembershipFunction = new RectangularFunction(new List<double> { 14000, 14500, 15000, 15000 }),
+            QuantifierName = "Więcej niż 10000",
+            MembershipFunction = new RectangularFunction(9000, 9990, 10000, 20000),
             Absolute = true
         };
 
@@ -96,8 +96,7 @@ namespace Logic
                 lessThan1000,
                 around4000,
                 around9000,
-                around12000,
-                moreThan14000
+                moreThan10000
             };
         }
     }
