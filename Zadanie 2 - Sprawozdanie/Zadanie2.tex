@@ -42,31 +42,18 @@ Celem zadania było aplikacji desktopowej, która posiada charakter doradczy, ge
 \section{Wprowadzenie}	
 Zagadnieniem jakim zajmowaliśmy się w ramach projektu była analiza działania lingwistycznych podsumowań baz danych na zbiorach rozmytych. Zbiór rozmyty jest podstawowym pojęciem wykorzystywanym przy naszym zadaniu, zatem przytoczmy jego definicję:
 
-\begin{definition}[Zbiór rozmyty typu I]
+\begin{definition}
 Niech \(\mathcal{X}\) będzie zbiorem, którego elementy interesują
-nas w sposób bezpośredni (czyli ,,zbiorem zwykłym'' znanym z teorii mnogości).
-Wówczas \emph{zbiorem rozmytym na uniwersum \(\mathcal{X}\)}
+nas w sposób bezpośredni, czyli jest zbiorem klasycznym znanym z teorii mnogości (dany element przynależy do zbioru lub nie przynależy).
+Wówczas \emph{zbiorem rozmytym opisanym w przestrzeni rozważań \(\mathcal{X}\)}
 nazywamy każdy zbiór \(A\) postaci:
 \[A = \bigcup_{x \in \mathcal{X}} \{(x,\, \mu_A(x))\},\]
 gdzie \(\mu_A(x) : \mathcal{X} \to [0,\,1]\) nazywamy \emph{funkcją
 przynależności do zbioru rozmytego \(A\)}.
 \end{definition}
 
-W celu określenia, czy element należy do zbioru wykorzystaliśmy funkcję przynależności. Określa ona stopień przynależności elementu do zbioru. W naszym projekcie skorzystaliśmy z funkcji przynależności trójkątnej oraz prostokątnej. Przytoczmy ich definicje:
-
-\begin{definition}[Zbiór rozmyty o prostokątnej funkcji przynależności]
-Zbiór rozmyty \(A\) typu I na uniwersum \(\mathbb{R}\) jest
-\emph{liczbą rozmytą prostokątną o parametrach \(a, b\)} wtedy i tylko
-wtedy, gdy \(a \leq b\) oraz:
-
-\[\mu_A(x) = \begin{cases}
-0                 & \mbox{gdy } x \in (-\infty,\, a], \\
-1                 & \mbox{gdy } x \in (a,\, b), \\
-0                 & \mbox{gdy } x \in [b,\, +\infty).
-\end{cases}\]
-\end{definition}
-
-\vspace\baselineskip
+Funkcja przynależności określa w jakim stopniu dany element przynależy do zbioru. W zbiorach rozmytych zakres wartości jakie może ona przyjmować jest rozszerzony do przedziału [0,1].
+W naszym projekcie skorzystaliśmy z funkcji przynależności trójkątnej oraz trapezoidalnej. Przytoczmy ich definicje:
 
 \begin{definition}[Zbiór rozmyty o trójkątnej funkcji przynależności]
 Zbiór rozmyty \(A\) typu I na uniwersum \(\mathbb{R}\) jest
@@ -84,30 +71,47 @@ wtedy, gdy \(a \leq b \leq c\) oraz:
 
 \vspace\baselineskip
 
-Wyjaśnijmy także, czym jest lingwistyczne podsumowanie. Niech \(\mathcal{D}\) będzie bazą danych, czyli zbiorem \(m\)
-krotek opisujących poszczególne rekordy (każdą \(i\)-tą krotkę
-dla \(i=1 \ldots m\) będziemy oznaczać jako \(d_i\)). Każda
-kolumna opisuje cechę pewnego typu. Cechę krotki możemy nazwać \emph{zmienną lingwistyczną}, a jej wartością może być konkretna liczba, ale może być to także rozmyta klasa (np. mało/trochę/dużo/sporo). Niech \(P\) będzie zbiorem rozmytym na uniwersum krotek bazy danych \(\mathcal{D}\),
-który zawiera w sobie krotki posiadające pewną własność. Taki zbiór
-może nam posłużyć jako podmiot podsumowania lingwistycznego (np. mężczyźni, kobiety, samochody, zawodnicy"). Bardzo ważnym elementem, wykorzystywanym we wszystkich rodzajach podsumowań
+\begin{definition}[Zbiór rozmyty o trapezoidalnej funkcji przynależności]
+Zbiór rozmyty \(A\) typu I na uniwersum \(\mathbb{R}\) jest
+\emph{liczbą rozmytą trapezoidalną o parametrach \(a, b, c, d\)} wtedy i tylko
+wtedy, gdy \(a \leq b \leq c \leq d\) oraz:
+
+\[\mu_A(x) = \begin{cases}
+0                 & \mbox{gdy } x \in (-\infty,\, a], \\
+(x - a) / (b - a) & \mbox{gdy } x \in (a,\, b), \\
+1                 & \mbox{gdy } x \in [b,\, c], \\
+(d - x) / (d - c) & \mbox{gdy } x \in (c,\, d), \\
+0                 & \mbox{gdy } x \in [d,\, +\infty).
+\end{cases}\]
+\end{definition}
+
+\vspace\baselineskip
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{{Rysunki/FunkcjaPrzynaleznosci.png}}
+	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+\end{figure}
+
+
+Wyjaśnijmy także, czym jest lingwistyczne podsumowanie. Niech \(\mathcal{D}\) będzie bazą danych składającą się z \(m\)
+krotek opisujących poszczególne rekordy. Przyjmijmy, że każda kolumna opisuje cechę pewnego typu. Taką cechę możemy nazwać \emph{zmienną lingwistyczną}. Może ona przyjmować konkretne wartości liczbowe lub rozmyte (np. mało/trochę/dużo/sporo). Zdefiniujmy także \(P\). Niech \(P\) będzie podmiotem podsumowania lingwistycznego (np. mężczyźni, kobiety, samochody, zawodnicy). Bardzo ważnym elementem, wykorzystywanym we wszystkich rodzajach podsumowań
 lingwistycznych, jest kwantyfikator oznaczany jako \(Q\).
 Przykładami kwantyfikatorów mogą być: "około 10", "ponad 70"
 (kwantyfikatory absolutne - zbiory rozmyte na uniwersum \(\mathbb{R}\)) lub "większość", "znikoma część"
-(kwantyfikatory relatywne - zbiory rozmyte na uniwersum \([0,\, 1]\)).
-Istotny dla nas będzie stopień przynależności \(P\) do \(Q\). Zdefiniujmy także sumaryzator
-\(S_j\). Jest to zbiór rozmyty na zbiorze wartości przyjmowanych przez \(j\)-tą kolumnę bazy danych.
-Np. gdyby krotki dotyczyły różnych osób, a jedną ze zmiennych lingwistycznych
-były ich zarobki, to sumaryzatory mogłyby mieć postać "zarabia za mało",
-"zarabia ponad 6400\,zł" itp.
+(kwantyfikatory relatywne - zbiory rozmyte na uniwersum \([0,\, 1]\)). Istotny dla nas będzie stopień przynależności \(P\) do \(Q\). Zdefiniujmy także sumaryzator \(S_j\). Jest to zbiór rozmyty na zbiorze wartości przyjmowanych przez \(j\)-tą kolumnę bazy danych. Np. gdyby krotki dotyczyły różnych pojazdów, a jedną ze zmiennych lingwistycznych
+była ich prędkość, to sumaryzatory mogłyby mieć postać "jeździ szybko","jeździ ponad 200km/h" itp.
 
 \vspace\baselineskip
 
 Wykorzystując powyższe elementy można skonstruować \textbf{lingwistyczne podsumowanie
-bazy danych wg. Yagera}, czyli:
+bazy danych}, czyli:
 \[Q ~ P \mbox{ jest/są } S_j ~[T] ~\mbox{,}\]
 gdzie \(T\) to stopień prawdziwości podsumowania.
 
 \vspace\baselineskip
+
+Przykład : \emph{Dużo studentów zarabia średnią krajową [0.64]}, gdzie: "dużo" to kwantyfikator, "studentów" to podmit lingwistyczny, "zarabia średnią krajową" to sumaryztaor, a "[0,64]" to stopień prawdziwości podsumowania. \newline
 
 W celu rozszerzenie podsumowania lingwistycznego należy skorzystać ze złożonego sumaryztora. Sumę sumaryzatorów można w podsumowaniu lingwistycznym zapisać
 za pomocą słowa "lub", zaś iloczyn za pomocą słowa "i".
@@ -117,45 +121,41 @@ mieć postać:
 
 \vspace\baselineskip
 
+Przykład: \emph{Dużo studentów zarabia średnią krajową i/lub nosi okulary [0.44]}. \newline
+
 Innym sposobem rozszerzenia pojęcia podsumowań
 jest zastosowanie kwalifikatora. Kwalifikator
 \(W\) jest zbiorem rozmytym na \(\mathcal{D}\),
-który opisuje w jakim stopniu krotki posiadają
-pewną własność. Typowe przykłady to "[osoby] które są bezrobotne",
+który opisuje jakąś dodatkową właściwość. Typowe przykłady to "[osoby] które są bezrobotne",
 "[osoby] które są dziećmi". \textbf{Podsumowanie
 z~kwalifikatorem} ma postać:
 \[Q ~ P \mbox{ mających własność } W \mbox{ ma własność } S_j ~[T] ~\mbox{.}\]
 
 \vspace\baselineskip
 
+Przykład: \emph{Studenci, którzy mają blond włosy zarabiają średnią krajową [028]}.\newline
+
 Aby określić jakość naszych podsumowaniań zaimplementowaliśmy poniższe miary jakości:
 
 \subsection{\(T_1\) -- stopień prawdziwości}
 
-Najbardziej naturalną miarą jakości podsumowania lingwistycznego
-jest wprowadzony przez Yagera stopień prawdziwości.
-Abstrahując od tego, czy sumaryzator \(S_j\) jest wynikiem
-złożenia wielu sumaryzatorów czy nie, możemy obliczyć
-sumę przynależności wszystkich rozważanych krotek do niego:
+Stopień prawdziwości jest najbardziej naturalną miarą jakości podsumowania. Określa ona sumę przynależności wszystkich rozważanych krotek do sumaryzatora \(S_j\):
 \[r = \sum_{i=1}^{m} \mu_{\mathrm{ce}(S_j)}(d_i) ~\mbox{,}\]
 gdzie \(\mathrm{ce}(S_j)\) jest rozszerzeniem cylindrycznym
-sumaryzatora \(S_j\), a \(m\) liczba wszystkich krotek.
-Zatem dla kwantyfikatorów relatywnych stopnień
+sumaryzatora \(S_j\), \(m\) liczba wszystkich krotek, a \(d_i\).
+Dla kwantyfikatorów relatywnych stopnień
 prawdziwości możemy zapisać jako \(T_1 = \mu_Q(\frac{r}{m})\),
-zaś dla kwantyfikatorów absolutnych jako \(T_1 = \mu_Q(r)\).
+zaś dla kwantyfikatorów absolutnych jako \(T_1 = \mu_Q(r)\), gdzie \(r\) jest kardynalnością. 
 
 \subsection{\(T_2\) -- stopień nieprecyzyjności}
-Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\)
-(w szczególności dla \(n=1\)) możemy określić miarę
-jakości podsumowania określaną jako stopień nieprecyzyjności,
-definiowaną następującym wzorem:
+Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\) możemy określić stopień nieprecyzyjności,
+definiowany następującym wzorem:
 \[T_2 = 1 - \left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n} ~\mbox{.}\]
-Wyrażenie \(\left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n}\) to po prostu
-średnia geometryczna ze stopni rozmycia wykorzystanych sumaryzatorów.
+Wyrażenie \(\left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n}\) to określa średnią geometryczna ze stopni rozmycia wykorzystanych sumaryzatorów, czyli w jakim stopniu precyzyjny jest sumaryzator. Im mniejszy nośnik zbioru rozmytego tym wyższa jest jego precyzja.
+   
 
 \subsection{\(T_3\) -- stopień pokrycia}
-Stopień pokrycia \(T_3\) jest zdefiniowany dla podsumowań z kwalifikatorami, czyli tymi opartymi na drugiej formie ilościowych wyrażeń lingwistycznych
-Stopień pokrycia T3 
+Stopień pokrycia \(T_3\) jest zdefiniowany dla podsumowań z kwalifikatorami. Stopień pokrycia T3 
 Dla każdego \(i=1\ldots m\) (związanego z krotką \(d_i\) z bazy
 danych) możemy zdefiniować:
 \[
@@ -173,8 +173,10 @@ h_i = \begin{cases}
 Przy powyższych oznaczeniach:
 \[T_3 = \frac{\sum_{i=1}^{m} t_i}{\sum_{i=1}^{m} h_i} ~\mbox{.}\]
 
+Reprezentuje stopień w jakim nośnik sumaryzatora pokrywa się z nośnikiem kwalifikatora.
 
-\subsection{\(T_4\) -- stopień stosowności}
+
+\subsection{\(T_4\) -- stopień trafności}
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\)
 oraz \(m\) krotkami w bazie danych możemy wprowadzić oznaczenia:
 \[g_{ij} = \begin{cases}
@@ -186,42 +188,55 @@ oraz
 Wówczas możemy zapisać:
 \[T_4 = \left|\left( \prod_{j=1}^{n} r_j \right) - T_3\right| ~\mbox{.}\]
 
+ Określa jak wiele krotek przynależy do sumaryzatora, czyli czy dane podsumowanie jest właściwe dla zestawu danych.
+
 \subsection{\(T_5\) -- długość podsumowania}
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\)
 miarę długości podsumowania definiujemy jako:
 \[T_5 = \left(\frac{1}{2}\right)^{n-1} ~\mbox{.}\]
 
+Określa jakość podsumowania na podstawie złożoności sumaryzatora, czyli im więcej składowych sumaryzatora złożonego, tym niższa wartość tej miary.
+
 \subsection{\(T_6\) -- stopień nieprecyzyjności kwantyfikatora}
-Nazwy miar \(T_6\)--\(T_{10}\) można określić jako samoopisujące się,
-więc przedstawienie wzoru wyczerpuje zagadnienie w stopniu wystarczającym
-dla niniejszego sprawozdania:
+\(T_6\), czyli stopień nieprecyzyjności kwantyfikatora możemy zdefiniować jako:
+
 \[T_6 = 1-\mathrm{in}(Q) ~\mbox{.}\]
+
+Reprezentuje w jakim stopniu precyzyjny jest kwantyfikator. Im mniejszy nośnik zbioru rozmytego tym wyższa jest jego precyzja.
 
 \subsection{\(T_7\) -- stopień liczności kwantyfikatora}
 W przeciwieństwie do \(T_6\), zamiast zliczać elementy z nośnika \(Q\),
 policzymy moc zbioru rozmytego:
 \[T_7 = 1-\frac{\card(Q)}{\card(\mathcal{X}_Q)} ~\mbox{.}\]
 
+Opisuje stopień precyzji kwantyfikatora, im mniejsza kardynalność kwantyfikatora tym jest on bardziej precyzyjny.
+
 \subsection{\(T_8\) -- stopień liczności sumaryzatora}
-Możemy mieć do czynienia z sumaryzatorem złożonym; wtedy,
-podobnie jak przy poprzednich miarach, stosujemy średnią geometryczną.
+W przypadku zastosowania sumaryzatora złożonego, podobnie jak przy poprzednich miarach, stosujemy średnią geometryczną.
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\):
 
 \[T_8 = 1- \left(\prod_{j=1}^{n} \frac{\card(S_j)}{\card(\mathcal{X}_j)}\right) ~\mbox{.}\]
+
+Opisuje stopień precyzji sumaryzatora, im mniejsza kardynalność kwantyfikatora tym jest on bardziej precyzyjny.
 
 \subsection{\(T_9\) -- stopień nieprecyzyjności kwalifikatora}
 Stopień precyzji kwalifikatora \(T_9\) jest oparty na drugiej formie podsumowań tzn.: Q obiektów będących/mających W jest/ma S, gdzie W jest reprezentowane przez zbiór rozmyty i jest kwalifikatorem. Definicja tej miary jest następująca:
 \[T_9 = 1-\mathrm{in}(W) ~\mbox{.}\]
 
+Określa w jakim stopniu precyzyjny jest kwalifikator. Im szerszy nośnik zbioru rozmytego tym niższa jest jego precyzja, gdyż bierze pod uwagę większy zakres wartości. 
+
+
 \subsection{\(T_{10}\) -- stopień liczności kwalifikatora}
 Stopień kardynalności kwalifikatora \(T_{10}\) definiujemy jako:
 \[T_{10} = 1-\frac{\card(W)}{\card(\mathcal{X}_g)} ~\mbox{.}\]\\
-gdzie miara \card() jest dana tak jak we wcześniejszych sekcjach.
+
+Opisuje stopień precyzji kwalifikatora, im większa jest kardynalność kwalifikator tym jest on mniej precyzyjny.
 
 \subsection{\(T_{11}\) -- długość kwalifikatora}
 Długość kwalifikatora \(T_{11}\) definiujemy następująco:
 \[T_{11} = 2\left(\frac{1}{2}\right)^{\card({W})} ~\mbox{.}\]
-gdzie \card(W) jest ilością zbiorów rozmytych, z których kwalifikator jest skomponowany. Im bardziej złożony kwalifikator tym jakość podsumowania gorsza.
+
+Wyznacza jakość podsumowania na podstawie złożoności kwalifikatora, Im bardziej złożony kwalifikator tym jakość podsumowania gorsza.
 
 \vspace\baselineskip
 
@@ -750,10 +765,10 @@ Podczas klasyfikacji dla kategorii authors najważniejsza okazała się cecha od
 \begin{thebibliography}{}
 \bibitem{adam}
 Methods for the linguistic summarization of data - aplications of fuzzy sets and their extensions, Adam Niewiadomski, Akademicka Oficyna Wydawnicza EXIT, Warszawa 2008
-\bibitem{AGH}
-http://home.agh.edu.pl/~horzyk/lectures/miw/KNN.pdf
-\bibitem{Stop Lista}
-https://github.com/hklemp/dotnet-stop-words
+\bibitem{Zbiór rozmyty}
+http://www.cs.put.poznan.pl/amichalski/si.dzienne/AI7.new.fuzzy.b&w.pdf
+\bibitem{Funkcja przynależności}
+http://home.agh.edu.pl/~mrzyglod/iw/iw_pliki/iw-is-L2-2017-2018.pdf
 \bibitem{Stemizacja}
 http://snowball.tartarus.org/algorithms/english/stemmer.html
 \end{thebibliography}
