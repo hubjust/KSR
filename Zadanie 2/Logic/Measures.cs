@@ -66,7 +66,14 @@ namespace Logic
             double t3 = DegreeOfCovering(qualifier, summarizer, players);
 
             foreach (LinguisticVariable variable in AllLinguisticVariables)
-                quotient *= (variable.Support(players).Count() / players.Count() - t3);
+            {
+                double sum = 0;
+
+                foreach (FifaPlayer player in players)
+                    sum += variable.GetMembership(player);
+
+                quotient *= sum / players.Count() - t3;
+            }
 
             return Math.Abs(quotient);
         }
