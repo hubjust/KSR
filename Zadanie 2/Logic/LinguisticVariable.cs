@@ -23,31 +23,22 @@ namespace Logic
             return MembershipFunction.GetMembership(value);
         }
 
-        private List<FifaPlayer> Support(List<FifaPlayer> players, IMembershipFunction function)
-        {
-            List<FifaPlayer> result = new List<FifaPlayer>();
-            players.ForEach((e) => {
-                if (function.GetMembership(StatExtractor(e)) > 0)
-                {
-                    result.Add(e);
-                }
-            });
-            return result;
-        }
-
         public virtual List<FifaPlayer> Support(List<FifaPlayer> players)
         {
-            return Support(players, MembershipFunction);
-        }
+            List<FifaPlayer> result = new List<FifaPlayer>();
 
-        private double DegreeOfFuzziness(List<FifaPlayer> players, IMembershipFunction function)
-        {
-            return (double)Support(players, function).Count / (double)players.Count;
+            foreach(FifaPlayer player in players)
+            {
+                if (GetMembership(StatExtractor(player)) > 0)
+                    result.Add(player);
+            }
+
+            return result;
         }
 
         public virtual double DegreeOfFuzziness(List<FifaPlayer> players)
         {
-            return DegreeOfFuzziness(players, MembershipFunction);
+            return (double)Support(players).Count / (double)players.Count;
         }
 
         public virtual List<double> DegreeOfFuzzinessForAllFunctions(List<FifaPlayer> players)
@@ -55,7 +46,7 @@ namespace Logic
             List<double> result = new List<double>();
             foreach (var func in MembershipFunction.GetAllFunctions())
             {
-                result.Add(DegreeOfFuzziness(players, func));
+                result.Add(DegreeOfFuzziness(players));
             }
             return result;
         }

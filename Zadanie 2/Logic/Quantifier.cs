@@ -56,33 +56,32 @@ namespace Logic
         };
 
         //Absolutne
-        public static LinguisticVariable lessThan1000 = new LinguisticVariable
+        public static LinguisticVariable lessThan100 = new LinguisticVariable
         {
-            QuantifierName = "Mniej niż 1000",
-            MembershipFunction = new RectangularFunction(0, 0, 990, 2000),
+            QuantifierName = "Mniej niż 100",
+            MembershipFunction = new RectangularFunction(0, 0, 99, 200),
             Absolute = true
         };
-        public static LinguisticVariable around4000 = new LinguisticVariable
+        public static LinguisticVariable around400 = new LinguisticVariable
         {
-            QuantifierName = "Około 4000",
-            MembershipFunction = new TriangularFunction(3000, 4000, 5000),
+            QuantifierName = "Około 400",
+            MembershipFunction = new TriangularFunction(300, 400, 500),
             Absolute = true
         };
-        public static LinguisticVariable around9000 = new LinguisticVariable
+        public static LinguisticVariable around900 = new LinguisticVariable
         {
-            QuantifierName = "Około 8000",
-            MembershipFunction = new TriangularFunction(7000, 8000, 9000),
+            QuantifierName = "Około 800",
+            MembershipFunction = new TriangularFunction(700, 800, 900),
             Absolute = true
         };
-        public static LinguisticVariable moreThan10000 = new LinguisticVariable
+        public static LinguisticVariable moreThan1000 = new LinguisticVariable
         {
-            QuantifierName = "Więcej niż 10000",
-            MembershipFunction = new RectangularFunction(9000, 9990, 10000, 20000),
+            QuantifierName = "Więcej niż 1000",
+            MembershipFunction = new RectangularFunction(900, 990, 1000, 20000),
             Absolute = true
         };
-
-
         #endregion
+
         public static ObservableCollection<LinguisticVariable> getAllQuantifiers()
         {
             return new ObservableCollection<LinguisticVariable>
@@ -93,10 +92,10 @@ namespace Logic
                 aroundTwoThirds,
                 majority,
                 almostAll,
-                lessThan1000,
-                around4000,
-                around9000,
-                moreThan10000
+                lessThan100,
+                around400,
+                around900,
+                moreThan1000
             };
         }
     }

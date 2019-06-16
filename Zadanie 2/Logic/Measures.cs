@@ -1,18 +1,16 @@
-﻿using Logic.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Logic.Database;
 
 namespace Logic
 {
     public class Measures
     {
         // T1 - stopień prawdziwości
-        public static double DegreeOfTruth(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        public static double DegreeOfTruth(LinguisticVariable quantifier, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            double result = 0;
             double rUp = 0;
             double rDown = 0;
 
@@ -25,125 +23,115 @@ namespace Logic
                 rDown += qualifier.GetMembership(player);
             }
 
-            if (quantificator.Absolute)
-                result = quantificator.GetMembership(rUp);
+            if (quantifier.Absolute)
+                return quantifier.GetMembership(rUp);
             else
-                result = quantificator.GetMembership(rUp / rDown);
-
-            return result;
+                return quantifier.GetMembership(rUp / rDown);
         }
 
-        //T2
-        public static double DegreeOfImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T2 - stopień nieprecyzyjności
+        public static double DegreeOfImprecision(LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            double ret = 1;
-            var lingVariables = summarizer.GetAllLinguisticVariables();
-            foreach (var set in lingVariables)
-            {
-                ret *= set.DegreeOfFuzziness(players);
-            }
-            ret = Math.Pow(ret, 1 / lingVariables.Count);
-            return 1 - ret;
+            double quotient = 1;
+            List<LinguisticVariable> AllLinguisticVariables = summarizer.GetAllLinguisticVariables();
+
+            foreach (LinguisticVariable variable in AllLinguisticVariables)
+                quotient *= variable.DegreeOfFuzziness(players);
+
+            return 1 - Math.Pow(quotient, 1 / AllLinguisticVariables.Count);
         }
 
-        //T3
-        public static double DegreeOfCovering(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T3 - stopień pokrycia
+        public static double DegreeOfCovering(LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            double up = 0;
-            double down = 0;
+            double t = 0;
+            double h = 0;
 
             foreach (var FifaPlayer in players)
             {
-                var qualVal = qualifier.GetMembership(FifaPlayer);
-                var sumVal = summarizer.GetMembership(FifaPlayer);
-                if (qualVal > 0)
+                if (qualifier.GetMembership(FifaPlayer) > 0)
                 {
-                    down++;
-                    if (sumVal > 0)
-                    {
-                        up++;
-                    }
+                    h++;
+
+                    if (summarizer.GetMembership(FifaPlayer) > 0)
+                        t++;
                 }
             }
 
-            return up / down;
+            return t / h;
         }
 
-        //T4
-        public static double DegreeOfAppropriateness(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T4 - stopień trafności 
+        public static double DegreeOfAppropriateness(LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            double ret = 0;
-            var sets = summarizer.GetAllLinguisticVariables();
-            double t3 = DegreeOfCovering(quantificator, qualifier, summarizer, players);
-            foreach (var set in sets)
-            {
-                ret += (set.Support(players).Count() / players.Count()) - t3;
-            }
-            return Math.Abs(ret);
+            double quotient = 1;
+            List<LinguisticVariable> AllLinguisticVariables = summarizer.GetAllLinguisticVariables();
+            double t3 = DegreeOfCovering(qualifier, summarizer, players);
+
+            foreach (LinguisticVariable variable in AllLinguisticVariables)
+                quotient *= (variable.Support(players).Count() / players.Count() - t3);
+
+            return Math.Abs(quotient);
         }
 
         // T5 -  długość podsumowania
-        public static double LengthOfSummary(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        public static double LengthOfSummary(LinguisticVariable summarizer)
         {
             int summarizers = summarizer.GetAllLinguisticVariables().Count;
             return 2 * Math.Pow(1.0 / 2.0, summarizers);
         }
 
-        //T6
-        public static double DegreeOfQuantifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T6 -  stopień nieprecyzyjności kwantyfikatora
+        public static double DegreeOfQuantifierImprecision(LinguisticVariable quantifier, List<FifaPlayer> players)
         {
-            //var ret = (quantificator.MembershipFunction.Parameters.Last()
-            //           - quantificator.MembershipFunction.Parameters.First());
+            double result = quantifier.Support(players).Count;
 
-            //if (quantificator.Absolute)
-            //{
-            //    ret /= (double)players.Count;
-            //}
-            //return 1 - ret;
-            return 0;
+            if (quantifier.Absolute)
+                result /= (double)players.Count;
+
+            return 1 - result;
         }
 
-        //T7
-        public static double DegreeOfQuantifierCardinality(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T7 - stopień liczności kwantyfikatora
+        public static double DegreeOfQuantifierCardinality(LinguisticVariable quantifier, List<FifaPlayer> players)
         {
-            double ret = quantificator.MembershipFunction.Cardinality();
-            if (quantificator.Absolute)
-            {
-                ret /= (double)players.Count;
-            }
-            return 1 - ret;
+            double result = quantifier.MembershipFunction.Cardinality();
+
+            if (quantifier.Absolute)
+                result /= (double)players.Count;
+
+            return 1 - result;
         }
 
-        //T8
-        public static double DegreeOfSummarizerCardinality(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T8 -  stopień liczności sumaryzatora
+        public static double DegreeOfSummarizerCardinality(LinguisticVariable summarizer, List<FifaPlayer> players)
         {
-            double ret = 1;
-            var lingVariables = summarizer.GetAllLinguisticVariables();
-            foreach (var set in lingVariables)
-            {
-                ret *= set.Cardinality() / players.Count;
-            }
-            ret = Math.Pow(ret, 1.0 / lingVariables.Count);
-            return 1 - ret;
+            double quotient = 1;
+            List<LinguisticVariable> AllLinguisticVariables = summarizer.GetAllLinguisticVariables();
+
+            foreach (LinguisticVariable variable in AllLinguisticVariables)
+                quotient *= variable.Cardinality() / players.Count;
+
+            return 1 - Math.Pow(quotient, 1.0 / AllLinguisticVariables.Count);
         }
 
-        //T9
-        public static double DegreeOfQualifierImprecision(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T9 - stopień nieprecyzyjności kwalifikatora
+        public static double DegreeOfQualifierImprecision(LinguisticVariable qualifier, List<FifaPlayer> players)
         {
             return 1 - qualifier.DegreeOfFuzziness(players);
         }
 
-        //T10
-        public static double DegreeOfQualifierCardinality(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T10 -  stopień liczności kwalifikatora
+        public static double DegreeOfQualifierCardinality(LinguisticVariable qualifier, List<FifaPlayer> players)
         {
             return 1 - (qualifier.Cardinality() / players.Count);
         }
 
-        //T11
-        public static double LengthOfQualifier(LinguisticVariable quantificator, LinguisticVariable qualifier, LinguisticVariable summarizer, List<FifaPlayer> players)
+        // T11 - długość kwalifikatora
+        public static double LengthOfQualifier(LinguisticVariable qualifier)
         {
-            var nOfSummarizers = qualifier.GetAllLinguisticVariables().Count;
-            return 2 * Math.Pow(1.0 / 2.0, nOfSummarizers);
+            int qualifiers = qualifier.GetAllLinguisticVariables().Count;
+            return 2 * Math.Pow(1.0 / 2.0, qualifiers);
         }
     }
 }

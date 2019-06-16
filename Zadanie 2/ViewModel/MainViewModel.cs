@@ -69,19 +69,17 @@ namespace ViewModel
 
                 message += quantifier.QuantifierName + " piłakrzy posiadających/będących " + SelectedQualifier + " mają/są " + SelectedFirstSummarizer + "\n";
 
-                message += "T1 = " + Measures.DegreeOfTruth(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T2 = " + Measures.DegreeOfImprecision(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T3 = " + Measures.DegreeOfCovering(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T4 = " + Measures.DegreeOfAppropriateness(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-
-                message += "T5 = " + Measures.LengthOfSummary(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T6 = " + Measures.DegreeOfQuantifierImprecision(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T7 = " + Measures.DegreeOfQuantifierCardinality(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T8 = " + Measures.DegreeOfSummarizerCardinality(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-
-                message += "T9 = " + Measures.DegreeOfQualifierImprecision(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T10 = " + Measures.DegreeOfQualifierCardinality(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T11 = " + Measures.LengthOfQualifier(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + '\n';
+                message += "T1 = " + Measures.DegreeOfTruth(quantifier, SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T2 = " + Measures.DegreeOfImprecision(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T3 = " + Measures.DegreeOfCovering(SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T4 = " + Measures.DegreeOfAppropriateness(SelectedQualifier, SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T5 = " + Measures.LengthOfSummary(SelectedFirstSummarizer) + ", ";
+                message += "T6 = " + Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T7 = " + Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T8 = " + Measures.DegreeOfSummarizerCardinality(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T9 = " + Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T10 = " + Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T11 = " + Measures.LengthOfQualifier(quantifier) + '\n';
 
                 MessagesList.Add(message);
             }
@@ -92,12 +90,10 @@ namespace ViewModel
         private void ComplexMessages()
         {
             MessagesList = new List<string>();
+            LinguisticVariable ComplexSummarizer;
 
-            LinguisticVariable ComplexSummarizer = new LinguisticVariable();
-
-            if(ConjunctionAndRB)
+            if (ConjunctionAndRB)
                 ComplexSummarizer = new AndSummarizer(SelectedFirstSummarizer, SelectedSecondSummarizer);
-            
             else
                 ComplexSummarizer = new OrSummarizer(SelectedFirstSummarizer, SelectedSecondSummarizer);
 
@@ -109,19 +105,17 @@ namespace ViewModel
                 message += quantifier.QuantifierName + " piłakrzy posiadających/będących " + SelectedQualifier + " mają/są " +
                            SelectedFirstSummarizer + ComplexSummarizer + SelectedSecondSummarizer +'\n';
 
-                message += "T1 = " + Measures.DegreeOfTruth(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T2 = " + Measures.DegreeOfImprecision(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T3 = " + Measures.DegreeOfCovering(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T4 = " + Measures.DegreeOfAppropriateness(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-
-                message += "T5 = " + Measures.LengthOfSummary(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T6 = " + Measures.DegreeOfQuantifierImprecision(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T7 = " + Measures.DegreeOfQuantifierCardinality(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T8 = " + Measures.DegreeOfSummarizerCardinality(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-
-                message += "T9 = " + Measures.DegreeOfQualifierImprecision(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T10 = " + Measures.DegreeOfQualifierCardinality(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\t';
-                message += "T11 = " + Measures.LengthOfQualifier(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + '\n';
+                message += "T1 = " + Measures.DegreeOfTruth(quantifier, SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T2 = " + Measures.DegreeOfImprecision(ComplexSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T3 = " + Measures.DegreeOfCovering(SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T4 = " + Measures.DegreeOfAppropriateness(SelectedQualifier, ComplexSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T5 = " + Measures.LengthOfSummary(ComplexSummarizer) + ", ";
+                message += "T6 = " + Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T7 = " + Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T8 = " + Measures.DegreeOfSummarizerCardinality(ComplexSummarizer, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T9 = " + Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T10 = " + Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()) + ", ";
+                message += "T11 = " + Measures.LengthOfQualifier(quantifier) + '\n';
 
                 MessagesList.Add(message);
             }
