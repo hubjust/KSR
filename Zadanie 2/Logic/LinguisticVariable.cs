@@ -70,11 +70,6 @@ namespace Logic
             return new List<LinguisticVariable> { this };
         }
 
-        public virtual void SetAllLinguisticVariables(List<LinguisticVariable> sets)
-        {
-
-        }
-
         public override string ToString()
         {
             return QuantifierName + " " + MemberToExtract;
