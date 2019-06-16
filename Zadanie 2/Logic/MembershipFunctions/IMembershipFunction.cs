@@ -11,5 +11,6 @@ namespace Logic.MembershipFunctions
         double GetMembership(double x);
         List<IMembershipFunction> GetAllFunctions();
         double Cardinality();
+        double Support();
     }
 }

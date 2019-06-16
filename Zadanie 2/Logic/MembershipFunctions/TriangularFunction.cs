@@ -40,5 +40,10 @@ namespace Logic.MembershipFunctions
         {
             return (c - a) / 2;
         }
+
+        public double Support()
+        {
+            return c - a;
+        }
     }
 }

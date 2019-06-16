@@ -77,7 +77,7 @@ namespace Logic
         public static LinguisticVariable moreThan1000 = new LinguisticVariable
         {
             QuantifierName = "Więcej niż 1000",
-            MembershipFunction = new RectangularFunction(900, 990, 1000, 20000),
+            MembershipFunction = new RectangularFunction(900, 990, 15397, 15397),
             Absolute = true
         };
         #endregion
