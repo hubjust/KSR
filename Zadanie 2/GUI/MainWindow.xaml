@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Komputerowe Systemy Rozpoznawania - Zadanie 2" Height="700" Width="1200" ResizeMode="NoResize">
+        Title="Komputerowe Systemy Rozpoznawania - Zadanie 2" Height="750" Width="1200" ResizeMode="NoResize">
     <Grid Background="#313131">
 
         <Grid.ColumnDefinitions>
@@ -25,20 +25,20 @@
 
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.75*"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
                 <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="0.25*"/>
             </Grid.RowDefinitions>
 
             <GroupBox Grid.Row="1" Grid.RowSpan="3" Margin="10 5 0 5" Foreground="White" Style="{DynamicResource GroupBoxStyle}" Header=" Kwalifikator " >
@@ -74,7 +74,7 @@
                             Style="{DynamicResource ButtonStyle}" Command="{Binding CreateComplexMessagesCommand}" Content="Stwórz złożone komunikaty" />
         </Grid>
 
-        <TabControl Grid.Column="1" Background="#454545" Margin="20 35 20 20" ItemContainerStyle="{DynamicResource TabItemStyle}" >
+        <TabControl Grid.Column="1" Background="#454545" Margin="20 30 20 20" ItemContainerStyle="{DynamicResource TabItemStyle}" >
             <TabItem Header="Komunikaty">
                 <ListBox FontSize="12px" Background="#232323" Foreground="White" ItemsSource="{Binding MessagesList}"/>
             </TabItem>

@@ -16,9 +16,6 @@ namespace Logic
 
             foreach (FifaPlayer player in players)
             {
-                double a = qualifier.GetMembership(player);
-                double b = summarizer.GetMembership(player);
-
                 rUp += Math.Min(qualifier.GetMembership(player), summarizer.GetMembership(player));
                 rDown += qualifier.GetMembership(player);
             }
