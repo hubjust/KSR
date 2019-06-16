@@ -151,7 +151,7 @@ zaś dla kwantyfikatorów absolutnych jako \(T_1 = \mu_Q(r)\), gdzie \(r\) jest 
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\) możemy określić stopień nieprecyzyjności,
 definiowany następującym wzorem:
 \[T_2 = 1 - \left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n} ~\mbox{.}\]
-Wyrażenie \(\left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n}\) to określa średnią geometryczna ze stopni rozmycia wykorzystanych sumaryzatorów, czyli w jakim stopniu precyzyjny jest sumaryzator. Im mniejszy nośnik zbioru rozmytego tym wyższa jest jego precyzja.
+Wyrażenie \(\left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n}\) to określa średnią geometryczna ze stopni rozmycia wykorzystanych sumaryzatorów, czyli w jakim stopniu precyzyjny jest sumaryzator. Im mniejszy nośnik zbioru rozmytego, tym wyższa jest jego precyzja.
    
 
 \subsection{\(T_3\) -- stopień pokrycia}
@@ -241,32 +241,297 @@ Wyznacza jakość podsumowania na podstawie złożoności kwalifikatora, Im bard
 \vspace\baselineskip
 
 \section{Opis implementacji}
-Program został stworzony w języku C\#. Graficzny interfejs użytkownika został stworzony przy  wykorzystaniu Windows Presentation Foundation. Logika aplikacji została odseparowana od GUI, w zgodzie ze wzorcem projektowym Model-view-viewmodel (MVVM), poprzez implementacje trzech projektów (Logic, ViewModel i GUI).
+Program został stworzony w języku C\#. Graficzny interfejs użytkownika został stworzony przy  wykorzystaniu Windows Presentation Foundation. Logika aplikacji została odseparowana od GUI. W związku z tym, zaimplementowaliśmy trzy projekty: Logic, ViewModel oraz GUI.
 
 \subsection{Logic}
+W tym projekcie zawarta została cała logika aplikacji. Odzworowany został model naszej bazy danych (\emph{FifaPlayer.cs}), zaimplementowane zostały: funkcje przynależności trójkątna (\emph{TriangularFunction.cs}) oraz trapezoidalna (\emph{TrapezoidFunction}), zmienna lingwistyczna (\emph{LinguisticVariable.cs}), kwantyfikator (\emph{Quantifier.cs}), zmienna, która "na sztywno" określa nasz kwantyfikator (np. słaby, przeciętny, dobry) w zależności od podanych danych (\emph{Variable.cs}), sumaryzator "i" (\emph{And.cs}), a także sumaryzator "lub" (\emph{Or.cs}). W projekcie logic znajduje się takża klasa (\emph{Measures.cs}), gdzie zawarliśmy wszystkie 11 miar jakości podsumowań.
+ 
+\subsection{ViewModel}
+
+Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego poczynania wywołując wybrane akcje z logiki programu oraz odpowiada za odświeżanie widoków w interfejsie graﬁcznym
+
+\subsection{GUI}
+
+Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w obsłudze graﬁczny interfejs użytkownika.
 
 \section{Materiały i metody}
 
-Do przeprowadzenia badań i generowania konkretnych podsumowań wykorzystaliśmy bazę danych dotyczącą przechowującą statystyki piłkarzy z gry Fifa 2019.Składa się ona z 15397 krotek znajdujących się w tabeli z 20 różnymi kolumnami - w ramach naszego projektu skorzystaliśmy tylko z 13. Przedstawiamy je pniżej:
+\subsection{Baza danych}
+Do przeprowadzenia badań i generowania konkretnych podsumowań wykorzystaliśmy bazę danych dotyczącą przechowującą statystyki piłkarzy z gry Fifa 2019.Składa się ona z 15397 krotek znajdujących się w tabeli z 20 różnymi kolumnami - w ramach naszego projektu skorzystaliśmy z 13. Przedstawiamy je poniżej:
 
 \begin{itemize}
-	\item Wiek
-	\item Wzrost
-	\item Waga
-	\item Tempo
-	\item Przyspieszenie
-	\item Prędkość
-	\item Dribbling
-	\item Zręczność
-	\item Balans
-	\item Reakcje
-	\item Kontrola piłki
-	\item Opanowanie
-	\item Precyzja
-	\item Ustawienie się 
+	\item Wiek - wartości z przedziału [17-45]
+	\item Wzrost (cm) - wartości z przedziału [155-205]
+	\item Waga (kg) - wartości z przedziału [50-11] 
+	\item Tempo - wartości z przedziału [0-97]
+	\item Przyspieszenie - wartości z przedziału [13-98]
+	\item Prędkość - wartości z przedziału [12-97]
+	\item Dribbling - wartości z przedziału [0-97]
+	\item Zręczność - wartości z przedziału [14-98]
+	\item Balans - wartości z przedziału [16-99]
+	\item Reakcje - wartości z przedziału [30-96]
+	\item Kontrola piłki - wartości z przedziału [3-97]
+	\item Opanowanie - wartości z przedziału [3-97]
+	\item Precyzja - wartości z przedziału [0-93]
+	\item Ustawienie się - wartości z przedziału [2-95]
 \end{itemize}
 
 Każda z ww. kolumn jest typem całkowitym.
+
+\subsection{Sumaryzatory i kwalifikatory}Poniżej zaprezentowaliśmy poszczególne sumaryzatory oraz kwalifikatory wykorzystane w naszym programie. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Bardzo młody & 17 & 17 & 18 & 20 \\ 
+		Młody & 19 & 21 & 24 & 29 \\
+		Dorosły & 28 & 30 & 35 & 37 \\
+		Dojrzały & 36 & 40 & 45 & 45\\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla wieku.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Bardzo niski & 155 & 155 & 160 & 162 \\ 
+		Niski & 161 & 165 & 168 & 170 \\
+		Przeciętny & 169 & 172 & 176 & 180 \\
+		Wysoki & 179 & 182 & 186 & 192\\
+		Bardzo wysoki & 191 & 196 & 205 & 205\\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla wzrostu.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Niska & 50 & 59 & 66 & 73 \\ 
+		Standardowa & 72 & 77 & 79 & 84 \\
+		Postawna & 83 & 86 & 89 & 91 \\
+		Ciężka & 90 & 98 & 110 & 110\\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla wzrostu.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Niskie & 0 & 15 & 27 & 35 \\ 
+		Średnie & 33 & 46 & 58 & 66 \\
+		Wysokie & 65 & 79 & 88 & 97 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla tempa.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słabe & 13 & 25 & 29 & 35 \\ 
+		Przieciętne & 33 & 46 & 58 & 66 \\
+		Dobre & 65 & 79 & 88 & 98 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla przyspieszenia.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słaba & 12 & 25 & 29 & 35 \\ 
+		Przieciętna & 33 & 46 & 58 & 69 \\
+		Dobra & 65 & 79 & 88 & 97 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla prędkości.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słaby & 0 & 15 & 27 & 37 \\ 
+		Przieciętny & 36 & 46 & 58 & 66 \\
+		Dobry & 67 & 79 & 88 & 97 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla dribblingu.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słaba & 14 & 21 & 27 & 35 \\ 
+		Przieciętna & 33 & 46 & 58 & 69 \\
+		Dobra & 67 & 79 & 88 & 98 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla zręczności.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słaby & 16 & 21 & 29 & 35 \\ 
+		Przieciętny & 38 & 46 & 58 & 72 \\
+		Dobry & 71 & 79 & 88 & 99 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla balansu.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słabe & 30 & 37 & 43 & 47 \\ 
+		Przeciętne & 46 & 59 & 66 & 72 \\
+		Szybkie & 71 & 79 & 88 & 96 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla reakcji.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słaba & 3 & 14 & 23 & 26 \\ 
+		Przieciętna & 25 & 39 & 48 & 57 \\
+		Dobra & 56 & 63 & 69 & 75 \\
+		Bardzo dobra & 74 & 81 & 88 & 99 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla kontroli piłki.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słabe & 3 & 15 & 24 & 32 \\ 
+		Zadowalające & 31 & 44 & 57 & 66 \\
+		Bardzo dobre & 65 & 75 & 88 & 97 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla opanowania.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słaba & 3 & 15 & 24 & 32 \\ 
+		Przeciętna & 31 & 44 & 57 & 66 \\
+		Dobra & 65 & 75 & 88 & 97 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla celności.}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Słabe & 3 & 15 & 24 & 32 \\ 
+		Przeciętne & 31 & 44 & 57 & 66 \\
+		Dobre & 65 & 75 & 88 & 97 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry funkcji trapezoidalnej dla ustawiania się.}
+\end{table}
+
+\subsection{Kwantyfikatory}
+Kwantyfikatory podzieliliśmy na względne i absolutne . Przedstawiamy je poniżej:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{Funkcja przynależności} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Żaden & Trójkątna & 0 & 0 & 0.1 & - \\ 
+		Mniej niż ćwierć & Trapezoidalna & 0 & 0 & 0.2 & 0.25 \\
+		Około jedna trzecia & Trójkątna & 0.23 & 0.33 & 0.43 & - \\
+		Około połowa & Trójkątna & 0.4 & 0.5 & 0.6 & - \\
+		Około dwie trzecie & Trójkątna & 0.56 & 0.66 & 0.76 & - \\
+		Większość & Trójkątna & 0.73 & 0.83 & 0.93 & - \\
+		Prawie każdy & Trójkątna & 0.85 & 0.9 & 1.05 & - \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry dla kwantyfikatora względnego.}
+\end{table}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c c} 
+		\hline
+		\textbf{Etykieta} & \textbf{Funkcja przynależności} & \textbf{a} & \textbf{b} & \textbf{c} &  \textbf{d} \\ [0.5ex] 
+		\hline
+		\hline 
+		Mniej niż 1000 & Trapezoidalna & 0 & 0 & 900 & 1000 \\ 
+		Około 4000 & Trójkątna & 3000 & 4000 & 5000 & - \\
+		Około 8000 & Trójkątna & 7000 & 8000 & 9000 & - \\
+		Więcej niż 1000 & Trapezoidalna & 9000 & 9990 & 10000 & 20000 \\
+		\hline
+	\end{tabular}
+	\caption{Przyporządkowane parametry dla kwantyfikatora absolutnego.}
+\end{table}
+
 
 \section{Wyniki}
 
