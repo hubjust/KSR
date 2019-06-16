@@ -186,16 +186,16 @@ oraz \(m\) krotkami w bazie danych możemy wprowadzić oznaczenia:
 oraz
 \[r_j = \frac{\sum_{i=1}^{m} g_{ij}}{m} ~\mbox{.}\]
 Wówczas możemy zapisać:
-\[T_4 = \left|\left( \prod_{j=1}^{n} r_j \right) - T_3\right| ~\mbox{.}\]
+\[T_4 = \left|\left \prod_{j=1}^{n} r_j \right - T_3\right| ~\mbox{.}\]
 
  Określa jak wiele krotek przynależy do sumaryzatora, czyli czy dane podsumowanie jest właściwe dla zestawu danych.
 
 \subsection{\(T_5\) -- długość podsumowania}
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\)
 miarę długości podsumowania definiujemy jako:
-\[T_5 = \left(\frac{1}{2}\right)^{n-1} ~\mbox{.}\]
+\[T_5 =  2 \left(\frac{1}{2}\right)^{|s|} ~\mbox{.}\]
 
-Określa jakość podsumowania na podstawie złożoności sumaryzatora, czyli im więcej składowych sumaryzatora złożonego, tym niższa wartość tej miary.
+Gdzie \(|s|\) jest ilością zbiorów rozmytych,z  których skomponowany jest sumaryzator. Określa jakość podsumowania na podstawie złożoności sumaryzatora, czyli im więcej składowych sumaryzatora złożonego, tym niższa wartość tej miary.
 
 \subsection{\(T_6\) -- stopień nieprecyzyjności kwantyfikatora}
 \(T_6\), czyli stopień nieprecyzyjności kwantyfikatora możemy zdefiniować jako:
@@ -215,7 +215,7 @@ Opisuje stopień precyzji kwantyfikatora, im mniejsza kardynalność kwantyfikat
 W przypadku zastosowania sumaryzatora złożonego, podobnie jak przy poprzednich miarach, stosujemy średnią geometryczną.
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\):
 
-\[T_8 = 1- \left(\prod_{j=1}^{n} \frac{\card(S_j)}{\card(\mathcal{X}_j)}\right) ~\mbox{.}\]
+\[T_8 = 1- \left(\prod_{j=1}^{n} \frac{\card(S_j)}{\card(\mathcal{X}_j)}\right)^{\frac{1}{n}} ~\mbox{.}\]
 
 Opisuje stopień precyzji sumaryzatora, im mniejsza kardynalność kwantyfikatora tym jest on bardziej precyzyjny.
 
@@ -228,7 +228,7 @@ Określa w jakim stopniu precyzyjny jest kwalifikator. Im szerszy nośnik zbioru
 
 \subsection{\(T_{10}\) -- stopień liczności kwalifikatora}
 Stopień kardynalności kwalifikatora \(T_{10}\) definiujemy jako:
-\[T_{10} = 1-\frac{\card(W)}{\card(\mathcal{X}_g)} ~\mbox{.}\]\\
+\[T_{10} = 1-\frac{\card|W|}{\card|\mathcal{X}_g|} ~\mbox{.}\]\\
 
 Opisuje stopień precyzji kwalifikatora, im większa jest kardynalność kwalifikator tym jest on mniej precyzyjny.
 
