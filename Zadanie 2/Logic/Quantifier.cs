@@ -21,7 +21,7 @@ namespace Logic
         public static LinguisticVariable lessThanQuarter = new LinguisticVariable
         {
             QuantifierName = "Mniej niż ćwierć",
-            MembershipFunction = new RectangularFunction(0, 0, 0.2, 0.25),
+            MembershipFunction = new RectangularFunction(0, 0, 0.25, 0.35),
             Absolute = false
         };
         public static LinguisticVariable aroundOneThirds = new LinguisticVariable
@@ -59,25 +59,31 @@ namespace Logic
         public static LinguisticVariable lessThan100 = new LinguisticVariable
         {
             QuantifierName = "Mniej niż 100",
-            MembershipFunction = new RectangularFunction(0, 0, 99, 200),
+            MembershipFunction = new RectangularFunction(0, 0, 99, 150),
             Absolute = true
         };
-        public static LinguisticVariable around400 = new LinguisticVariable
+        public static LinguisticVariable around250 = new LinguisticVariable
         {
-            QuantifierName = "Około 400",
-            MembershipFunction = new TriangularFunction(300, 400, 500),
+            QuantifierName = "Około 250",
+            MembershipFunction = new TriangularFunction(150, 250, 350),
             Absolute = true
         };
-        public static LinguisticVariable around900 = new LinguisticVariable
+        public static LinguisticVariable around500 = new LinguisticVariable
         {
-            QuantifierName = "Około 800",
-            MembershipFunction = new TriangularFunction(700, 800, 900),
+            QuantifierName = "Około 500",
+            MembershipFunction = new TriangularFunction(400, 500, 600),
+            Absolute = true
+        };
+        public static LinguisticVariable around750 = new LinguisticVariable
+        {
+            QuantifierName = "Około 750",
+            MembershipFunction = new TriangularFunction(650, 750, 850),
             Absolute = true
         };
         public static LinguisticVariable moreThan1000 = new LinguisticVariable
         {
             QuantifierName = "Więcej niż 1000",
-            MembershipFunction = new RectangularFunction(900, 990, 15397, 15397),
+            MembershipFunction = new RectangularFunction(950, 1000, 15397, 15397),
             Absolute = true
         };
         #endregion
@@ -94,8 +100,9 @@ namespace Logic
                 majority,
                 almostAll,
                 lessThan100,
-                around400,
-                around900,
+                around250,
+                around500,
+                around750,
                 moreThan1000
             };
         }
