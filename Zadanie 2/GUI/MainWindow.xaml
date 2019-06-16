@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Komputerowe Systemy Rozpoznawania - Zadanie 2" Height="650" Width="1000">
+        Title="Komputerowe Systemy Rozpoznawania - Zadanie 2" Height="700" Width="1200" ResizeMode="NoResize">
     <Grid Background="#313131">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.75*"/>
         </Grid.ColumnDefinitions>
 
         <Menu Grid.ColumnSpan="2" VerticalAlignment="Top" Background="#282828" Height="25" >
@@ -33,7 +33,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition Height="1.25*"/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
