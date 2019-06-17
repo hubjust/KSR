@@ -35,7 +35,7 @@ namespace Logic
             foreach (LinguisticVariable variable in AllLinguisticVariables)
                 quotient *= variable.DegreeOfFuzziness(players);
 
-            return 1 - Math.Pow(quotient, 1 / AllLinguisticVariables.Count);
+            return 1 - Math.Pow(quotient, 1.0 / AllLinguisticVariables.Count);
         }
 
         // T3 - stopień pokrycia
