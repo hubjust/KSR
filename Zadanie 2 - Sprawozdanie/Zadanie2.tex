@@ -669,7 +669,7 @@ W tym badaniu wygenerowaliśmy 2 komunikaty, które skupiały się na:
 	\item Przeciętnych Reakcjach,
 	\item Standardowej Wadze.
 \end{enumerate}
-Porównywaliśmy wpływ obecności kwantyfikatora (odpowiednio Słabego Bilansu oraz Niskiego Wzrostu) lub jego braku na wartości miar. Porównywaliśmy zarówno jednakowe jak i różniące się kwantyfikatory, tak, by miara T1 nie wynosiła 0.
+Porównywaliśmy wpływ obecności kwalifikatora (odpowiednio Słabego Bilansu oraz Niskiego Wzrostu) lub jego braku na wartości miar. Porównywaliśmy zarówno jednakowe jak i różniące się kwantyfikatory, tak, by miara T1 nie wynosiła 0.
 
 \subsubsection{Eksperyment 2.1}
 
@@ -694,9 +694,6 @@ Porównywaliśmy wpływ obecności kwantyfikatora (odpowiednio Słabego Bilansu 
 		T6 & 0.8 & 0.8 \\
 		T7 & 0.9 & 0.9 \\
 		T8 & 0.999 & 0.999 \\
-		T9 & 0.928 & 0.928  \\
-		T10 & 0.999 & 0.999 \\
-		T11 & 1 & 1 \\
 		\hline
 	\end{tabular}
 	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.1 - kwantyfikator względny (około 2/3 piłkarzy)}
@@ -724,9 +721,6 @@ Porównywaliśmy wpływ obecności kwantyfikatora (odpowiednio Słabego Bilansu 
 		T6 & 0.987 & 0.062 \\
 		T7 & 0.994 & 0.063 \\
 		T8 & 0.999 & 0.999 \\
-		T9 & 0.928 & 0.928 \\
-		T10 & 0.999 & 0.999 \\
-		T11 & 1 & 1 \\
 		\hline
 	\end{tabular}
 	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.1 - kwantyfikator bezwzględny}
@@ -756,9 +750,6 @@ Porównywaliśmy wpływ obecności kwantyfikatora (odpowiednio Słabego Bilansu 
 		T6 & 0.65 & 0.65 & 0.8 \\
 		T7 & 0.7 & 0.7 & 0.9 \\
 		T8 & 1 & 1 & 1 \\
-		T9 & 0.966 & 0 & 0 \\
-		T10 & 1 & 0.994 & 0.994 \\
-		T11 & 1 & 1 & 1 \\
 		\hline
 	\end{tabular}
 	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.2 - kwantyfikator względny}
@@ -786,9 +777,6 @@ Porównywaliśmy wpływ obecności kwantyfikatora (odpowiednio Słabego Bilansu 
 		T6 & 0.99 & 0.062 \\
 		T7 & 0.992 & 0.063 \\
 		T8 & 1 & 1 \\
-		T9 & 0.966 & 0 \\
-		T10 & 1 & 0.994 \\
-		T11 & 1 & 1 \\
 		\hline
 	\end{tabular}
 	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.2 - kwantyfikator bezwzględny}
@@ -874,23 +862,30 @@ Miara $T1$, obrazująca prawdziwość danego podsumowania, zmieniała się wraz 
 \newline
 
 Miary $T6$ i $T7$ opisują sam kwantyfikator, a dokładnie jego precyzyjność. Wyraźnie widać, że miara mniej niż 1/4 opisuje większy zbiór niż reszta zaproponowanych przez nas kwantyfikatorów względnych. Bardzo nieprecyzyjny jest kwantyfikator bezwzględny więcej niż 1000. Wartości tych miar są identyczne dla wszystkich podsumowań i zależą tylko od kwantyfikatora.
+\newline
 
 Miary $T2-T5$ oraz $T8-T11$ nie zmieniały swoich wartości w zależności od użytego kwantyfikatora, co nie jest zaskakujące, mając na uwadze braku wykorzystania kwantyfikatora w tych wzorach. 
 
-\subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
-W przeważającej większości najwyższe wyniki osiągane były przy 80\% zbioru treningowego. Tylko w jednym przypadku użycie 40\% zbioru treningowego pozwoliło osiągnąć najwyższą skuteczności (pierwszy sposób ekstrakcji, kategoria topics). Zazwyczaj jednak ten dobór procentowy okazywał się być najsłabszym ze względu na niedouczenie. 
+\subsection{Wpływ kwalifikatora na miary}}
+Ciężko jest porównać miarę $T1$ dla kwalifikatora lub jego braku - pracujemy wtedy na innych zbiorach. Wartości dla kwantyfikatorów względnych mogą się zmienić nieznacznie bądź drastycznie. Prawie na pewno zmienią się wartości dla kwantyfikatorów bezwzględnych (zakładając, że są odpowiednio zdefiniowane). Porównując wyniki skupiliśmy się tylko na tych, gdzie wartości miary $T1$ były większe od zera, przez co miary $T6$ i $T7$ potrafią się różnić, co jednak nie ma nic wspólnego z kwalifikatorem.
 \newline
+
+Miary $T2, T5, T8$ oraz $T11$ nie zmieniały swoich wartości w zależności od użytego kwantyfikatora, co nie jest zaskakujące, mając na uwadze braku wykorzystania kwantyfikatora w tych wzorach. 
 
 \subsection{Wpływ konkretnych cech na klasyfikację}
 Podczas klasyfikacji dla kategorii topics, zauważyliśmy, że liczba słów oraz liczba słów, których długość nie przekracza 3 znaków mają negatywny wpływ na osiąganą skuteczność. Świadczyć może o tym fakt, iż bez ww. cech osiągnęliśmy najwyższą skuteczność. Dużo ważniejsze okazały się cechy związane z unikalnością słów oraz wielkimi literami. \newline
 
 Podczas klasyfikacji dla kategorii authors najważniejsza okazała się cecha odpowiadająca za liczbę unikalnych słów. Bez niej skuteczność spadła z 71\% na 47\%. Podobnie jak w przypadku kategorii topics, cechy sprawdzające liczbę słów oraz liczbę krótkich słów osłabiały nasze wyniki - dzięki wyłączeniu ich, uzyskaliśmy wyższe wyniki niż w przypadku wszystkich cech. 
 
-	
+
 \section{Wnioski}
 \begin{itemize}
 	\item Należy dobierać precyzyjnie wartości przy funkcjach przynależności, aby uzyskać miarodajne wyniki.
 	\item Parametry dla kwantyfikatora absolutnego muszą być precyzyjnie dobrane do typu i rodzaju bazy - baza składająca się z dużej liczby elementów i dużej liczby atrybutów może potrzebować mniejszych wartości. 
+	\item Dodatkowy sumaryzator "i" oraz "lub" ma negatywny wpływ na wartości miar $T_2$ - $T_5$.
+	\item Dodatkowy sumaryzator "lub" osiąga wyższe wartości miar, niż sumaryzator "i"
+	\item Z powodu braku dodatkowych kwalifikatorów w naszym projekcie, miara $T_11$ nie dostarcza istotnych informacji
+	\item Miara $T_1$ zazwyczaj wystarcza do rozstrzygnięcia, które podsumowanie jest lepsze
 \end{itemize}
 
 	

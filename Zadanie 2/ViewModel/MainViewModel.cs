@@ -89,9 +89,13 @@ namespace ViewModel
                 message += "T6 = " + Math.Round(Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
                 message += "T7 = " + Math.Round(Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
                 message += "T8 = " + Math.Round(Measures.DegreeOfSummarizerCardinality(SelectedFirstSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
-                message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
-                message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
-                message += "T11 = " + Math.Round(Measures.LengthOfQualifier(quantifier), 3) + '\n';
+
+                if (SelectedQualifier.QuantifierName != "Każdy")
+                {
+                    message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                    message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                    message += "T11 = " + Math.Round(Measures.LengthOfQualifier(quantifier), 3) + '\n';
+                }
 
                 MessagesList.Add(message);
             }
@@ -126,9 +130,13 @@ namespace ViewModel
                 message += "T6 = " + Math.Round(Measures.DegreeOfQuantifierImprecision(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
                 message += "T7 = " + Math.Round(Measures.DegreeOfQuantifierCardinality(quantifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
                 message += "T8 = " + Math.Round(Measures.DegreeOfSummarizerCardinality(ComplexSummarizer, dataContext.FifaPlayer.ToList()), 3) + "; ";
-                message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
-                message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
-                message += "T11 = " + Math.Round(Measures.LengthOfQualifier(quantifier), 3) + '\n';
+
+                if (SelectedQualifier.QuantifierName != "Każdy")
+                {
+                    message += "T9 = " + Math.Round(Measures.DegreeOfQualifierImprecision(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                    message += "T10 = " + Math.Round(Measures.DegreeOfQualifierCardinality(SelectedQualifier, dataContext.FifaPlayer.ToList()), 3) + "; ";
+                    message += "T11 = " + Math.Round(Measures.LengthOfQualifier(quantifier), 3) + '\n';
+                }
 
                 MessagesList.Add(message);
             }
