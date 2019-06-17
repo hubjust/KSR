@@ -72,10 +72,10 @@ namespace Logic
                 foreach (FifaPlayer player in players)
                     sum += variable.GetMembership(player);
 
-                quotient *= sum / players.Count() - t3;
+                quotient *= sum / players.Count();
             }
 
-            return Math.Abs(quotient);
+            return Math.Abs(quotient - t3);
         }
 
         // T5 -  długość podsumowania
