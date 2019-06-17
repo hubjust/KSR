@@ -186,7 +186,7 @@ oraz \(m\) krotkami w bazie danych możemy wprowadzić oznaczenia:
 oraz
 \[r_j = \frac{\sum_{i=1}^{m} g_{ij}}{m} ~\mbox{.}\]
 Wówczas możemy zapisać:
-\[T_4 = \left|\left \prod_{j=1}^{n} r_j \right - T_3\right| ~\mbox{.}\]
+\[T_4 = \left| \prod_{j=1}^{n} r_j - T_3\right| ~\mbox{.}\]
 
  Określa jak wiele krotek przynależy do sumaryzatora, czyli czy dane podsumowanie jest właściwe dla zestawu danych.
 
@@ -207,7 +207,7 @@ Reprezentuje w jakim stopniu precyzyjny jest kwantyfikator. Im mniejszy nośnik 
 \subsection{\(T_7\) -- stopień liczności kwantyfikatora}
 W przeciwieństwie do \(T_6\), zamiast zliczać elementy z nośnika \(Q\),
 policzymy moc zbioru rozmytego:
-\[T_7 = 1-\frac{\card(Q)}{\card(\mathcal{X}_Q)} ~\mbox{.}\]
+\[T_7 = 1-\frac{|Q|}{|\mathcal{X}_Q|} ~\mbox{.}\]
 
 Opisuje stopień precyzji kwantyfikatora, im mniejsza kardynalność kwantyfikatora tym jest on bardziej precyzyjny.
 
@@ -215,7 +215,7 @@ Opisuje stopień precyzji kwantyfikatora, im mniejsza kardynalność kwantyfikat
 W przypadku zastosowania sumaryzatora złożonego, podobnie jak przy poprzednich miarach, stosujemy średnią geometryczną.
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\):
 
-\[T_8 = 1- \left(\prod_{j=1}^{n} \frac{\card(S_j)}{\card(\mathcal{X}_j)}\right)^{\frac{1}{n}} ~\mbox{.}\]
+\[T_8 = 1- \left(\prod_{j=1}^{n} \frac{|S_j|}{|\mathcal{X}_j|}\right)^{\frac{1}{n}} ~\mbox{.}\]
 
 Opisuje stopień precyzji sumaryzatora, im mniejsza kardynalność kwantyfikatora tym jest on bardziej precyzyjny.
 
@@ -228,13 +228,13 @@ Określa w jakim stopniu precyzyjny jest kwalifikator. Im szerszy nośnik zbioru
 
 \subsection{\(T_{10}\) -- stopień liczności kwalifikatora}
 Stopień kardynalności kwalifikatora \(T_{10}\) definiujemy jako:
-\[T_{10} = 1-\frac{\card|W|}{\card|\mathcal{X}_g|} ~\mbox{.}\]\\
+\[T_{10} = 1-\frac{|W|}{|\mathcal{X}_g|} ~\mbox{.}\]\\
 
 Opisuje stopień precyzji kwalifikatora, im większa jest kardynalność kwalifikator tym jest on mniej precyzyjny.
 
 \subsection{\(T_{11}\) -- długość kwalifikatora}
 Długość kwalifikatora \(T_{11}\) definiujemy następująco:
-\[T_{11} = 2\left(\frac{1}{2}\right)^{\card({W})} ~\mbox{.}\]
+\[T_{11} = 2\left(\frac{1}{2}\right)^{|W|} ~\mbox{.}\]
 
 Wyznacza jakość podsumowania na podstawie złożoności kwalifikatora, Im bardziej złożony kwalifikator tym jakość podsumowania gorsza.
 
@@ -248,11 +248,11 @@ W tym projekcie zawarta została cała logika aplikacji. Odzworowany został mod
  
 \subsection{ViewModel}
 
-Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego poczynania wywołując wybrane akcje z logiki programu oraz odpowiada za odświeżanie widoków w interfejsie graﬁcznym
+Klasa MainViewModel przyjmuje dane wejściowe od użytkownika i reaguje na jego poczynania wywołując wybrane akcje z logiki programu oraz odpowiada za odświeżanie widoków w interfejsie graficznym.
 
 \subsection{GUI}
 
-Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w obsłudze graﬁczny interfejs użytkownika.
+Projekt GUI (graphical user interface) implementuje przejrzysty oraz łatwy w obsłudze graficzny interfejs użytkownika.
 
 \section{Materiały i metody}
 
@@ -353,7 +353,7 @@ Poniżej zaprezentowaliśmy poszczególne sumaryzatory oraz kwalifikatory wykorz
 		\hline
 		\hline 
 		Słabe & 13 & 25 & 29 & 35 \\ 
-		Przieciętne & 33 & 46 & 58 & 66 \\
+		Przeciętne & 33 & 46 & 58 & 66 \\
 		Dobre & 65 & 79 & 88 & 98 \\
 		\hline
 	\end{tabular}
@@ -368,7 +368,7 @@ Poniżej zaprezentowaliśmy poszczególne sumaryzatory oraz kwalifikatory wykorz
 		\hline
 		\hline 
 		Słaba & 12 & 25 & 29 & 35 \\ 
-		Przieciętna & 33 & 46 & 58 & 69 \\
+		Przeciętna & 33 & 46 & 58 & 69 \\
 		Dobra & 65 & 79 & 88 & 97 \\
 		\hline
 	\end{tabular}
@@ -383,7 +383,7 @@ Poniżej zaprezentowaliśmy poszczególne sumaryzatory oraz kwalifikatory wykorz
 		\hline
 		\hline 
 		Słaby & 0 & 15 & 27 & 37 \\ 
-		Przieciętny & 36 & 46 & 58 & 66 \\
+		Przeciętny & 36 & 46 & 58 & 66 \\
 		Dobry & 67 & 79 & 88 & 97 \\
 		\hline
 	\end{tabular}
@@ -398,7 +398,7 @@ Poniżej zaprezentowaliśmy poszczególne sumaryzatory oraz kwalifikatory wykorz
 		\hline
 		\hline 
 		Słaba & 14 & 21 & 27 & 35 \\ 
-		Przieciętna & 33 & 46 & 58 & 69 \\
+		Przeciętna & 33 & 46 & 58 & 69 \\
 		Dobra & 67 & 79 & 88 & 98 \\
 		\hline
 	\end{tabular}
@@ -413,7 +413,7 @@ Poniżej zaprezentowaliśmy poszczególne sumaryzatory oraz kwalifikatory wykorz
 		\hline
 		\hline 
 		Słaby & 16 & 21 & 29 & 35 \\ 
-		Przieciętny & 38 & 46 & 58 & 72 \\
+		Przeciętny & 38 & 46 & 58 & 72 \\
 		Dobry & 71 & 79 & 88 & 99 \\
 		\hline
 	\end{tabular}
@@ -443,7 +443,7 @@ Poniżej zaprezentowaliśmy poszczególne sumaryzatory oraz kwalifikatory wykorz
 		\hline
 		\hline 
 		Słaba & 3 & 14 & 23 & 26 \\ 
-		Przieciętna & 25 & 39 & 48 & 57 \\
+		Przeciętna & 25 & 39 & 48 & 57 \\
 		Dobra & 56 & 63 & 69 & 75 \\
 		Bardzo dobra & 74 & 81 & 88 & 99 \\
 		\hline
@@ -534,25 +534,34 @@ Kwantyfikatory podzieliliśmy na względne i absolutne . Przedstawiamy je poniż
 	\caption{Przyporządkowane parametry dla kwantyfikatora absolutnego.}
 \end{table}
 
-\subsection{Badania}
+
+
+
+\section{Badania}
+
 Postanowiliśmy podzielić nasze badania na 3 części:
 \begin{enumerate}
-\item 
-\item
-\item
+	\item W pierwszym badaniu sprawdzaliśmy jakie wartości przybiorą miary podsumowań dla różnych kwantyfikatorów.
+	\item W drugim teście porównywaliśmy podsumowania z oraz bez kwalifikatora.
+	\item W trzecim badaniu naszym celem było porównanie podsumowań z jednym sumaryzatorem oraz ich połączeń spójnikami ORAZ i LUB.
 \end{enumerate}
 
+\subsection{Pierwszy eksperyment}
 
-\section{Wyniki}
+W tym badaniu wygenerowaliśmy 3 komunikaty, dotyczące odpowiednio zależności pomiędzy:
+\begin{enumerate}
+	\item Dobrą Celnością a Przeciętnym Ustawianiem się,
+	\item Słabą Prędkością a Zadowalającym Opanowaniem,
+	\item Młodym Wiekiem a Dobrą Prędkością.
+\end{enumerate}
+Miary $T2-T5$ oraz $T8-T11$ były stałe, dlatego nie umieszczaliśmy ich w tabeli oraz na wykresie, gdyż kwantyfikator nie miał wpływu na ich wartość. Zamieściliśmy ich wartości pod tabelą porównującą wartości miar $T1$, $T6$ i $T7$. 
 
-Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez nas eksperymentów.
-
-\subsection{1 BADANIE}
+\subsubsection{Eksperyment 1.1}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie11.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 1.1}
 \end{figure}
 
 \begin{table}[H]
@@ -576,13 +585,17 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		Więcej niż 1000 & 0 & 0.987 & 0.063  \\
 		\hline
 	\end{tabular}
-	\caption{Przyporządkowane parametry dla kwantyfikatora absolutnego.}
+	\caption{Tabela przedstawiający wyniki Eksperymentu 1.1}
 \end{table}
+
+Uzyskane miary, które były jednakowe dla każdego kwantyfikatora: $T2 = 0.431$, $T3 = 0.151$, $T4 = 0.263$, $T5 = 1$, $T8 = 0.998$, $T9 = 0.827$, $T10 = 0.999$, $T11 = 1$.
+
+\subsubsection{Eksperyment 1.2}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie12.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 1.2}
 \end{figure}
 
 \begin{table}[H]
@@ -607,13 +620,17 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		\hline
 		\hline
 	\end{tabular}
-	\caption{Przyporządkowane parametry dla kwantyfikatora absolutnego.}
+	\caption{Tabela przedstawiający wyniki Eksperymentu 1.2}
 \end{table}
+
+Uzyskane miary, które były jednakowe dla każdego kwantyfikatora: $T2 = 0.318$, $T3 = 0.718$, $T4 = 0.211$, $T5 = 1$, $T8 = 0.998$, $T9 = 0.939$, $T10 = 0.999$, $T11 = 1$.
+
+\subsubsection{Eksperyment 1.3}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie13.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 1.3}
 \end{figure}
 
 \begin{table}[H]
@@ -637,443 +654,213 @@ Poniższej umieszczone tabele oraz wykresy są wynikami przeprowadzonych przez n
 		Więcej niż 1000 & 1 & 0.987 & 0.063  \\
 		\hline
 	\end{tabular}
-	\caption{Przyporządkowane parametry dla kwantyfikatora absolutnego.}
+	\caption{Tabela przedstawiający wyniki Eksperymentu 1.3}
 \end{table}
 
-\subsection{2 BADANIE}
+Uzyskane miary, które były jednakowe dla każdego kwantyfikatora: $T2 = 0.499$, $T3 = 0.565$, $T4 = 0.254$, $T5 = 1$, $T8 = 0.999$, $T9 = 0.347$, $T10 = 1$, $T11 = 1$.
+
+\subsection{Drugi eksperyment}
+
+W tym badaniu wygenerowaliśmy 2 komunikaty, które skupiały się na:
+\begin{enumerate}
+	\item Przeciętnych Reakcjach,
+	\item Standardowej Wadze.
+\end{enumerate}
+Porównywaliśmy wpływ obecności kwantyfikatora (odpowiednio Słabego Bilansu oraz Niskiego Wzrostu) lub jego braku na wartości miar. Porównywaliśmy zarówno jednakowe jak i różniące się kwantyfikatory, tak, by miara T1 nie wynosiła 0.
+
+\subsubsection{Eksperyment 2.1}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie211.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 2.1 - kwantyfikator względny}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c c } 
+	\begin{tabular}{c c c} 
 		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 0.584  \\
-		T2 & 0.194 \\
-		T3 & 0.776  \\
-		T4 & 0.163 \\
-		T5 & 1  \\
-		T6 & 0.8 \\
-		T7 & 0.9  \\
-		T8 & 0.999 \\
-		T9 & 0.928  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Około dwie trzecie piłkarzy posiadających/będących Słaby Balans mają/są Przeciętne Reakcje".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex]
+		\textbf{Miara} & \textbf{Słaby balans} & \textbf{Brak kwalifikatora}\\ [0.5ex] 
 		\hline
 		\hline 
-		T1 & 0.537  \\
-		T2 & 0.194 \\
-		T3 & 0.776  \\
-		T4 & 0.163 \\
-		T5 & 1  \\
-		T6 & 0.987 \\
-		T7 & 0.994  \\
-		T8 & 0.999 \\
-		T9 & 0.928  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
+		T1 & 0.584 & 0.537 \\
+		T2 & 0.194 & 0.194 \\
+		T3 & 0.776 & 0.806 \\
+		T4 & 0.163 & 0.192 \\
+		T5 & 1 & 1 \\
+		T6 & 0.8 & 0.8 \\
+		T7 & 0.9 & 0.9 \\
+		T8 & 0.999 & 0.999 \\
+		T9 & 0.928 & 0.928  \\
+		T10 & 0.999 & 0.999 \\
+		T11 & 1 & 1 \\
 		\hline
 	\end{tabular}
-	\caption{Miary i wartości podsumowania "Około 500 piłkarzy posiadających/będących Słaby Balans mają/są Przeciętne Reakcje"
-.}
+	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.1 - kwantyfikator względny (około 2/3 piłkarzy)}
 \end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie212.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 2.1 - kwantyfikator bezwzględny}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c c } 
+	\begin{tabular}{c c c } 
 		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
+		& \textbf{Słaby balans} & \textbf{Brak kwalifikatora}\\ [0.5ex]
+		\textbf{Miara} & \textbf{Około 500} & \textbf{Więcej niż 1000}\\ [0.5ex]
 		\hline
 		\hline 
-		T1 & 0.537  \\
-		T2 & 0.194 \\
-		T3 & 0.806  \\
-		T4 & 0.192 \\
-		T5 & 1  \\
-		T6 & 0.8 \\
-		T7 & 0.9  \\
-		T8 & 0.999 \\
-		T9 & 0.928  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
+		T1 & 0.537 & 1  \\
+		T2 & 0.194 & 0.194 \\
+		T3 & 0.776 & 0.806 \\
+		T4 & 0.163 & 0.192 \\
+		T5 & 1 & 1 \\
+		T6 & 0.987 & 0.062 \\
+		T7 & 0.994 & 0.063 \\
+		T8 & 0.999 & 0.999 \\
+		T9 & 0.928 & 0.928 \\
+		T10 & 0.999 & 0.999 \\
+		T11 & 1 & 1 \\
 		\hline
 	\end{tabular}
-	\caption{Miary i wartości podsumowania "Około dwie trzecie piłkarzy posiadających/będących Słaby Balans mają/są Przeciętne Reakcje".}
+	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.1 - kwantyfikator bezwzględny}
 \end{table}
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex]
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0.194 \\
-		T3 & 0.806  \\
-		T4 & 0.192 \\
-		T5 & 1  \\
-		T6 & 0.062 \\
-		T7 & 0.063  \\
-		T8 & 0.999 \\
-		T9 & 0.928  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Więcej niż 1000 piłkarzy posiadających/będących Słaby Balans mają/są Przeciętne Reakcje"
-.}
-\end{table}
+\subsubsection{Eksperyment 2.2}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie221.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 2.2 - kwantyfikator względny}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c c } 
+	\begin{tabular}{c c c c } 
 		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0.482 \\
-		T3 & 0.0.048  \\
-		T4 & 0.293 \\
-		T5 & 1  \\
-		T6 & 0.65 \\
-		T7 & 0.7  \\
-		T8 & 1 \\
-		T9 & 0.966  \\
-		T10 & 1 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż ćwierć piłkarzy posiadających/będących Niski Wzrost mają/są Standardowa Waga".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex]
+		& \textbf{Niski Wzrost} & \textbf{Brak kwalifikatora} & \textbf{Brak kwalifikatora}\\ [0.5ex] 
+		\textbf{Miara} & \textbf{Mniej niż 1/4} & \textbf{Mniej niż 1/4} & \textbf{1/3}\\ [0.5ex] 
 		\hline
 		\hline 
-		T1 & 1  \\
-		T2 & 0.482 \\
-		T3 & 0.0.048  \\
-		T4 & 0.293 \\
-		T5 & 1  \\
-		T6 & 0.99 \\
-		T7 & 0.992  \\
-		T8 & 1 \\
-		T9 & 0.966  \\
-		T10 & 1 \\
-		T11 & 1 \\
+		T1 & 1 & 0.094 & 0.894 \\
+		T2 & 0.482 & 0.482 & 0.482 \\
+		T3 & 0.048 & 0.518 & 0.518 \\
+		T4 & 0.293 & 0.178 & 0.178 \\
+		T5 & 1 & 1 & 1 \\
+		T6 & 0.65 & 0.65 & 0.8 \\
+		T7 & 0.7 & 0.7 & 0.9 \\
+		T8 & 1 & 1 & 1 \\
+		T9 & 0.966 & 0 & 0 \\
+		T10 & 1 & 0.994 & 0.994 \\
+		T11 & 1 & 1 & 1 \\
 		\hline
 	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż 100 piłkarzy posiadających/będących Niski Wzrost mają/są Standardowa Waga".}
+	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.2 - kwantyfikator względny}
 \end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie222.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 2.2 - kwantyfikator bezwzględny}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c c } 
+	\begin{tabular}{c c c } 
 		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 0.094  \\
-		T2 & 0.482 \\
-		T3 & 0.0.518  \\
-		T4 & 0.178 \\
-		T5 & 1  \\
-		T6 & 0.65 \\
-		T7 & 0.7  \\
-		T8 & 1 \\
-		T9 & 0  \\
-		T10 & 0.994 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż ćwierć piłkarzy mają/są Standardowa Waga
-".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex]
+		 & \textbf{Niski Wzrost} & \textbf{Brak kwalifikatora}\\ [0.5ex]
+		\textbf{Miara} & \textbf{Mniej niż 100} & \textbf{Więcej niż 1000}\\ [0.5ex]
 		\hline
 		\hline 
-		T1 & 0.894  \\
-		T2 & 0.482 \\
-		T3 & 0.0.518  \\
-		T4 & 0.178 \\
-		T5 & 1  \\
-		T6 & 0.8 \\
-		T7 & 0.9  \\
-		T8 & 1 \\
-		T9 & 0. \\
-		T10 & 0.994 \\
-		T11 & 1 \\
+		T1 & 1 & 1 \\
+		T2 & 0.482 & 0.482 \\
+		T3 & 0.048 & 0.518 \\
+		T4 & 0.293 & 0.178 \\
+		T5 & 1 & 1 \\
+		T6 & 0.99 & 0.062 \\
+		T7 & 0.992 & 0.063 \\
+		T8 & 1 & 1 \\
+		T9 & 0.966 & 0 \\
+		T10 & 1 & 0.994 \\
+		T11 & 1 & 1 \\
 		\hline
 	\end{tabular}
-	\caption{Miary i wartości podsumowania "Około jedna trzecia piłkarzy mają/są Standardowa Waga".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0.482 \\
-		T3 & 0.518  \\
-		T4 & 0.178 \\
-		T5 & 1  \\
-		T6 & 0.062 \\
-		T7 & 0.063  \\
-		T8 & 1 \\
-		T9 & 0  \\
-		T10 & 0.994 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Więcej niż 1000 piłkarzy mają/są Standardowa Waga".}
+	\caption{Tabela przedstawiająca wyniki Eksperymentu 2.2 - kwantyfikator bezwzględny}
 \end{table}
 
 
-\subsection{3 BADANIE}
+\subsection{Trzeci eksperyment}
+
+W tym badaniu wygenerowaliśmy komunikaty dotyczących wysokich piłkarzy, którzy mają:
+\begin{enumerate}
+	\item Słabą Kontrolę,
+	\item Słabą Celność,
+	\item Słabą Kontrolę ORAZ Słabą Celność,
+	\item Słabą Kontrolę LUB Słabą Celność.
+\end{enumerate}
+Porównywaliśmy zarówno jednakowe, jak i różniące się kwantyfikatory, dla których miara T1 była różna od 0.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie31.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 3 - kwantyfikator względny}
 \end{figure}
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c c } 
+	\begin{tabular}{c c c c c } 
 		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0.904 \\
-		T3 & 0.125  \\
-		T4 & 0.038 \\
-		T5 & 1  \\
-		T6 & 0.065 \\
-		T7 & 0.7  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż ćwierć piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Kontrola piłki".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
+		\textbf{Miara} & \textbf{Słaba Kontrola} & \textbf{Słaba Celność} & \textbf{ORAZ} & \textbf{LUB}\\ [0.5ex] 
 		\hline
 		\hline 
-		T1 & 0.416  \\
-		T2 & 0.904 \\
-		T3 & 0.125  \\
-		T4 & 0.038 \\
-		T5 & 1  \\
-		T6 & 0.987 \\
-		T7 & 0.994  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
+		T1 & 1 & 1 & 1 & 1 \\
+		T2 & 0.904 & 0.916 & 0 & 0 \\
+		T3 & 0.125 & 0.108 & 0 & 0.233 \\
+		T4 & 0.038 & 0.058 & 0.04 & 0.027 \\
+		T5 & 1 & 1 & 0.5 & 0.5 \\
+		T6 & 0.065 & 0.065 & 0.65 & 0.65 \\
+		T7 & 0.7 & 0.7 & 0.7 & 0.7 \\
+		T8 & 0.999 & 0.999 & 0.999 & 0.999 \\
+		T9 & 0.445 & 0.445 & 0.445 & 0.445 \\
+		T10 & 0.999 & 0.999 & 0.999 & 0.999 \\
+		T11 & 1 & 1 & 1 & 1 \\
 		\hline
 	\end{tabular}
-	\caption{Miary i wartości podsumowania "Około 750 piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Kontrola piłki".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0.916 \\
-		T3 & 0.108  \\
-		T4 & 0.058 \\
-		T5 & 1  \\
-		T6 & 0.065 \\
-		T7 & 0.7  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż ćwierć piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Celność".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 0.586  \\
-		T2 & 0.916 \\
-		T3 & 0.108  \\
-		T4 & 0.058 \\
-		T5 & 1  \\
-		T6 & 0.987 \\
-		T7 & 0.994  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Około 500 piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Celność".}
+	\caption{Tabela przedstawiająca wyniki Eksperymentu 3 - kwantyfikator względny (mniej niż 1/4 piłkarzy)}
 \end{table}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{{Rysunki/Badanie32.png}}
-	\caption{Przykład funkcji przynależności - trójkątnej oraz trapezoidalnej [3]}
+	\caption{Wykres przedstawiający wyniki Eksperymentu 3 - kwantyfikator bezwzględny}
 \end{figure}
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0 \\
-		T3 & 0  \\
-		T4 & 0.04 \\
-		T5 & 0.5  \\
-		T6 & 0.65 \\
-		T7 & 0.7  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż ćwierć piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Celność oraz Słaba Kontrola piłki".}
-\end{table}
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c c } 
+	\begin{tabular}{c c c c c } 
 		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0 \\
-		T3 & 0  \\
-		T4 & 0.04 \\
-		T5 & 0.5  \\
-		T6 & 0.99 \\
-		T7 & 0.992  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż 100 piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Celność oraz Słaba Kontrola piłki".}
-\end{table}
-
-^^^^^^
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
+		& \textbf{Słaba Kontrola} & \textbf{Słaba Celność} & \textbf{ORAZ} & \textbf{LUB}\\ [0.5ex] 
+		\textbf{Miara} & \textbf{Około 700} & \textbf{Około 500} & \textbf{Mniej niż 100} & \textbf{Więcej niż 1000}\\ [0.5ex] 
 		\hline
 		\hline 
-		T1 & 1  \\
-		T2 & 0 \\
-		T3 & 0.233  \\
-		T4 & 0.027 \\
-		T5 & 0.5  \\
-		T6 & 0.65 \\
-		T7 & 0.7  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
+		T1 & 0.416 & 0.586 & 1 & 1 \\
+		T2 & 0.904 & 0.916 & 0 & 0 \\
+		T3 & 0.125 & 0.108 & 0 & 0.233 \\
+		T4 & 0.038 & 0.058 & 0.04 & 0.027 \\
+		T5 & 1 & 1 & 0.5 & 0.5 \\
+		T6 & 0.987 & 0.987 & 0.99 & 0.062 \\
+		T7 & 0.994 & 0.994 & 0.992 & 0.063 \\
+		T8 & 0.999 & 0.999 & 0.999 & 0.999 \\
+		T9 & 0.445 & 0.445 & 0.445 & 0.445 \\
+		T10 & 0.999 & 0.999 & 0.999 & 0.999 \\
+		T11 & 1 & 1 & 1 & 1 \\
 		\hline
 	\end{tabular}
-	\caption{Miary i wartości podsumowania "Mniej niż ćwierć piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Celność lub Słaba Kontrola piłki".}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{c c } 
-		\hline
-		\textbf{Miara} & \textbf{Wartość}\\ [0.5ex] 
-		\hline
-		\hline 
-		T1 & 1  \\
-		T2 & 0 \\
-		T3 & 0.233  \\
-		T4 & 0.027 \\
-		T5 & 0.5  \\
-		T6 & 0.062 \\
-		T7 & 0.063  \\
-		T8 & 0.999 \\
-		T9 & 0.445  \\
-		T10 & 0.999 \\
-		T11 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Miary i wartości podsumowania "Więcej niż 1000 piłkarzy posiadających/będących Wysoki Wzrost mają/są Słaba Celność lub Słaba Kontrola piłki".}
+	\caption{Tabela przedstawiająca wyniki Eksperymentu 3 - kwantyfikator bezwzględny}
 \end{table}
 
 \section{Dyskusja}
@@ -1098,7 +885,7 @@ Podczas klasyfikacji dla kategorii authors najważniejsza okazała się cecha od
 \section{Wnioski}
 \begin{itemize}
 	\item Należy dobierać precyzyjnie wartości przy funkcjach przynależności, aby uzyskać miarodajne wyniki.
-	\item Parametry dla kwantyfikatora absolutnego muszą być precyzyjnie dobrane to typu i rodzaju bazy. 
+	\item Parametry dla kwantyfikatora absolutnego muszą być precyzyjnie dobrane do typu i rodzaju bazy - baza składająca się z dużej liczby elementów i dużej liczby atrybutów może potrzebować mniejszych wartości. 
 \end{itemize}
 
 	
@@ -1107,9 +894,9 @@ Podczas klasyfikacji dla kategorii authors najważniejsza okazała się cecha od
 \bibitem{adam}
 Methods for the linguistic summarization of data - aplications of fuzzy sets and their extensions, Adam Niewiadomski, Akademicka Oficyna Wydawnicza EXIT, Warszawa 2008
 \bibitem{ZbiorRozmyty}
-http://www.cs.put.poznan.pl/amichalski/si.dzienne/AI7.new.fuzzy.b&w.pdf
+http://www.cs.put.poznan.pl/amichalski/si.dzienne/AI7.new.fuzzy.b\&w.pdf
 \bibitem{FunkcjaPrzynaleznosci}
-http://home.agh.edu.pl/~mrzyglod/iw/iw_pliki/iw-is-L2-2017-2018.pdf
+http://home.agh.edu.pl/~mrzyglod/iw/iw\_pliki/iw-is-L2-2017-2018.pdf
 \bibitem{BazaDanych}
 https://www.kaggle.com/aishwarya1992/fifa-19-player-database
 \end{thebibliography}
