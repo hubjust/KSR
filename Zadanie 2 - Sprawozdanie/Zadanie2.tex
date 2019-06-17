@@ -144,8 +144,11 @@ Stopień prawdziwości jest najbardziej naturalną miarą jakości podsumowania.
 gdzie \(\mathrm{ce}(S_j)\) jest rozszerzeniem cylindrycznym
 sumaryzatora \(S_j\), \(m\) liczba wszystkich krotek, a \(d_i\).
 Dla kwantyfikatorów relatywnych stopnień
-prawdziwości możemy zapisać jako \(T_1 = \mu_Q(\frac{r}{m})\),
-zaś dla kwantyfikatorów absolutnych jako \(T_1 = \mu_Q(r)\), gdzie \(r\) jest kardynalnością. 
+prawdziwości możemy zapisać jako
+$$T_1 = \mu_Q(\frac{r}{m}),$$
+zaś dla kwantyfikatorów absolutnych jako
+$$T_1 = \mu_Q(r),$$
+gdzie \(r\) jest kardynalnością. 
 
 \subsection{\(T_2\) -- stopień nieprecyzyjności}
 Dla podsumowania z \(n\) sumaryzatorami \(S_1 \ldots S_n\) możemy określić stopień nieprecyzyjności,
@@ -865,12 +868,14 @@ Porównywaliśmy zarówno jednakowe, jak i różniące się kwantyfikatory, dla 
 
 \section{Dyskusja}
 
-\subsection{Wpływ liczby k sąsiadów oraz wyboru metryki na klasyfikację}
-W przypadku wszystkich trzech sposobów ekstrakcji, metryka Euklidesowa oraz metryka uliczna osiągają bardzo podobne wyniki i nie jesteśmy w stanie stwierdzić, która z nich wykazuje lepszą skuteczność. Metryka Czebyszewa charakteryzuje się zdecydowanie słabszą zdolnością do klasyfikacji. Osiąga niższe wyniki, niż dwie wcześniej wspomniane metryki.
- \newline
+\subsection{Wpływ kwantyfikatora na miary}
 
-W przypadku pierwszego i drugiego sposobu ekstrakcji cech dla kategorii topics i places, zauważyliśmy, że wraz ze wzrostem liczby k sąsiadów zwiększała się także skuteczność. Najsłabsze wyniki osiągane były dla k równego 2. Jeśli zaś chodzi o kategorię authors, najwyższa skuteczność wykazywała mała liczba k sąsiadów (od 2 do 3). Wyraźny spadek wyników zaobserwowaliśmy, gdy k równało się 10. Podczas eksperymentu trzeciego sposobu ekstrakcji cech zauważyliśmy bardzo zmienną skuteczność w przypadku zmiany liczby k sąsiadów w zależności od wybranych kategorii. Kategoria places osiąga najsłabsze wyniki przy małej liczbie sąsiadów, z kolei kategoria topics najlepsze. Zauważyliśmy, że najwyższe wyniki w kategorii authors osiągane są przy liczbie sąsiadów równej 7 oraz 10. 
+Miara $T1$, obrazująca prawdziwość danego podsumowania, zmieniała się wraz z rozważanym kwantyfikatorem - dla większości będąc równa 0. Obrazuje ona nie tylko jak dużo piłkarzy spełnia dane kryterium, ale pozwala też szacować jak duża jest grupa, która podsumowanej cechy nie spełnia. Dla eksperymentu 1.1 widać jak mało jest piłkarzy którzy posiadając Dobrą Celność, cechują się też Przeciętnym Ustawianiem się. Piłkarze cechujący się Słabą Prędkością w dużej części posiadają Zadowalające Opanowanie - $T1$ jest niskie dla miar około $1/2$ oraz około $2/3$, dzięki czemu wiemy, że właściwa grupa byłaby opisana kwantyfikatorem zawierającym się w przedziale ($\frac{1}{2}$, $\frac{2}{3}$). Liczba ta oscyluje wokół 250 piłkarzy. Sprawa wygląda inaczej dla Młodych piłkarzy - około 1/3 z nich ma Dobrą Prędkość, jednak tym razem jest to ponad 1000 piłkarzy. 
+\newline
 
+Miary $T6$ i $T7$ opisują sam kwantyfikator, a dokładnie jego precyzyjność. Wyraźnie widać, że miara mniej niż 1/4 opisuje większy zbiór niż reszta zaproponowanych przez nas kwantyfikatorów względnych. Bardzo nieprecyzyjny jest kwantyfikator bezwzględny więcej niż 1000. Wartości tych miar są identyczne dla wszystkich podsumowań i zależą tylko od kwantyfikatora.
+
+Miary $T2-T5$ oraz $T8-T11$ nie zmieniały swoich wartości w zależności od użytego kwantyfikatora, co nie jest zaskakujące, mając na uwadze braku wykorzystania kwantyfikatora w tych wzorach. 
 
 \subsection{Wpływ podziału tekstów na zbiory treningowe i testowe na klasyfikację}
 W przeważającej większości najwyższe wyniki osiągane były przy 80\% zbioru treningowego. Tylko w jednym przypadku użycie 40\% zbioru treningowego pozwoliło osiągnąć najwyższą skuteczności (pierwszy sposób ekstrakcji, kategoria topics). Zazwyczaj jednak ten dobór procentowy okazywał się być najsłabszym ze względu na niedouczenie. 
