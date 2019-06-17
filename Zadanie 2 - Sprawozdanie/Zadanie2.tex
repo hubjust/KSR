@@ -37,7 +37,7 @@
 \maketitle
 
 \section{Cel}
-Celem zadania było aplikacji desktopowej, która posiada charakter doradczy, generujący pewną ilość podsumowań lingwistycznych dla podanej bazy, a następnie przedstawia użytkownikowu wybrane - według zastosowanych miar jakości wyniki, czyli podsumowania lingwistyczne.
+Celem zadania było zaprojektowanie aplikacji desktopowej, która posiada charakter doradczy, generujący pewną ilość podsumowań lingwistycznych dla podanej bazy, a następnie przedstawia użytkownikowu wybrane - według zastosowanych miar jakości wyniki, czyli podsumowania lingwistyczne.
 
 \section{Wprowadzenie}	
 Zagadnieniem jakim zajmowaliśmy się w ramach projektu była analiza działania lingwistycznych podsumowań baz danych na zbiorach rozmytych. Zbiór rozmyty jest podstawowym pojęciem wykorzystywanym przy naszym zadaniu, zatem przytoczmy jego definicję:
@@ -160,7 +160,7 @@ Wyrażenie \(\left(\prod_{j=1}^{n} \mathrm{in}(S_j)\right)^{1/n}\) to określa �
 \subsection{\(T_3\) -- stopień pokrycia}
 Stopień pokrycia \(T_3\) jest zdefiniowany dla podsumowań z kwalifikatorami. Stopień pokrycia T3 
 Dla każdego \(i=1\ldots m\) (związanego z krotką \(d_i\) z bazy
-danych) możemy zdefiniować:
+danych) możemy zdefiniować (z kwalifikatorem):
 \[
 \begin{array}{l}
 t_i = \begin{cases}
@@ -171,6 +171,16 @@ h_i = \begin{cases}
 1 & \mbox{gdy } \mu_{W}(d_i) > 0 \\
 0 & \mbox{w przeciwnym wypadku.}
 \end{cases}
+\end{array}\]
+
+Bez kwalifikatora:
+
+\[
+\begin{array}{l}
+t_i = \begin{cases}
+1 & \mbox{gdy } \mu_{\mathrm{ce}(S_j)}(d_i) > 0  \\
+0 & \mbox{w przeciwnym wypadku.}
+\end{cases} \\
 \end{array}\]
 
 Przy powyższych oznaczeniach:
